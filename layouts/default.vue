@@ -40,4 +40,53 @@ body {
 
     }
 }
+.container {
+    margin: 0 auto;
+}
+.primary-btn {
+    @apply text-white rounded inline-block text-base;
+    background: $secondary-color;
+    padding: 16px 28px;
+    box-shadow: $box-shadow;
+    transition: .1s;
+    &:hover {
+        transform: translateY(-5px);
+    }
+    &:focus {
+        transform: translateY(-4px);
+    }
+}
+section {
+    margin: 8rem auto;
+}
+  h1,h2,h3{
+      font-family: 'Montserrat SemiBold';
+  }
+  .title{
+      @apply text-8xl;
+  }
+  .section-title {
+      @apply text-4xl;
+      margin-top: 2rem;
+      margin-bottom: 2rem;
+  }
+  .subtitle {
+      @apply text-2xl;
+  }
+  a {
+    @apply text-base;
+  }
+  .font-bold {
+      font-family: 'Montserrat Bold'
+  }
+  .white {
+      color: $white;
+  }
+  .orange {
+      color: $secondary-color;
+  }
+  p {
+    @apply text-base;
+    color: $font-color;
+  }
 </style>
