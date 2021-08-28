@@ -87,7 +87,6 @@
                     <div class="footer__bottom--content">
                 <p class="white">&copy; {{ new Date().getFullYear() }} Bell Web Agency</p>
                 <div>
-                    <NuxtLink to="/terms">Terms and Conditions</NuxtLink>
                     <NuxtLink to="/privacy-policy">Privacy Policy</NuxtLink>
                 </div>
 
