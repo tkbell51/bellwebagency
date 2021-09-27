@@ -66,8 +66,10 @@ export default {
           {name:'xd'},
           {name:'photoshop'},
           {name:'ai'},
+          {name:'nuxtjs'},
+          {name:'netlifycms'},
         //   1{name:'wordpress'},{name:'elementor'},
-          {name:'ganalytics'},
+        //   {name:'ganalytics'},
           {name:'shopify' }],
      faq: [
           {

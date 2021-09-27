@@ -28,7 +28,7 @@
                 </ul>
             </div>
             <div>
-                <p>Contact</p>
+                <p class="white">Contact</p>
             <ul class="footer__contact">
                 <li class="footer__contact--item">
                     
@@ -44,7 +44,7 @@
 
             </div>
             <div>
-                <p>Quick Link</p>
+                <p class="white">Quick Link</p>
                 <ul class="footer-menu ">
         <li class="footer-menu__item">
             <NuxtLink class="footer-menu__link" to="/">Home</NuxtLink>
@@ -71,7 +71,7 @@
     </ul>
             </div>
             <div>
-            <p>Resources</p>
+            <p class="white">Resources</p>
             <h3 class="text-5xl my-3">Get in <span class="orange">Touch</span></h3>
             <NuxtLink class="primary-btn" to="/start-project">Start your project</NuxtLink>
 

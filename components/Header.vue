@@ -1,9 +1,12 @@
 <template>
     <header class="header">
+        <div class="container">
+
         <nav class="nav">
             <NuxtLink to="/"><Logo /></NuxtLink>
             <NavLinks/>
         </nav>
+        </div>
     </header>
 </template>
 
@@ -22,7 +25,7 @@
     z-index: 100;
     .nav {
         display: flex;
-        justify-content: space-around;
+        justify-content: space-between;
         align-items: center;
         height: 100%;
         background: transparent;

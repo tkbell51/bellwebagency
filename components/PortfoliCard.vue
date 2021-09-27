@@ -1,20 +1,17 @@
 <template>
     <NuxtLink
         class="portfolio-card"
-        :to="`/portfoli/${title}`"
+        :to="`/portfolio/${slug}`"
         :title="`${title}`"
-        :style="{
-            background: `url(${backgroundURL})`,
-            backgorundSize: 'cover',
-        }"
+        
     >
-        <span class="portfoli-card__title font-bold">{title}</span></NuxtLink
+        <span class="portfoli-card__title font-bold">{{title}}</span></NuxtLink
     >
 </template>
 
 <script>
 export default {
-    props: ['title', 'category','image'],
+    props: ['title', 'category','image', 'slug'],
     computed: {
         backgroundURL() {
             return require(`~/assets/img/portfolio/${this.image}`)

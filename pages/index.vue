@@ -22,10 +22,10 @@
       <h2 class="section-title ">Ready to get started?</h2>
       <p class="white mb-5">Customers make their first impressions by viewing your website. Your website has now become your digital storefront. BWA is determined to provide an online storefront that does multiple things for your business:</p>
       <ul class="get-started__list">
-        <li class="get-started__item"><span><svg-icon name="checkmark"/></span>Clearly explain your business</li>
-        <li class="get-started__item"><span><svg-icon name="checkmark"/></span>Can attract new customers via Google</li>
+        <li class="get-started__item"><span><svg-icon name="checkmark"/></span>Clearly explains your business</li>
+        <li class="get-started__item"><span><svg-icon name="checkmark"/></span>Attract new customers via Google</li>
         <li class="get-started__item"><span><svg-icon name="checkmark"/></span>Perfectly viewable on desktop and mobile devices</li>
-        <li class="get-started__item"><span><svg-icon name="checkmark"/></span>Can take concerns right away</li>
+        <li class="get-started__item"><span><svg-icon name="checkmark"/></span>Take concerns away from current and potential clients</li>
       </ul>
         </div>
         <div class="get-started__content right">
@@ -40,7 +40,19 @@
     </section>
     <Testimonial/>
     <section class="section__portfolio">
+      <div class="container">
+
       <h2 class="section-title text-center">Want to see the websites we've designed?</h2>
+      <div class="grid grid-cols-2">
+
+              <PortfoliCard v-for="item in portfolio" 
+                :key="item.title" 
+                :slug="item.slug" 
+                :title='item.title' 
+                :category='item.category'/>
+      </div>
+      </div>
+
     </section>
     <ProjectCTA />
     
@@ -48,7 +60,19 @@
 </template>
 
 <script>
+import PortfolioGrid from '~/components/PortfolioGrid.vue'
   export default {
+     data() {
+           return {
+               portfolio: {}
+           }
+       },
+        async asyncData({$content}) {
+            const portfolio = await $content('portfolio').fetch()
+            return {
+                portfolio
+            }
+        },
     head() {
     return {
       title: 'Home',
