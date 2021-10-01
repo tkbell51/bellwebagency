@@ -35,6 +35,8 @@
             margin-top: 6rem;
             position: relative;
             z-index: 45;
+            margin-bottom: 3rem;
+
         }
     }
 </style>

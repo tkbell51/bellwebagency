@@ -8,8 +8,8 @@
 
         <h3 class="subtitle orange">Welcome to BWA</h3>
         <h1 class="title white ">Creative digital solutions for business <span class="orange">growth</span></h1>
-        <p class="white">We will create a digital solution to help your company go beyond your goals!</p>
-        <NuxtLink class="primary-btn" to="/start-project">Start your project</NuxtLink>
+        <p class="white subtitle">We will create a digital solution to help your company go beyond your goals!</p>
+        <NuxtLink class="primary-btn" to="/contact">Start your project</NuxtLink>
         <!-- <svg-icon name="orange-curve"/> -->
         <!-- <svg-icon name="ghost-curve"/> -->
         </div>
@@ -55,6 +55,7 @@
         &--text {
             position: relative;
             z-index: 1;
+            width: 80%;
             .title {
                 line-height: 5rem;
                 margin-bottom: 1rem;

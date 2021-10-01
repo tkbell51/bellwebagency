@@ -55,25 +55,23 @@
         <li class="footer-menu__item">
             <NuxtLink class="footer-menu__link" to="/services">Services</NuxtLink>
         </li>
+       
         <li class="footer-menu__item">
-            <NuxtLink class="footer-menu__link" to="/process">Process</NuxtLink>
-        </li>
-        <li class="footer-menu__item">
-            <NuxtLink class="footer-menu__link" to="/portfolio">Portfolio</NuxtLink>
+            <NuxtLink class="footer-menu__link" to="/work">Work</NuxtLink>
         </li>
         <li class="footer-menu__item">
             <NuxtLink class="footer-menu__link" to="/blog">Blog</NuxtLink>
         </li>
         <li class="footer-menu__item">
-            <NuxtLink class="footer-menu__link" to="/contact-us">Contact Us</NuxtLink>
+            <NuxtLink class="footer-menu__link" to="/contact">Contact Us</NuxtLink>
         </li>
        
     </ul>
             </div>
             <div>
-            <p class="white">Resources</p>
+            <!-- <p class="white">Resources</p> -->
             <h3 class="text-5xl my-3">Get in <span class="orange">Touch</span></h3>
-            <NuxtLink class="primary-btn" to="/start-project">Start your project</NuxtLink>
+            <NuxtLink class="primary-btn" to="/contact">Start your project</NuxtLink>
 
             </div>
 

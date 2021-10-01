@@ -44,11 +44,13 @@ body {
     margin: 0 auto;
 }
 .primary-btn {
-    @apply text-white rounded inline-block text-base;
+    @apply text-white rounded inline-block text-base font-bold;
     background: $secondary-color;
     padding: 16px 28px;
     box-shadow: $box-shadow;
     transition: .1s;
+    text-transform: uppercase;
+    letter-spacing: 2px;
     &:hover {
         transform: translateY(-5px);
     }
@@ -63,7 +65,7 @@ section {
       font-family: 'Montserrat SemiBold';
   }
   .title{
-      @apply text-8xl;
+      @apply text-7xl;
   }
   .section-title {
       @apply text-4xl;

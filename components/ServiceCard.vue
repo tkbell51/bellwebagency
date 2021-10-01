@@ -1,7 +1,8 @@
 <template>
-    <div class="service-card text-center rounded">
+    <div class="service-card rounded">
         <svg-icon :name="`${icon}`" class="service-card__icon"/>
-        <p >{{title}}</p>
+        <h4>{{title}}</h4>
+        <slot></slot>
     </div>
 </template>
 
@@ -14,13 +15,9 @@
 <style lang="scss" scoped>
     .service-card{
         // background: $primary-color;
-        height: 254px;
-        width: 284px;
-        margin: 0 2rem;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
+        // width: 284px;
+        // margin: 0 2rem;
+        padding: 2rem 3rem;
         transition: $transition;
         box-shadow: $box-shadow;
         border: 0.1px solid rgba($primary-color,0.1);
@@ -29,14 +26,14 @@
             width: 70px;
             margin-bottom: 1rem;
         }
-        p{
-            @apply text-xl font-bold;
+        h4{
+            @apply text-xl font-bold my-3;
             font-family: 'Montserrat Bold';
         }
         &:hover {
             background: $primary-color;
             transform: translateY(-10%);
-            p {
+            h4, p {
             color: $white;
             }
     }

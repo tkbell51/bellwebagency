@@ -1,6 +1,8 @@
 ---
 title: Livish Woodworks & Decor
 description: Shopify website for Livish Woodworks & Decor
-url: https://madebylivish.com/
-category: ecommerce, website
+categories:
+    - web design
+    - e-commerce
+cardImage: card-madebylivish.jpg
 ---

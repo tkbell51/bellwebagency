@@ -23,19 +23,7 @@
       </p>
     </AboutBlock>
     
-    <AboutBlock :subtitle="'What do I use?'" :title="'Software'">
-      <p>
-        The latest software is used for the projects. Clients will get the best
-        that BWA can give. These are the platforms that will be used.
-      </p>
-      <div class="software-grid grid grid-cols-3">
-          <svg-icon v-for="item in softwares"
-                    :key="`${item.name}`"
-                    :name="`${item.name}`"
-                    :id="`${item.name}`"
-                    class="software"/>
-      </div>
-    </AboutBlock>
+ 
       <AboutBlock :subtitle="'Questions I get often'" :title="'F.A.Q'">
       <p>
         I often get asked the same questions. I’ve put the most common in this section.  
@@ -62,15 +50,7 @@ export default {
     return {
       openTab: 0,
     
-      softwares: [
-          {name:'xd'},
-          {name:'photoshop'},
-          {name:'ai'},
-          {name:'nuxtjs'},
-          {name:'netlifycms'},
-        //   1{name:'wordpress'},{name:'elementor'},
-        //   {name:'ganalytics'},
-          {name:'shopify' }],
+     
      faq: [
           {
               question: 'Can I make changes to the website myself?',
@@ -82,7 +62,7 @@ export default {
           },
           {
               question: 'How long does it take to finish a website',
-              answer: 'Approximately 2-3 months. This mainly depends on the different revisions rounds that we have to go through to get a good result. '
+              answer: 'Approximately 1-2 months. This mainly depends on the different revisions rounds that we have to go through to get a good result. '
           }
       ]
     }

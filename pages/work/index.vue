@@ -1,30 +1,29 @@
 <template>
     <main>
-<PageHeader :title="'Portfolio'"/>
+<PageHeader :title="'Our Work'"/>
  <section class="section__portfolio">
       <div class="container">
 
-      <div class="grid grid-cols-2">
+      <div class="grid grid-cols-2 gap-4">
 
-              <PortfoliCard v-for="item in portfolio" 
+              <PortfolioCard v-for="item in portfolio" 
                 :key="item.title" 
                 :slug="item.slug" 
                 :title='item.title' 
-                :category='item.category'/>
+                :categories='item.categories'
+                :image='item.cardImage'/>
       </div>
       </div>
 
     </section>
+    <ProjectCTA />
+
     </main>
 </template>
 
 <script>
     export default {
-        data() {
-           return {
-               portfolio: {}
-           }
-       },
+
         async asyncData({$content}) {
             const portfolio = await $content('portfolio').fetch()
             return {
