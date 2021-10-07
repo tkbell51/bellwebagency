@@ -13,13 +13,13 @@
     </li>
 
     <li class="nav-menu__item">
-      <NuxtLink class="nav-menu__link nav-menu__link--ltr" to="/work"
-        >Work</NuxtLink
+      <NuxtLink class="nav-menu__link nav-menu__link--ltr" to="/portfolio"
+        >Portfolio</NuxtLink
       >
     </li>
-    <li class="nav-menu__item">
+    <!-- <li class="nav-menu__item">
       <NuxtLink class="nav-menu__link nav-menu__link--ltr" to="/blog">Blog</NuxtLink>
-    </li>
+    </li> -->
     <li class="nav-menu__item">
       <NuxtLink class="primary-btn inline-block ml-5" to="/contact"
         >Contact Us</NuxtLink

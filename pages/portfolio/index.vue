@@ -1,6 +1,6 @@
 <template>
     <main>
-<PageHeader :title="'Our Work'"/>
+<PageHeader :title="'Brand & Web Design Portfolio'"/>
  <section class="section__portfolio">
       <div class="container">
 
@@ -32,7 +32,7 @@
         },
         head() {
     return {
-      title: 'Portfolio',
+      title: 'Portfolio | Bell Web Agency',
     }
   },
     }

@@ -1,20 +1,36 @@
 <template>
-    <section class="section__work">
-        <div class="work__grid">
-            <div class="work__brand"></div>
-            <div class="work__text">
-                <h3 class="section-title">Our Work</h3>
-                <p>View our mos recent work.</p>
-                <NuxtLink to="/work">View Portfolio</NuxtLink>
-            </div>
-            <div class="work__web"></div>
+     <section class="section__portfolio">
+      <div class="container">
+        <h2 class="section-title text-center">
+          Want to see the websites we've designed?
+        </h2>
+        <div class="grid grid-cols-2 gap-4">
+          <PortfolioCard
+            v-for="item in portfolio"
+            :key="item.title"
+            :slug="item.slug"
+            :title="item.title"
+            :categories="item.categories"
+            :image="item.cardImage"
+          />
         </div>
+        <SectionLink :link="'portfolio'" :name="'View Our Portfolio'"/>
+
+      </div>
     </section>
 </template>
 
 <script>
     export default {
-        
+        data() {
+            return {
+                portfolio: {}
+            }
+        },
+        async fetch() {
+    this.portfolio = await this.$content("portfolio").fetch();
+  
+  },
     }
 </script>
 

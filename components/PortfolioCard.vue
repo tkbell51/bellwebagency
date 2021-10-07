@@ -1,7 +1,7 @@
 <template>
   <NuxtLink
     class="portfolio-card"
-    :to="`/work/${slug}`"
+    :to="`/portfolio/${slug}`"
     :title="`${title}`"
     :style="{
       background: `url(${backgroundURL})`,
@@ -9,7 +9,7 @@
       backgroundRepeat: 'no-repeat',
     }"
   >
-    <span class="portfolio-card__title section-title font-bold">{{ title }}</span>
+    <div class="portfolio-card__title section-title font-bold"><span>{{ title }}</span><span></span></div>
   </NuxtLink>
 </template>
 

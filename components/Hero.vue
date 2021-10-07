@@ -6,7 +6,7 @@
         <svg-icon class="dot-grid" name="orange-dots"/>
         <div class="hero__content--text">
 
-        <h3 class="subtitle orange">Welcome to BWA</h3>
+        <!-- <h3 class="subtitle orange">Welcome to BWA</h3> -->
         <h1 class="title white ">Creative digital solutions for business <span class="orange">growth</span></h1>
         <p class="white subtitle">We will create a digital solution to help your company go beyond your goals!</p>
         <NuxtLink class="primary-btn" to="/contact">Start your project</NuxtLink>
@@ -50,7 +50,7 @@
         .dot-grid {
             position: absolute;
             left: -8rem;
-            bottom: 13rem;
+            bottom: 12rem;
         }
         &--text {
             position: relative;

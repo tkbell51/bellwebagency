@@ -1,7 +1,7 @@
 <template>
     <div class="accordion" :class="{show: show}">
     <div class="header" @click="toggle">
-      <p name="header" class="font-bold">{{question}}</p>
+      <h3 name="header" class="font-bold mb-0">{{title}}</h3>
       <Fas class="header-icon orange" i="caret-down"  :class="{ rotate: show}"/>
     </div>
     <transition name="accordion"
@@ -9,7 +9,7 @@
       @before-leave="beforeLeave" @leave="leave">
       <div class="body" v-show="show">
         <div class="body-inner">
-          <p>{{answer}}</p>
+          <p>{{description}}</p>
         </div>
       </div>
     </transition>
@@ -18,7 +18,7 @@
 
 <script>
     export default {
-        props: ['question','answer'],
+        props: ['title','description'],
         data() {
             return {
                 show: false
@@ -64,16 +64,13 @@
         color: $secondary-color;
     }
     .header {
-        @apply flex justify-between items-center py-4 cursor-pointer;
+        @apply flex justify-between items-center py-4 cursor-pointer ;
         border-bottom: 2px solid $secondary-color-light;
-        p {
-        color: $secondary-color-dark;
-
-        }
 
     }
     .body {
-        @apply px-6 py-4;
+        @apply pr-6 py-4;
+        transition: 150ms ease-out;
     }
 }
     

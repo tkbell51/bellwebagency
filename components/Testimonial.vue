@@ -83,7 +83,7 @@ export default {
     position: absolute;
     right: 7rem;
     top: 5rem;
-    z-index: -1;
+    // z-index: -1;
     opacity: 0.1;
     width: 4rem;
     height: 4rem;

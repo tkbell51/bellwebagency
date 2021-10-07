@@ -19,7 +19,7 @@
 
 <style lang="scss" scoped>
 .project-cta {
-  background-color: $primary-color;
+  background: radial-gradient(lighten($primary-color, 10%), $primary-color );
   color: $white;
   padding: 6rem 2rem 8rem;
   box-shadow: $box-shadow;

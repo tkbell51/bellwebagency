@@ -1,12 +1,17 @@
 <template>
     <div>
-        Privacy Policy
+        <page-header title="Privacy Policy"/>
+        
     </div>
 </template>
 
 <script>
     export default {
-        
+        head() {
+            return {
+                title: 'Privacy Policy | Bell Web Agency'
+            }
+        }
     }
 </script>
 

@@ -1,6 +1,6 @@
 <template>
     <div class="service-card rounded">
-        <svg-icon :name="`${icon}`" class="service-card__icon"/>
+        <svg-icon :name="`${icon}`" :class="`service-card__icon ${icon}`"/>
         <h4>{{title}}</h4>
         <slot></slot>
     </div>
@@ -12,11 +12,8 @@
     }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" >
     .service-card{
-        // background: $primary-color;
-        // width: 284px;
-        // margin: 0 2rem;
         padding: 2rem 3rem;
         transition: $transition;
         box-shadow: $box-shadow;
@@ -36,6 +33,13 @@
             h4, p {
             color: $white;
             }
+            & .reviewlead-logo-white {
+      width: 270px;
     }
+    }
+    & .reviewlead .service-card__icon {
+      width: 270px;
+    }
+    
     }
 </style>

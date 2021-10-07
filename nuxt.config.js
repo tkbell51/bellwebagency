@@ -4,14 +4,14 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'bwa',
+    title: 'Bell Web Agency',
     htmlAttrs: {
       lang: 'en'
     },
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
+      { hid: 'description', name: 'description', content: 'At Bell Web Agency, our Mission is to provide the best digital tools to help assist our clients meet their goals and needs.' },
       { name: 'format-detection', content: 'telephone=no' }
     ],
     link: [
@@ -28,7 +28,7 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    '~/plugins/vue-awesome-swiper',
+    // {src: '~/plugins/honeybook.js', ssr: false}
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
