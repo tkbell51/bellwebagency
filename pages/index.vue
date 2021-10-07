@@ -3,7 +3,7 @@
     <Hero />
     <section class="section__services">
       <div class="container">
-        <h2 class="section-title text-center">
+        <h2 class="heading-secondary text-center">
           Digital Tools to get the <span class="orange">results</span> you're looking for!
         </h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -55,17 +55,17 @@
             </p>
           </ServiceCard>
         </div>
-        <SectionLink :link="'services'" :name="'View Services'" />
+        <SectionLink link="services" :name="'View Services'" />
       </div>
     </section>
 
     <section class="section__get-started">
-      <div class="primary-bg h-100"></div>
+      <div class="primary-bg"></div>
       <div class="container">
         <div class="get-started">
           <div class="get-started__content left white">
             <svg-icon class="get-started__dots" name="orange-dots" />
-            <h2 class="section-title">
+            <h2 class="heading-secondary">
               Ready to get <span class="orange">started?</span>
             </h2>
             <p class="white mb-5">
@@ -105,7 +105,7 @@ export default {
   data() {
     return {
       hover: false,
-    }
+    };
   },
   head() {
     return {
@@ -118,39 +118,59 @@ export default {
 <style lang="scss" scoped>
 .section {
   &__services {
-    .section-title {
-      width: 40%;
+    .heading-secondary {
+      width: 50%;
       margin: 4rem auto;
+      @include respond(tab-port) {
+        width: 80%;
+      }
     }
   }
   &__get-started {
     position: relative;
     z-index: 5;
     margin-bottom: -20rem;
-
+    padding-bottom: 1rem;
     .primary-bg {
       background-color: $primary-color;
       width: 60%;
       position: absolute;
       height: 100%;
       z-index: -1;
+      @include respond(tab-port){
+          width: 100%;
+        }
     }
     .get-started {
-      @apply flex justify-between items-center;
+      @apply flex justify-between flex-wrap;
       padding: 5rem 0;
-
+      .heading-secondary {
+        color: $white;
+        margin-bottom: 2rem;
+      }
       &__content {
         position: relative;
+        
         flex: 50%;
+        @include respond(tab-port){
+          flex: 100%;
+          margin-bottom: 3rem;
+        }
         &.left {
+          margin-top: 3rem;
           p {
             width: 70%;
           }
           .get-started__dots {
-            left: -8rem;
+            left: -11rem;
+            top: -2rem;
             z-index: -1;
+            @include respond(tab-port) {
+              display: none;
+            }
           }
         }
+        
       }
       &__item {
         @apply flex items-center;
@@ -177,6 +197,6 @@ export default {
   }
 }
 .reviewlead.service-card__icon {
-    width: 270px;
-  }
+  width: 270px;
+}
 </style>

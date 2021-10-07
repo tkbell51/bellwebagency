@@ -1,6 +1,5 @@
 <template>
   <svg
-  class="nuxt-logo"
     xmlns="http://www.w3.org/2000/svg"
     xmlns:xlink="http://www.w3.org/1999/xlink"
     viewBox="0 0 673.29 647.08"

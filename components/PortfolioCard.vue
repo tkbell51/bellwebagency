@@ -9,7 +9,7 @@
       backgroundRepeat: 'no-repeat',
     }"
   >
-    <div class="portfolio-card__title section-title font-bold"><span>{{ title }}</span><span></span></div>
+    <div class="portfolio-card__title heading-secondary font-bold"><span>{{ title }}</span><span></span></div>
   </NuxtLink>
 </template>
 
@@ -28,7 +28,7 @@ export default {
 .portfolio-card {
   @apply relative;
   background-repeat: no-repeat;
-  height: 20rem;
+  height: 28rem;
   position: relative;
   overflow: hidden;
   &__title {

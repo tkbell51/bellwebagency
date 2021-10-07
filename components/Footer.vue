@@ -107,7 +107,7 @@
                 >
               </li>
             </ul>
-            <NuxtLink class="primary-btn" to="/contact">Start your project</NuxtLink>
+            <NuxtLink class="btn" to="/contact">Start your project</NuxtLink>
           </div>
         </div>
       </div>
@@ -135,6 +135,9 @@ export default {};
   padding-top: 2rem;
   &-logo svg {
     height: 8rem;
+    @include respond (tab-port){
+      margin: 0 auto;
+    }
   }
   &-menu {
     &__item {
@@ -150,16 +153,29 @@ export default {};
 
     &--content {
       @apply flex justify-between;
+      @include respond(tab-port){
+          display: block;
+          text-align: center;
+          &>div {
+            margin: 2rem auto;
+          }
+        }
       p {
         font-family: "Montserrat Bold";
       }
       .social {
         &__list {
           @apply flex justify-end items-center mt-5;
+          @include respond(tab-port){
+          justify-content: center;
+        }
         }
         &__link {
           transition: $transition;
           margin-right: 2rem;
+          @include respond(tab-port){
+          margin: 0 1rem;
+        }
           svg {
             height: 2rem;
             width: 2rem;

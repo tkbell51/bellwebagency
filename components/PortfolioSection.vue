@@ -1,10 +1,10 @@
 <template>
      <section class="section__portfolio">
       <div class="container">
-        <h2 class="section-title text-center">
+        <h2 class="heading-secondary text-center">
           Want to see the websites we've designed?
         </h2>
-        <div class="grid grid-cols-2 gap-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           <PortfolioCard
             v-for="item in portfolio"
             :key="item.title"
@@ -14,7 +14,7 @@
             :image="item.cardImage"
           />
         </div>
-        <SectionLink :link="'portfolio'" :name="'View Our Portfolio'"/>
+        <SectionLink link="portfolio" :name="'View Our Portfolio'"/>
 
       </div>
     </section>

@@ -2,7 +2,7 @@
     <section class="page-header">
         <div class="container">
 
-        <h1 class="title white">{{title}}</h1>
+        <h1 class="heading-primary">{{title}}</h1>
         </div>
     </section>
 </template>
@@ -31,11 +31,11 @@
             top: 0; bottom: 0;
             background: rgba($primary-color,.89);
         }
-        .title {
+        .heading-primary {
             margin-top: 6rem;
             position: relative;
             z-index: 45;
-            margin-bottom: 3rem;
+            margin-bottom: -6rem;
 
         }
     }

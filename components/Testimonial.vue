@@ -1,9 +1,9 @@
 <template>
   <section class="section__testimonials">
     <div class="container">
-      <h2 class="section-title text-center white">What our <span class="orange">customers</span> are saying</h2>
+      <h2 class="heading-secondary text-center white ">What our <span class="orange">customers</span> are saying</h2>
 
-      <div class="testimonials-grid grid grid-cols-2 gap-8">
+      <div class="testimonials-grid grid grid-cols-1 md:grid-cols-2 gap-8">
         <div
           v-for="(item, index) in testimonials"
           :key="index"
@@ -66,7 +66,7 @@ export default {
 <style lang="scss" scoped>
 .section__testimonials {
     background: $primary-very-light;
-    padding-top: 16rem;
+    padding-top: 35rem;
     padding-bottom: 7rem;
 
     

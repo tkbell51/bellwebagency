@@ -23,7 +23,7 @@
     />
     <section class="section__software">
       <div class="container">
-        <h2 class="section-title pt-6 text-center">Software Used</h2>
+        <h2 class="heading-secondary pt-6 text-center">Software Used</h2>
         <div class="software-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
           <svg-icon
             v-for="item in softwares"
@@ -37,7 +37,7 @@
     </section>
     <section class="section__include">
       <div class="container">
-        <h2 class="section-title text-center">All Website Packages Are Custom</h2>
+        <h2 class="heading-secondary text-center">All Website Packages Are Custom</h2>
         <h3 class="text-center">Capabilities Include:</h3>
         <AccordionBlock class="m-auto grid grid-cols-2 gap-8" :list="brandInclude" />
       </div>

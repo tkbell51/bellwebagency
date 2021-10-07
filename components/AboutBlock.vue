@@ -5,7 +5,7 @@
                 <div class="about-block__title">
 
                 <p class="orange">{{subtitle}}</p>
-                <h2 class="section-title">{{title}}</h2>
+                <h2 class="heading-secondary">{{title}}</h2>
                 </div>
                 <div class="about-block__text">
                     <slot></slot>
@@ -27,7 +27,7 @@
         &__title {
             flex: 45%;
         }
-        .section-title {
+        .heading-secondary {
             margin-top: 3px;
         }
         &__text {

@@ -30,7 +30,7 @@
    
     <section class="section__include">
       <div class="container">
-        <h2 class="section-title text-center">All Brand Packages Are Custom</h2>
+        <h2 class="heading-secondary text-center">All Brand Packages Are Custom</h2>
         <h3 class="text-center">Capabilities Include:</h3>
         <AccordionBlock class="w-1/2 m-auto" :list="brandInclude" />
       </div>

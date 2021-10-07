@@ -3,9 +3,9 @@
       <div class="container">
         <div class="project-cta text-center">
 
-      <h2 class="section-title">Have a project in mind<span class="orange">?</span></h2>
-      <p class="subtitle font-bold mb-6 white">Let's Get Started</p>
-      <NuxtLink class="primary-btn  inline-block" to="/contact">Start project</NuxtLink>
+      <h2 class="heading-secondary white">Have a project in mind<span class="orange">?</span></h2>
+      <p class="heading-tertiary">Let's Get Started</p>
+      <NuxtLink class="btn  inline-block" to="/contact">Start project</NuxtLink>
         </div>
       </div>
     </section>
@@ -23,5 +23,12 @@
   color: $white;
   padding: 6rem 2rem 8rem;
   box-shadow: $box-shadow;
+  .heading-secondary {
+    margin-bottom: 1rem;
+  }
+  .heading-tertiary {
+    @apply font-bold text-white;
+    margin-bottom: 2rem;
+  }
 }
 </style>

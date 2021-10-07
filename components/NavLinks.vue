@@ -21,7 +21,7 @@
       <NuxtLink class="nav-menu__link nav-menu__link--ltr" to="/blog">Blog</NuxtLink>
     </li> -->
     <li class="nav-menu__item">
-      <NuxtLink class="primary-btn inline-block ml-5" to="/contact"
+      <NuxtLink class="btn inline-block ml-5" to="/contact"
         >Contact Us</NuxtLink
       >
     </li>
