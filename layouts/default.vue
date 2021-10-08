@@ -83,7 +83,7 @@ body {
   display: block;
   font-size: 5rem;
   font-weight: 400;
-  @include respond(phone) {
+  @include respond(tab-port) {
     letter-spacing: 0.2rem;
     font-size: 4rem;
     line-height: 4.2rem;

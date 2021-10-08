@@ -23,15 +23,21 @@
 
 <style lang="scss" scoped>
     .about-block {
-        @apply flex justify-between ;
+        @apply flex flex-wrap justify-between ;
         &__title {
             flex: 45%;
+            @include respond(tab-port){
+                flex: 100%;
+        }
         }
         .heading-secondary {
             margin-top: 3px;
         }
         &__text {
             flex: 55%;
+            @include respond(tab-port){
+                flex: 100%;
+        }
         }
     }
 </style>

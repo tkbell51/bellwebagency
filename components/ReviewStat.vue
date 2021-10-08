@@ -1,7 +1,7 @@
 <template>
-  <div class="review-stat m-4 w-full md:w-1/2 lg:w-1/4">
-    <h3 class="text-6xl orange">{{ number }}%</h3>
-    <p class="text-xl">{{ stat }}</p>
+  <div class="review-stat">
+    <h3 class="orange">{{ number }}%</h3>
+    <p class="">{{ stat }}</p>
   </div>
 </template>
 
@@ -19,6 +19,10 @@ export default {
   transition: $transition;
   box-shadow: $box-shadow;
   border: 0.1px solid rgba($primary-color, 0.1);
+  h3 {
+    font-size: 4rem;
+    margin: 2rem 0;
+  }
     p {
         color: $white;
     }

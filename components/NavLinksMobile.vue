@@ -117,6 +117,9 @@
     list-style: none;
     justify-content: center;
   }
+  &__icon {
+      font-size: 4rem;
+  }
 }
 </style>
 </style>

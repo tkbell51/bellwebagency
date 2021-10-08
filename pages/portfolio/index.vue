@@ -4,7 +4,7 @@
  <section class="section__portfolio">
       <div class="container">
 
-      <div class="grid grid-cols-2 gap-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 
               <PortfolioCard v-for="item in portfolio" 
                 :key="item.title" 

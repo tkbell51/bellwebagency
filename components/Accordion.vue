@@ -1,7 +1,7 @@
 <template>
     <div class="accordion" :class="{show: show}">
     <div class="header" @click="toggle">
-      <h3 name="header" class="font-bold mb-0">{{title}}</h3>
+      <h3 name="header" class="heading-tertiary">{{title}}</h3>
       <Fas class="header-icon orange" i="caret-down"  :class="{ rotate: show}"/>
     </div>
     <transition name="accordion"
@@ -54,6 +54,7 @@
 .accordion {
     margin-bottom: 1rem;
     .header-icon{
+      font-size: 2.5rem;
     // transform: rotate(270deg);
     &.rotate {
         transform: rotate(180deg);
@@ -64,7 +65,7 @@
         color: $secondary-color;
     }
     .header {
-        @apply flex justify-between items-center py-4 cursor-pointer ;
+        @apply flex justify-between items-center py-4 px-4 cursor-pointer ;
         border-bottom: 2px solid $secondary-color-light;
 
     }

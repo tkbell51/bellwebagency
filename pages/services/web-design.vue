@@ -24,13 +24,13 @@
     <section class="section__software">
       <div class="container">
         <h2 class="heading-secondary pt-6 text-center">Software Used</h2>
-        <div class="software-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+        <div class="software-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 ">
           <svg-icon
             v-for="item in softwares"
             :key="`${item.name}`"
             :name="`${item.name}`"
             :id="`${item.name}`"
-            class="software"
+            class="software mx-auto"
           />
         </div>
       </div>
@@ -38,8 +38,8 @@
     <section class="section__include">
       <div class="container">
         <h2 class="heading-secondary text-center">All Website Packages Are Custom</h2>
-        <h3 class="text-center">Capabilities Include:</h3>
-        <AccordionBlock class="m-auto grid grid-cols-2 gap-8" :list="brandInclude" />
+        <p class="text-center font-bold mb-24">Capabilities Include:</p>
+        <AccordionBlock class="m-auto grid grid-cols-1 md:grid-cols-2 gap-8" :list="brandInclude" />
       </div>
     </section>
     <ServiceContent
@@ -65,7 +65,7 @@
       <div class="container">
         <Tabs>
           <Tab title="General">
-            <div class="grid grid-cols-2 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
               <QuestionBlock
                 question="How much does it cost to work with you?"
                 answer="Every project is unique, so we always like to schedule an introduction call to meet and discuss in detail your unique design needs, business goals, and see if we are the right team for you. Then we’ll create a custom project proposal and quote unique to you and your project."
@@ -85,7 +85,7 @@
             </div>
           </Tab>
           <Tab title="Experience">
-            <div class="grid grid-cols-2 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
               <QuestionBlock
                 question="What if I need a more custom website package?"
                 answer="While we begin with our starting base package, we work with you to expand and build up the perfect website design package for you. Our base packages are what we know are the bare minimum in order to provide you with the most effective starting point for your website. But we encourage you to bring your dream wish list so that we can build a unique package to best fit your needs."
@@ -105,7 +105,7 @@
             </div>
           </Tab>
           <Tab title="Deliverables">
-            <div class="grid grid-cols-2 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
               
               <QuestionBlock
                 question="What additional costs might come up during a project?"
@@ -119,7 +119,7 @@
             </div>
           </Tab>
           <Tab title="Responsibilities">
-            <div class="grid grid-cols-2 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
               <QuestionBlock
                 question="How much work do I have to do upfront before my project?"
                 answer="Every brand package includes one Brand Questionnaire and a Pinterest Inspiration Moodboard that must be completed by you by the Monday before your project start date."
@@ -204,21 +204,10 @@ section.section {
 
   &-header {
   .service__image {
-    @apply relative;
     img {
-      @apply rounded relative w-full;
-      z-index: 2;
+      @apply rounded relative w-full shadow-xl;
     }
-    &::before {
-      @apply rounded;
-      content: "";
-      position: absolute;
-      width: 100%;
-      background: $secondary-color;
-      height: 424px;
-      top: 2rem;
-      left: 2rem;
-    }
+    
   }
   }
   &__software {
@@ -228,10 +217,16 @@ section.section {
         &#shopify {
           height: 3rem;
           margin: 3rem 0;
+          @include respond (tab-port) {
+            margin: 0 auto;
+          }
         }
         &#nuxtjs {
           height: 12rem;
           margin-top: -17px;
+          @include respond (tab-port) {
+            margin: 0 auto;
+          }
         }
       }
     }

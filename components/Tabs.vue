@@ -1,12 +1,12 @@
 <template>
   <div>
-    <ul class="tabs__header gap-8 flex justify-center">
+    <ul class="tabs__list gap-8 flex flex-wrap md:justify-center">
       <li
         v-for="(tab, index) in tabs"
         :id="tab.label"
         :key="tab.title"
         :class="{ tab__selected: index == selectedIndex }"
-        class="text-3xl uppercase font-semibold"
+        class="tabs__item heading-tertiary"
         @click="selectTab(index)"
       >
         {{ tab.title }}
@@ -42,16 +42,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.tabs__header {
+.tabs__list {
   display: flex;
 
   padding: 0.5rem 0;
   margin-bottom: 1rem;
 
   li {
-    @apply px-4 py-1 relative text-lg;
+    @apply relative;
     cursor: pointer;
     color: $black;
+    padding: .5rem 1rem;
     &::before {
       content: '';
       position: absolute;

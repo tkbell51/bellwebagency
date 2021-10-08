@@ -24,7 +24,7 @@
     />
     <section class="section__stats">
         <div class="container">
-            <div class="flex py-8">
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-12 py-8">
                 <review-stat number="95" stat="Search for local businesses online"></review-stat>
                 <review-stat number="91" stat="Read online reviews about local business"></review-stat>
                 <review-stat number="84" stat="people trust online reviews as much as a personal recommendation"></review-stat>

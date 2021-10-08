@@ -31,7 +31,7 @@
     <section class="section__include">
       <div class="container">
         <h2 class="heading-secondary text-center">All Brand Packages Are Custom</h2>
-        <h3 class="text-center">Capabilities Include:</h3>
+        <p class="text-center font-bold mb-24">Capabilities Include:</p>
         <AccordionBlock class="w-1/2 m-auto" :list="brandInclude" />
       </div>
     </section>
@@ -40,7 +40,7 @@
       <div class="container">
         <Tabs>
           <Tab title="General">
-            <div class="grid grid-cols-2 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
               <QuestionBlock
                 question="How much does it cost to work with you?"
                 answer="We offer 2 packages with the first package starting at $200. We're happy to work with you to add additionial assets if needed."
@@ -60,7 +60,7 @@
             </div>
           </Tab>
           <Tab title="Experience">
-            <div class="grid grid-cols-2 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
               <QuestionBlock
                 question="How long does each package take?"
                 answer="Every Brand Design project takes approximately 1 week to complete; completely dependent upon client response time and project scope."
@@ -80,7 +80,7 @@
             </div>
           </Tab>
           <Tab title="Deliverables">
-            <div class="grid grid-cols-2 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
               <QuestionBlock
                 question="What files are included in each brand package?"
                 answer="All final logo designs come in all popular file formats, including JPG, PDF, PNG, AI, EPS, and SVG files. Depending on your specific package additional files may be included for your brand collateral items."
@@ -100,7 +100,7 @@
             </div>
           </Tab>
           <Tab title="Responsibilities">
-            <div class="grid grid-cols-2 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
               <QuestionBlock
                 question="How much work do I have to do upfront before my project?"
                 answer="Every brand package includes one Brand Questionnaire that must be completed first to begin the design process"

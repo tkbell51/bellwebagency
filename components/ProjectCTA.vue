@@ -4,7 +4,7 @@
         <div class="project-cta text-center">
 
       <h2 class="heading-secondary white">Have a project in mind<span class="orange">?</span></h2>
-      <p class="heading-tertiary">Let's Get Started</p>
+      <!-- <p class="heading-tertiary">Let's Get Started</p> -->
       <NuxtLink class="btn  inline-block" to="/contact">Start project</NuxtLink>
         </div>
       </div>

@@ -65,7 +65,7 @@ export default {};
         margin-bottom: 1rem;
         @include respond(phone) {
           width: 80%;
-          margin: 1rem auto;
+          margin-bottom: 2rem;
         }
       }
       .dot-grid {
@@ -77,9 +77,7 @@ export default {};
         }
       }
     }
-    @include respond(phone) {
-      text-align: center;
-    }
+   
   }
   @include respond(tab-port) {
     height: 55rem;

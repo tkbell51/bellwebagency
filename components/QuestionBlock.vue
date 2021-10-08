@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="my-4 md:my-auto">
         <h3>{{question}}</h3>
         <p>{{answer}}</p>
     </div>
@@ -12,5 +12,8 @@
 </script>
 
 <style lang="scss" scoped>
-
+h3 {
+    font-size: 1.9rem;
+    line-height: 3rem;
+}
 </style>

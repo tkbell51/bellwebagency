@@ -82,27 +82,22 @@ section.review {
   background-color: $primary-color;
   padding: 4rem 0;
   color: $white;
+  .heading-secondary {
+    color: $white;
+  }
   p {
     color: white;
   }
 }
 section.brand {
   .service__image {
-    @apply relative;
     img {
-      @apply rounded relative w-full;
+      @apply rounded relative w-full shadow-xl;
       z-index: 2;
     }
-    &::before {
-      @apply rounded;
-      content: "";
-      position: absolute;
-      width: 100%;
-      background: $secondary-color;
-      height: 424px;
-      top: 2rem;
-      left: 2rem;
-    }
+   @include respond (tab-port) {
+     margin: 4rem auto;
+   }
   }
 }
 </style>

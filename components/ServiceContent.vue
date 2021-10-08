@@ -1,8 +1,8 @@
 <template>
   <section :class="`section__service ${direction}`">
     <div class="container">
-      <div class="flex justify-content">
-        <div class="service__text w-1/2 relative">
+      <div class="md:flex justify-content">
+        <div class="service__text md:w-1/2 relative">
           <svg-icon class="dot-grid absolute" name="orange-dots" />
           <div class="relative z-1">
             <h2 class="heading-secondary">{{ title }}</h2>
@@ -14,7 +14,7 @@
             <SectionLink :link="`${link}`" :name="linkCTA" />
           </div>
         </div>
-        <div class="service__image w-1/2">
+        <div class="service__image md:w-1/2 my-8 md:my-0">
           <img
             v-if="image"
             :src="require(`~/assets/img/${image}`)"
@@ -54,6 +54,9 @@ export default {
       .dot-grid {
         left: -11rem;
         top: -1rem;
+        @include respond(tab-port) {
+          display: none;
+        }
       }
     }
   }
