@@ -8,7 +8,7 @@
       netlify-honeypot="bot-field"
       class="form"
     >
-      <input type="hidden" name="form-name" value="schedule" />
+      <input type="hidden" name="form-name" value="contact" />
       <div class="form__group">
         <label for="name" class="form__label">Full Name</label>
 
