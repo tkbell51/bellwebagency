@@ -1,78 +1,84 @@
 <template>
-    <div class="accordion" :class="{show: show}">
-    <div class="header" @click="toggle">
-      <h3 name="header" class="heading-tertiary">{{title}}</h3>
-      <Fas class="header-icon orange" i="caret-down"  :class="{ rotate: show}"/>
-    </div>
-    <transition name="accordion"
-      @before-enter="beforeEnter" @enter="enter"
-      @before-leave="beforeLeave" @leave="leave">
-      <div class="body" v-show="show">
-        <div class="body-inner">
-          <p>{{description}}</p>
-        </div>
+  <transition
+    @enter="onEnter"
+    @after-enter="onAfterEnter"
+    @before-leave="onBeforeLeave"
+    @leave="onLeave"
+  >
+    <div
+      class="vue-accordion"
+      ref="wrapper"
+      :style="wrapperStyle"
+      v-if="expanded"
+    >
+      <div class="vue-accordion__inner" ref="inner">
+        <slot></slot>
       </div>
-    </transition>
-  </div>
+    </div>
+  </transition>
 </template>
 
 <script>
-    export default {
-        props: ['title','description'],
-        data() {
-            return {
-                show: false
-            }
-        },
-        methods: {
-    toggle: function() {
-      this.show = !this.show;
+export default {
+  props: {
+    expanded: {
+      type: Boolean,
+      required: true,
     },
-    // enter: function(el, done) {
-    //   $(el).slideDown(150, done);
-    // },
-    // leave: function(el, done) {
-    //   $(el).slideUp(150, done);
-    // },
-    beforeEnter: function(el) {
-      el.style.height = '0';
+    duration: {
+      type: Number,
+      default: 250,
     },
-    enter: function(el) {
-      el.style.height = el.scrollHeight + 'px';
+  },
+  computed: {
+    wrapperStyle() {
+      return {
+        transitionDuration: `${this.duration}ms`,
+      }
     },
-    beforeLeave: function(el) {
-      el.style.height = el.scrollHeight + 'px';
-    },
-    leave: function(el) {
-      el.style.height = '0';
+  },
+  mounted() {
+    if (this.expanded) {
+      this.setWrapperHeightTo('auto')
     }
-  }
-    }
+  },
+  methods: {
+    onEnter(el) {
+      this.setWrapperHeightTo(this.getContentHeight(), el)
+    },
+    onAfterEnter(el) {
+      this.setWrapperHeightTo('auto', el)
+    },
+    onBeforeLeave(el) {
+      this.setWrapperHeightTo(this.getContentHeight(), el)
+    },
+    onLeave(el) {
+      el.scrollHeight
+      this.setWrapperHeightTo(0, el)
+    },
+    getContentHeight() {
+      const inner = this.$refs.inner
+      return inner.getBoundingClientRect().height
+    },
+    /**
+     * @param {number | 'auto'} height
+     */
+    setWrapperHeightTo(height, el = this.$refs.wrapper) {
+      el.style.height = typeof height === 'number' ? `${height}px` : height
+    },
+  },
+}
 </script>
 
-<style lang="scss" scoped>
-.accordion {
-    margin-bottom: 1rem;
-    .header-icon{
-      font-size: 2.5rem;
-    // transform: rotate(270deg);
-    &.rotate {
-        transform: rotate(180deg);
-        transition-duration: 0.3s;
-        }
-    }
-    &.show .header p{
-        color: $secondary-color;
-    }
-    .header {
-        @apply flex justify-between items-center py-4 px-4 cursor-pointer ;
-        border-bottom: 2px solid $secondary-color-light;
-
-    }
-    .body {
-        @apply pr-6 py-4;
-        transition: 150ms ease-out;
-    }
+<style lang="scss">
+.vue-accordion{
+  transition-timing-function: ease;
+  transition-property: height;
+  height: 0;
+  overflow: hidden;
+  &__inner{
+    display: table;
+    width: 100%;
+  }
 }
-    
 </style>

@@ -8,7 +8,7 @@
             <div class="flex ">
               <p
                 v-for="category in project.categories"
-                :key="`${category.id}`"
+                :key="category.id"
                 class="categories font-bold px-2 border-r-2 border-black"
               >
                 {{ category }}
@@ -31,11 +31,11 @@
 
 <script>
 export default {
-  data() {
-    return {
-      project: {},
-    };
-  },
+  // data() {
+  //   return {
+  //     project: {},
+  //   };
+  // },
   async asyncData({ $content, params, error }) {
     const project = await $content("portfolio", params.slug).fetch();
     return {

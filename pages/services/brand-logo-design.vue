@@ -1,6 +1,7 @@
 <template>
   <main>
     <PageHeader title="Brand &amp; Logo Design" />
+    
     <ServiceContent
       title="Brand &amp; Logo Design"
       listHeader="Branding Design"
@@ -17,17 +18,20 @@
       link="contact"
       linkCTA="Build Your Brand"
     >
-    <template v-slot:otherContent>
-        <div class="quote">
-
-    <h2 class="text-5xl text-right mb-4">
-            "Your brand isn't what you say it is. It's what they say it is"
-          </h2>
-          <p class="text-right">– Marty Neumeier</p>
-        </div>
-    </template>
+    
     </ServiceContent>
-   
+   <section class="section__quote">
+      <div class="container">
+
+       <div class="quote ">
+
+    <h2 class="heading-secondary">
+            "Your brand isn't what you say it is.<br/> It's what they say it is"
+          </h2>
+          <p class="">– Marty Neumeier</p>
+      </div>
+        </div>
+    </section>
     <section class="section__include">
       <div class="container">
         <h2 class="heading-secondary text-center">All Brand Packages Are Custom</h2>
@@ -155,5 +159,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.section {
+  &__quote {
+    background: linear-gradient( to right,lighten($primary-color, 10%), $primary-color );
+    h2, p{
 
+      color: $white;
+    }
+  }
+}
 </style>

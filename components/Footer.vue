@@ -132,7 +132,7 @@ export default {};
 <style lang="scss" scoped>
 .footer {
   color: $white;
-  padding-top: 2rem;
+  // padding-top: 2rem;
   &-logo svg {
     height: 8rem;
     @include respond (tab-port){

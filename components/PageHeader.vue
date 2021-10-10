@@ -1,10 +1,10 @@
 <template>
-    <section class="page-header">
+    <div class="page-header">
         <div class="container">
 
         <h1 class="heading-primary">{{title}}</h1>
         </div>
-    </section>
+    </div>
 </template>
 
 <script>

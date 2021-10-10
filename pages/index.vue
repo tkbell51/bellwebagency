@@ -7,7 +7,7 @@
           Digital Tools to get the <span class="orange">results</span> you're looking for!
         </h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <ServiceCard :icon="'logo-icon'" :title="'Website Design &amp; Development'">
+          <ServiceCard :icon="'logo-icon'" :title="'Website Design &amp; Development'" link="web-design" hover='logo-icon'>
             <p>
               Your business’s success is no longer bound by your physical location. We
               create innovative digital experiences that will transform the way you engage
@@ -15,20 +15,15 @@
             </p>
           </ServiceCard>
 
-          <!-- <ServiceCard
-          @mouseover="hover = true" @mouseleave="hover = false"
-            class="reviewlead"
-            :icon="hover ? 'reviewlead-logo-white' : 'reviewlead'"
-            :title="'Review Lead Reputation Management'"
-          >
+          <ServiceCard class="reviewlead" icon="reviewlead" link="review-management" :title="'Review Lead Reputation Management'" hover='reviewlead-logo-white'>
             <p>
               Create a review and lead generating system at the same time. Your reputation
               is shown in search engine results, and customers are now more likely to
               choose your business to spend their hard earned money.
             </p>
-          </ServiceCard> -->
+          </ServiceCard>
 
-          <div
+          <!-- <div
             class="service-card rounded"
             @mouseover="hover = true"
             @mouseleave="hover = false"
@@ -39,15 +34,20 @@
                 hover ? 'reviewlead-logo-white' : 'reviewlead'
               }`"
             />
+            <div>
+
             <h4>Review Lead Reputation Management</h4>
             <p>
               Create a review and lead generating system at the same time. Your reputation
               is shown in search engine results, and customers are now more likely to
               choose your business to spend their hard earned money.
             </p>
-          </div>
+            </div>
+    <NuxtLink class="service-card__link mt-4" to="/services/review-management"><span>Learn More</span><Fas i="arrow-right"  /></NuxtLink>
 
-          <ServiceCard :icon="'digital-marketing'" :title="'Branding &amp; Logo Design'">
+          </div> -->
+
+          <ServiceCard :icon="'digital-marketing'" :title="'Branding &amp; Logo Design'" link="brand-logo-design" :hover="'digital-marketing'">
             <p>
               In a world full of brands, clients are overwhelmed with options. Manage the
               perception of your business and differentiate yourself from your competition
@@ -196,7 +196,5 @@ export default {
     }
   }
 }
-.reviewlead.service-card__icon {
-  width: 270px;
-}
+
 </style>

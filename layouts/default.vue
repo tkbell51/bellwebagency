@@ -36,8 +36,8 @@ body {
   grid-template-areas:
     "content"
     "footer";
-  grid-template-row: 1fr auto;
-  grid-gap: 10px;
+  grid-template-rows: 1fr auto;
+  // grid-gap: 10px;
   height: 100vh;
 
   .header {
@@ -169,7 +169,7 @@ body {
 }
 
 section {
-  padding: 6rem 0;
+  padding: 8rem 0;
   @include respond(phone) {
     padding: 3rem 0;
   }
@@ -197,6 +197,7 @@ h3 {
 a {
   font-size: $default-font-size;
   text-decoration: none;
+  display: inline-block;
   &:hover,
   &:focus,
   &:active {

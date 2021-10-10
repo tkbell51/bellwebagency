@@ -1,5 +1,4 @@
 export default {
-  ssr: false,
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
 
@@ -44,7 +43,7 @@ export default {
 
   ],
   styleResources: {
-    scss: ['~/assets/scss/variables.scss','~/assets/scss/_breakpoints.scss']
+    scss: ['~/assets/scss/variables.scss','~/assets/scss/_breakpoints.scss','~/assets/scss/_mixins.scss']
 },
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
@@ -67,6 +66,7 @@ fontawesome: {
             'faCaretDown',
             'faMobileAlt',
             'faUsers',
+            'faArrowRight'
           ],
           brands: [
             'faDev',

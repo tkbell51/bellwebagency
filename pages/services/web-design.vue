@@ -21,7 +21,7 @@
       image="gravity-present.jpg"
       imageAlt="Gravity Counseling Group Present"
     />
-    <section class="section__software">
+    <!-- <section class="section__software">
       <div class="container">
         <h2 class="heading-secondary pt-6 text-center">Software Used</h2>
         <div class="software-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 ">
@@ -34,7 +34,7 @@
           />
         </div>
       </div>
-    </section>
+    </section> -->
     <section class="section__include">
       <div class="container">
         <h2 class="heading-secondary text-center">All Website Packages Are Custom</h2>

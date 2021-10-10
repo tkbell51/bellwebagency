@@ -1,10 +1,8 @@
 <template>
 <div>
 
-    <Accordion v-for="item in list"
-      :key="item.title"
-      :title="item.title"
-      :description="item.description"/>
+    
+      <AccordionCombo v-for="item in list" :key="item.title" :label="item.title" :description="item.description"/>
  
 </div>
 </template>

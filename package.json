@@ -19,6 +19,8 @@
     "eslint": "^7.32.0",
     "node-sass": "^6.0.1",
     "nuxt": "^2.15.7",
+    "nuxt-imagemin": "^1.0.0",
+    "nuxt-purgecss": "^1.0.0",
     "sass": "^1.42.1",
     "swiper": "^6.8.1",
     "vue-clickaway": "^2.2.2",
@@ -26,6 +28,7 @@
     "vue-slick-carousel": "^1.0.6"
   },
   "devDependencies": {
+    "@aceforth/nuxt-optimized-images": "^1.4.0",
     "@fortawesome/free-brands-svg-icons": "^5.15.4",
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
     "@nuxtjs/fontawesome": "^1.1.2",

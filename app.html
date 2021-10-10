@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html {{ HTML_ATTRS }}>
+
+<head {{ HEAD_ATTRS }}>
+  {{ HEAD }}
+</head>
+
+<body {{ BODY_ATTRS }}>
+ <form name="project" netlify netlify-honeypot="bot-field" class="form" hidden>
+   <input id="name" type="text" name="name" class="form__input" placeholder="Full Name" required />
+   <input id="email" type="email" name="email" class="form__input" placeholder="Email Address" required />
+   <input id="businessName" type="text" name="businessName" class="form__input" placeholder="Business Name" required />
+   
+
+ <input type="radio" class="form__radio-input" id="web-design" name="service" />
+ <input type="radio" class="form__radio-input" id="review-management" name="service" />
+<input type="radio" class="form__radio-input" id="brand-logo-desing" name="service" />
+   <textarea name="projectDescription" id="projectDescription" cols="30" rows="10" placeholder="Please include as much detail as possible regarding your project."></textarea>
+
+ 
+   <button type="submit" class="btn btn-primary">Send</button>
+ </form>
+  {{ APP }}
+</body>
+
+</html>

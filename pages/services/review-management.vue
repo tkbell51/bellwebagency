@@ -19,7 +19,7 @@
       :description="'Have a strategy to get more 5 star revies from your real customers on sites like Google, Facebook, and Yelp!'"
       link="contact"
       :linkCTA="'Manage the Feedback'"
-      image="5-star-bubble.png"
+      image="5-star-bubble.jpg"
       imageAlt="message bubbles with 5 stars"
     />
     <section class="section__stats">
