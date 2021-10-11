@@ -150,7 +150,7 @@ export default {
         },
         {
           title: "Videography & Photography",
-          description: ""
+          description: "Professional photography and videography for digital ads and other digital content"
         }
       ],
     };
