@@ -32,7 +32,7 @@
         },
         head() {
     return {
-      title: 'Portfolio | Bell Web Agency',
+      title: 'Portfolio',
     }
   },
     }

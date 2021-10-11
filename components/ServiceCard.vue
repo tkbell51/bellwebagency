@@ -58,6 +58,8 @@ export default {
     font-family: "Montserrat Bold";
     font-size: 1.7rem;
   }
+   @media only screen and(min-width: 56.25em) {
+      
   &:hover {
     background: $primary-color;
     transform: translateY(-10%);
@@ -68,5 +70,6 @@ export default {
     
  
 }
+    }
   }
 </style>

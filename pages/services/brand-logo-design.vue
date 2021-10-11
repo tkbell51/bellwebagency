@@ -12,6 +12,7 @@
         'Logo Design',
         'Digital Collateral Design',
         'Pring Collateral Design',
+        'Videos & Photos'
       ]"
       subtitle="Make it easy for customers to choose you."
       description="In a world full of brands, clients are overwhelmed with options. Manage the perception of your business and differentiate yourself from your competition through a compelling brand identity."
@@ -147,6 +148,10 @@ export default {
           description:
             "Any items to assist in your brand’s marketing through the use of printed items; business cards, brand stationery, packaging, signage, or other physical merchandise.",
         },
+        {
+          title: "Videography & Photography",
+          description: ""
+        }
       ],
     };
   },

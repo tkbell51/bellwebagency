@@ -44,7 +44,15 @@ export default {
   },
   head() {
     return {
-      title: `${this.project.title} | Bell Web Agency`,
+      title: `${this.project.title}`,
+      meta: [
+        {
+
+          hid: 'title',
+          name: 'title',
+          content: `${this.project.title}`,
+        }
+      ]
     }
   }
 };

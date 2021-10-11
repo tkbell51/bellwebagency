@@ -4,7 +4,8 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'Bell Web Agency',
+    titleTemplate: '%s | ' + 'Bell Web Agency',
+    title: 'Bell Web Agency' || '',
     htmlAttrs: {
       lang: 'en'
     },
@@ -50,23 +51,17 @@ export default {
     // https://go.nuxtjs.dev/content
     '@nuxt/content',
     '@nuxtjs/svg-sprite',
+    '@nuxtjs/sitemap'
   ],
 fontawesome: {
         icons: {
           solid:[
             'faEnvelope',
             'faMapMarkerAlt',
-            'faPhone',
-            'faClock',
-            'faCouch',
-            'faUserFriends',
-            'faAngry',
-            'faComment',
-            'faBars',
             'faCaretDown',
-            'faMobileAlt',
-            'faUsers',
-            'faArrowRight'
+            'faArrowRight',
+            'faInfo',
+            'faCheck'
           ],
           brands: [
             'faDev',
@@ -74,7 +69,6 @@ fontawesome: {
             'faTwitter',
             'faLinkedin',
             'faInstagram',
-            'faYoutube',
           ]
       },
    
@@ -85,7 +79,7 @@ fontawesome: {
     routes: async () => {
       const { $content } = require('@nuxt/content')
 
-      const posts = await $content('posts').only(['path']).fetch()
+      const posts = await $content('portfolio').only(['path']).fetch()
 
       return posts.map((p) => p.path)
     },

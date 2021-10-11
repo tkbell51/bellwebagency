@@ -17,7 +17,7 @@
           type="text"
           name="name"
           class="form__input"
-          placeholder="Full Name"
+          placeholder="John Doe"
           required
         />
 
@@ -30,7 +30,7 @@
           type="email"
           name="email"
           class="form__input"
-          placeholder="Email Address"
+          placeholder="johndoe@gmail.com"
           required
         />
       </div>
@@ -42,7 +42,7 @@
           type="text"
           name="businessName"
           class="form__input"
-          placeholder="Business Name"
+          placeholder="John Doe, LLC"
           required
         />
       </div>
@@ -93,7 +93,7 @@
         <textarea
           name="projectDescription"
           id="why"
-          rows="10"
+          rows="5"
           class="form__input"
           placeholder="Please include as much detail as possible regarding your project."
         ></textarea>
@@ -145,8 +145,11 @@ export default {};
   //     url('../assets/img/lake-hero.jpg');
   // }
   &__form {
-    flex: 40%;
+    @apply rounded-xl;
+    // flex: 40%;
     padding: 4rem;
+    background: white;
+    border-bottom: 2rem solid $secondary-color;
     @include respond(phone) {
       padding: 2rem;
     }
@@ -177,8 +180,8 @@ export default {};
     font-size: 1.5rem;
     font-family: inherit;
     padding: 1.5rem 2rem;
-    border-radius: 2px;
-    background-color: rgba($white, 0.5);
+    border-radius: 5px;
+    background-color: lighten($primary-very-light, 50%);
     border: none;
     border-bottom: 3px solid transparent;
     color: inherit;
@@ -197,7 +200,7 @@ export default {};
       border-bottom: 3px solid $secondary-color-dark;
     }
     &::-webkit-input-placeholder {
-      color: $black;
+      color: rgba($font-color, 0.5);
     }
   }
  
@@ -205,16 +208,11 @@ export default {};
     font-size: 3rem;
     // margin-left: 2rem;
     // margin-bottom: 2rem;
-    margin: 3rem 0 2rem 2rem;
+    margin: 1rem 0 1rem 2rem;
     display: inline-block;
     // transition: all 0.3s;
-    color: $white;
   }
-  // &__input:placeholder-shown + &__label {
-  //   opacity: 0;
-  //   visibility: hidden;
-  //   transform: translateY(4rem);
-  // }
+  
 &__select {
     display: block;
     font-size: 16px;
@@ -225,7 +223,7 @@ export default {};
     padding: 0.6em 1.4em 0.5em 0.8em;
     width: 100%;
     box-sizing: border-box;
-    margin-bottom: 3rem;
+    margin-bottom: 1rem;
     border: 1px solid #aaa;
     box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.04);
     border-radius: 0.5em;
