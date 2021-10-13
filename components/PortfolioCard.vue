@@ -45,6 +45,7 @@ export default {
     padding-left: 3rem;
     transform: translateY(100%);
     transition: $transition;
+    
   }
   &:hover &__title {
     transform: translateY(0%);

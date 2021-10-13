@@ -5,7 +5,8 @@
 
       <h2 class="heading-secondary white">Have a project in mind<span class="orange">?</span></h2>
       <!-- <p class="heading-tertiary">Let's Get Started</p> -->
-      <a class="btn  inline-block" href="https://www.honeybook.com/widget/bell_web_agency_191036/cf_id/6102d705963bdd07eaf2f19f" target="_blank">Start project</a>
+      <NuxtLink class="btn" to="/contact">Start Project</NuxtLink>
+      <!-- <a class="btn  inline-block" href="https://www.honeybook.com/widget/bell_web_agency_191036/cf_id/6102d705963bdd07eaf2f19f" target="_blank">Start project</a> -->
         </div>
       </div>
     </section>

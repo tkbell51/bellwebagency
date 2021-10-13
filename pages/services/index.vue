@@ -24,10 +24,10 @@
     />
 
     <ServiceContent
-      class="review"
+      class="review "
       :title="'Review Reputation Management'"
       :listHeader="'Review Reputation Management'"
-      :direction="'rtl'"
+      :direction="'ltr'"
       :services="[
         'Boost your average star rating',
         'Promote positive reviews',

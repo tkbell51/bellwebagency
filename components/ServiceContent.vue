@@ -1,15 +1,15 @@
 <template>
   <section :class="`section__service ${direction}`">
     <div class="container">
-      <div class="md:flex justify-content">
-        <div class="service__text md:w-1/2 relative">
-          <svg-icon class="dot-grid absolute" name="orange-dots" />
+      <div class="md:flex justify-content items-center gap-4">
+        <div class="service__text md:w-3/4 relative">
+          <!-- <svg-icon class="dot-grid absolute" name="orange-dots" /> -->
           <div class="relative z-1">
             <h2 class="heading-secondary">{{ title }}</h2>
-            <h3 class="heading-tertiary">{{ subtitle }}</h3>
-            <p class="mb-3">{{ description }}</p>
+            <h3 v-if="subtitle" class="heading-tertiary">{{ subtitle }}</h3>
+            <p class="mb-3 w-3/4">{{ description }}</p>
             <p class="mb-3 italic">{{ listHeader }} Services Include:</p>
-            <slot></slot>
+              <slot></slot>
             <CheckList :list="services" />
             <SectionLink :link="`${link}`" :name="linkCTA" />
           </div>
@@ -51,14 +51,23 @@ export default {
   }
   .service {
     &__text {
+      .heading-secondary {
+        margin-bottom: 2rem;
+      }
+      .heading-tertiary {
+        margin-bottom: 2rem;
+      }
       .dot-grid {
         left: -11rem;
-        top: -1rem;
+        top: -6rem;
         @include respond(tab-port) {
           display: none;
         }
       }
     }
+  }
+  &.review {
+    padding: 8rem 0;
   }
 }
 .rtl {

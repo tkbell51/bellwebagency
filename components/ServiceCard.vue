@@ -1,7 +1,7 @@
 <template>
-  <div class="service-card rounded" @mouseover="isHover = true" @mouseleave="isHover = false">
+  <div class="service-card rounded" >
     <div>
-    <svg-icon :name="isHover ? hover : icon" :class="`service-card__icon ${icon}`" />
+    <svg-icon :name="icon" :class="`service-card__icon ${icon}`" />
     
     <h4>{{ title }}</h4>
     <slot></slot>
@@ -12,12 +12,8 @@
 
 <script>
 export default {
-  props: ["icon", "title","link", 'hover'],
-  data() {
-    return {
-      isHover: false
-    }
-  },
+  props: ["icon", "title","link"],
+  
 };
 </script>
 
@@ -61,7 +57,7 @@ export default {
    @media only screen and(min-width: 56.25em) {
       
   &:hover {
-    background: $primary-color;
+    background: linear-gradient(45deg, lighten($primary-color,10%),$primary-color,);
     transform: translateY(-10%);
     h4,
     p, a, .icon {

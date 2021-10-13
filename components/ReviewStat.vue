@@ -14,7 +14,7 @@ export default {
 <style lang="scss" scoped>
 .review-stat {
   @apply rounded shadow-xl;
-  background: $primary-color;
+  background: linear-gradient(45deg, lighten($primary-color, 10%), $primary-color);
   padding: 2rem;
   transition: $transition;
   box-shadow: $box-shadow;
@@ -23,16 +23,9 @@ export default {
     font-size: 4rem;
     margin: 2rem 0;
   }
-    p {
-        color: $white;
-    }
-  &:hover {
-    background: $white;
-    transform: translateY(-10%);
-    p {
-      color: $font-color;
-    }
-    
+  p {
+    color: $white;
   }
+  
 }
 </style>
