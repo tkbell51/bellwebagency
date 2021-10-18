@@ -1,70 +1,90 @@
 <template>
-  <div>
-    <PageHeader :title="project.title" />
-    <section class="section__project-description ">
-      <div class="container">
-        <div class="project-descript__grid grid grid-cols-1 md:grid-cols-2">
-          <div>
-            <div class="flex ">
-              <p
-                v-for="category in project.categories"
-                :key="category.id"
-                class="categories font-bold px-2 border-r-2 border-black"
-              >
-                {{ category }}
-              </p>
+    <div>
+        <PageHeader :title="project.title" />
+        <section class="section__project-description">
+            <div class="container">
+                <div class="project-description flex gap-24">
+                    <div class="mb-12 w-full md:w-1/2">
+                        <div class="mb-8">
+                            <span
+                                v-for="category in project.categories"
+                                :key="category.id"
+                                class="categories font-bold px-2"
+                            >
+                                {{ category }}
+                            </span>
+                        </div>
+                        <nuxt-content class="description" :document="project" />
+
+                        <div class="section-link">
+                            <a class="link" :href="project.link" target="_blank"
+                                ><span class="link-text">Go to website</span></a
+                            >
+                        </div>
+                    </div>
+                    <div class="w-full md:w-1/2">
+                        <img
+                            class="m-auto shadow-xl"
+                            :src="
+                                require(`~/assets/img/portfolio/${project.webImage}`)
+                            "
+                            :alt="`${project.title}`"
+                        />
+                    </div>
+                </div>
             </div>
-            <p>{{ project.description }}</p>
-          </div>
-          <div>
-            <img
-              class="m-auto shadow-xl"
-              :src="require(`~/assets/img/portfolio/${project.webImage}`)"
-              :alt="`${project.title}`"
-            />
-          </div>
-        </div>
-      </div>
-    </section>
-  </div>
+        </section>
+        <ProjectCTA />
+    </div>
 </template>
 
 <script>
 export default {
-  // data() {
-  //   return {
-  //     project: {},
-  //   };
-  // },
-  async asyncData({ $content, params, error }) {
-    const project = await $content("portfolio", params.slug).fetch();
-    return {
-      project,
-    };
-  },
-  head() {
-    return {
-      title: `${this.project.title}`,
-      meta: [
-        {
-
-          hid: 'title',
-          name: 'title',
-          content: `${this.project.title}`,
+    // data() {
+    //   return {
+    //     project: {},
+    //   };
+    // },
+    async asyncData({ $content, params, error }) {
+        const project = await $content('portfolio', params.slug)
+            .fetch()
+            .catch((err) => {
+                error({ statusCode: 404, message: 'Page not found' })
+            })
+        return {
+            project,
         }
-      ]
-    }
-  }
-};
+    },
+    head() {
+        return {
+            title: `${this.project.title}`,
+            meta: [
+                {
+                    hid: 'title',
+                    name: 'title',
+                    content: `${this.project.title}`,
+                },
+            ],
+        }
+    },
+}
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" >
 .section__project-description {
-  img {
-    width: 100%;
-  }
+    .categories {
+        font-size: $default-font-size;
+    }
+    .section-link {
+        text-align: left;
+    }
 }
-.categories:last-child {
-  border: none;
+.categories:not(:last-child) {
+    border-right: 3px solid $primary-color;
+}
+.description {
+    p {
+        margin-bottom: 1rem;
+    }
 }
 </style>

@@ -87,7 +87,7 @@ export default {
   },
    head() {
     return {
-      title: `Review Management Reputation | Bell Web Agency`,
+      title: `Review Management Reputation`,
     }
   }
 };
