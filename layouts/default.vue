@@ -16,7 +16,7 @@ export default {
                 {
                     hid: 'og:image',
                     property: 'og:image',
-                    content: `${this.$config.baseURL}/headshot.jpg`,
+                    content: '/bwa-logo.jpg',
                 },
             ],
         }

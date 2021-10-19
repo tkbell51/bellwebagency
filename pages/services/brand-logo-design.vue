@@ -16,7 +16,8 @@
             ]"
             subtitle="Make it easy for customers to choose you."
             description="In a world full of brands, clients are overwhelmed with options. Manage the perception of your business and differentiate yourself from your competition through a compelling brand identity."
-            link="contact"
+            isHref
+            link="https://www.honeybook.com/widget/bell_web_agency_191036/cf_id/6102d705963bdd07eaf2f19f"
             linkCTA="Build Your Brand"
         >
         </ServiceContent>
@@ -118,7 +119,11 @@
                     </Tab>
                 </Tabs>
             </div>
-            <SectionLink link="contact" name="Build your brand" />
+            <SectionLink
+                isHref
+                link="https://www.honeybook.com/widget/bell_web_agency_191036/cf_id/6102d705963bdd07eaf2f19f"
+                name="Build your brand"
+            />
         </section>
     </main>
 </template>

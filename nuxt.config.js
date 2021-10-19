@@ -24,6 +24,76 @@ export default {
             },
 
             { name: 'format-detection', content: 'telephone=no' },
+            {
+                hid: 'twitter:card',
+                name: 'twitter:card',
+                content: 'summary_large_image',
+            },
+            {
+                hid: 'twitter:site',
+                name: 'twitter:site',
+                content: 'Bell Web Agency',
+            },
+            {
+                hid: 'twitter:url',
+                name: 'twitter:url',
+                content: 'https://bellwebagency.com',
+            },
+            {
+                hid: 'twitter:title',
+                name: 'twitter:title',
+                content: 'Bell Web Agency',
+            },
+            {
+                hid: 'twitter:description',
+                name: 'twitter:description',
+                content:
+                    'At Bell Web Agency, our Mission is to provide the best digital tools to help assist our clients meet their goals and needs.',
+            },
+            {
+                hid: 'twitter:image',
+                name: 'twitter:image',
+                content: '/bwa-logo.jpg',
+            },
+
+            // Open Graph
+            {
+                hid: 'og:site_name',
+                property: 'og:site_name',
+                content: 'Bell Web Agency',
+            },
+            { hid: 'og:type', property: 'og:type', content: 'website' },
+            {
+                hid: 'og:url',
+                property: 'og:url',
+                content: 'https://bellwebagency.com',
+            },
+            {
+                hid: 'og:title',
+                property: 'og:title',
+                content: 'Bell Web Agency',
+            },
+            {
+                hid: 'og:description',
+                property: 'og:description',
+                content:
+                    'At Bell Web Agency, our Mission is to provide the best digital tools to help assist our clients meet their goals and needs.',
+            },
+            {
+                hid: 'og:image',
+                property: 'og:image',
+                content: '/bwa-logo.jpg',
+            },
+            {
+                hid: 'og:image:secure_url',
+                property: 'og:image:secure_url',
+                content: '/bwa-logo.jpg',
+            },
+            {
+                hid: 'og:image:alt',
+                property: 'og:image:alt',
+                content: 'Bell Web Agency',
+            },
         ],
         link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
     },

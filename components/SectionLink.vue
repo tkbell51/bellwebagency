@@ -1,14 +1,17 @@
 <template>
     <div class="section-link">
-        <NuxtLink class="link" :to="`/${link}`"
+        <NuxtLink v-if="!isHref" class="link" :to="`/${link}`"
             ><span class="link-text">{{ name }}</span></NuxtLink
+        >
+        <a v-if="isHref" class="link" :href="link" target="_blank"
+            ><span class="link-text">{{ name }}</span></a
         >
     </div>
 </template>
 
 <script>
 export default {
-    props: ['link', 'name'],
+    props: { link: String, name: String, isHref: Boolean },
 }
 </script>
 
