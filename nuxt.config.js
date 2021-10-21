@@ -173,9 +173,15 @@ export default {
             )
         },
     },
-    // Content module configuration: https://go.nuxtjs.dev/config-content
-    content: {},
-
+    robots: () => {
+        return {
+            UserAgent: 'Googlebot',
+            Disallow: /nogooglebot/,
+            UserAgent: '*',
+            Allow: '/',
+            Sitemap: 'https://bellwebagency.com/sitemap.xml',
+        }
+    },
     // Build Configuration: https://go.nuxtjs.dev/config-build
     build: {
         babel: {
