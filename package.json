@@ -16,7 +16,6 @@
     "@nuxtjs/style-resources": "^1.2.1",
     "@nuxtjs/svg-sprite": "^0.5.2",
     "core-js": "^3.18.2",
-    "eslint": "^7.32.0",
     "node-sass": "^6.0.1",
     "nuxt": "^2.15.7",
     "nuxt-imagemin": "^1.0.0",
@@ -28,12 +27,12 @@
     "vue-slick-carousel": "^1.0.6"
   },
   "devDependencies": {
+
     "@aceforth/nuxt-optimized-images": "^1.4.0",
     "@fortawesome/free-brands-svg-icons": "^5.15.4",
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
     "@nuxtjs/fontawesome": "^1.1.2",
     "@nuxtjs/tailwindcss": "^4.2.0",
-    "eslint-config-prettier": "^8.3.0",
     "postcss": "^8.3.9",
     "prettier": "^2.4.1",
     "sass-loader": "^10.2.0"

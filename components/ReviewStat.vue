@@ -1,13 +1,16 @@
 <template>
   <div class="review-stat">
     <h3 class="orange">{{ number }}%</h3>
-    <p class="">{{ stat }}</p>
+
+    <p class="">
+      <slot></slot>
+    </p>
   </div>
 </template>
 
 <script>
 export default {
-  props: ["number", "stat"],
+  props: ["number"],
 };
 </script>
 
@@ -26,6 +29,5 @@ export default {
   p {
     color: $white;
   }
-  
 }
 </style>

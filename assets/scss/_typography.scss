@@ -1,0 +1,61 @@
+$preferred_viewport_width: 1000px;
+
+@function strip-units($number) {
+  @return $number / ($number * 0 + 1);
+}
+
+@function calculateRem($size) {
+  $remSize: $size / 16px;
+  @return #{$remSize}rem;
+}
+
+@function calculateClamp($minimum, $preferred, $maximum) {
+  $clamp_parameter_1: calculateRem($minimum);
+  $clamp_parameter_2: strip-units(
+      (($preferred + 0) / $preferred_viewport_width) * 100
+    ) * 1vw;
+  $clamp_parameter_3: calculateRem($maximum);
+
+  @return clamp(
+    #{$clamp_parameter_1},
+    #{$clamp_parameter_2},
+    #{$clamp_parameter_3}
+  );
+}
+
+/* The font will be at the preferred size on 1000 pixel wide viewports by default. */
+@mixin pixelsToFluidText($minimum, $preferred, $maximum) {
+  /* Fallback for IE11 */
+  font-size: calculateRem($preferred);
+  /* Modern browsers */
+  font-size: calculateClamp(
+    $minimum,
+    $preferred,
+    $maximum,
+    $preferred_viewport_width
+  );
+}
+
+@mixin responsive-gutter-1x($direction: bottom, $gutter: 36px) {
+  @if $direction == top {
+    margin-top: $gutter;
+    margin-top: calculateClamp(($gutter/2), ($gutter * 0.75), $gutter);
+  } @else if $direction == bottom {
+    margin-bottom: $gutter;
+    margin-bottom: calculateClamp(($gutter/2), ($gutter * 0.75), $gutter);
+  } @else {
+    @error "Unknown direction #{$direction}.";
+  }
+}
+
+@mixin responsive-gutter-2x($direction: bottom, $gutter: 36px) {
+  @if $direction == top {
+    margin-top: ($gutter * 2);
+    margin-top: calculateClamp($gutter, ($gutter * 1.5), ($gutter * 2));
+  } @else if $direction == bottom {
+    margin-bottom: ($gutter * 2);
+    margin-bottom: calculateClamp($gutter, ($gutter * 1.5), ($gutter * 2));
+  } @else {
+    @error "Unknown direction #{$direction}.";
+  }
+}

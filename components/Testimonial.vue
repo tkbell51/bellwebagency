@@ -1,36 +1,31 @@
 <template>
   <section class="section__testimonials">
     <div class="container">
-      <h2 class="heading-secondary text-center white ">What our <span class="orange">customers</span> are saying</h2>
+      <h2 class="heading-secondary text-center white">
+        What our <span class="orange">customers</span> are saying
+      </h2>
+      <!-- <svg-icon class="quotemark" name="quotemark" /> -->
 
-      <div class="testimonials-grid grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div
-          v-for="(item, index) in testimonials"
-          :key="index"
-          :title="item.name"
-          class="testimonials"
-        >
-          <div class="testimonials-content__header gap-4 mb-3">
-            <div class="testimonials-content__img">
-              <img
-                :src="require(`~/assets/img/testimonials/${item.imgSrc}`)"
-                :alt="`${item.imgAlt}`"
-              />
+      <VueSlickCarousel ref="slick" v-bind="settings">
+        <div v-for="(item, index) in testimonials" :key="index" :title="item.name">
+          <div class="quote">
+            <p class="quote__text">"{{ item.text }}"</p>
+
+            <div class="quote__header gap-4 mb-3">
+              <div class="quote__img">
+                <img
+                  :src="require(`~/assets/img/testimonials/${item.imgSrc}`)"
+                  :alt="`${item.imgAlt}`"
+                />
+              </div>
+              <div>
+                <p class="quote__text--name font-bold">{{ item.name }}</p>
+                <p class="quote__text--company mb-3">{{ item.company }}</p>
+              </div>
             </div>
-            <div>
-              <p class="testimonials-content__text--name font-bold">{{ item.name }}</p>
-              <p class="testimonials-content__text--company mb-3">{{ item.company }}</p>
-            </div>
-          </div>
-          <div class="testimonials-content__text">
-            <svg-icon class="quotemark" name="quotemark" />
-
-            <div></div>
-
-            <p class="testimontals-content__text--full mb-5">{{ item.text }}</p>
           </div>
         </div>
-      </div>
+      </VueSlickCarousel>
     </div>
   </section>
 </template>
@@ -45,7 +40,8 @@ export default {
           name: "Kervin K. Searles",
           imgSrc: "kervin-searles.png",
           imgAlt: "Gravity Counseling Group",
-          text: "Tim’s website design not only met my approval but exceeded my expectations. He is knowledgeable, creative, and personable. He is patient, understanding, and willing to provide revisions as needed, with a quick turnaround. The end result is a website that is a reflection of our current identity and vision. I am certain we will continue our partnership as we grow.",
+          text:
+            "Tim’s website design not only met my approval but exceeded my expectations. He is knowledgeable, creative, and personable. He is patient, understanding, and willing to provide revisions as needed, with a quick turnaround. The end result is a website that is a reflection of our current identity and vision. I am certain we will continue our partnership as we grow.",
           company: "Gravity Counseling Group",
         },
 
@@ -54,31 +50,32 @@ export default {
           name: "Liv Green",
           imgSrc: "livish-profile.jpeg",
           imgAlt: "Livish Woodworks & Decor",
-          text: "I was very pleased with my experience with Timothy from beginning to end. He asked probing questions that helped me to decide on the best flow and functionality for the website. He also actively listened to my requests and offered alternative solutions to work within my budget. Lastly, he continued to follow up with me even after the project was complete to ensure my satisfaction. Overall a great experience!",
+          text:
+            "I was very pleased with my experience with Timothy from beginning to end. He asked probing questions that helped me to decide on the best flow and functionality for the website. He also actively listened to my requests and offered alternative solutions to work within my budget. Lastly, he continued to follow up with me even after the project was complete to ensure my satisfaction. Overall a great experience!",
           company: "Livish Woodworks & Decor",
         },
       ],
+      settings: {
+        fade: true,
+        autoplay: true,
+        autoplaySpeed: 12000,
+        arrows: false,
+      },
     };
+  },
+  methods: {
+    reInit() {
+      this.$refs.slick.reSlick();
+    },
   },
 };
 </script>
 
 <style lang="scss" scoped>
 .section__testimonials {
-    background: $primary-very-light;
-    padding-top: 35rem;
-    padding-bottom: 7rem;
-
-    
-}
-.testimonials {
-  @apply rounded;
-  position: relative;
-  overflow: hidden;
-  padding: 2rem 3rem;
-  box-shadow: $box-shadow;
-  background-color: $white;
-  
+  background: $primary-very-light;
+  padding-top: 35rem;
+  padding-bottom: 7rem;
   .quotemark {
     position: absolute;
     right: 7rem;
@@ -90,14 +87,27 @@ export default {
     display: inline-block;
     transform: scale(11);
   }
+  .quote {
+    &__text {
+      font-size: clamp(1.8rem, 2vw, 2.5rem);
+      margin-bottom: 2rem;
+      &--name,
+      &--company,
+      & {
+        color: $white;
+      }
+      // @include respond(tab-port) {
+      //   font-size: 2rem;
+      // }
+    }
 
-  &-content {
     //    width: 30rem;
     &__header {
       display: grid;
       grid-template-columns: 7rem 1fr;
       align-items: center;
       margin-bottom: 2rem;
+      color: $white;
     }
     &__img {
       // @apply px-4;
@@ -105,11 +115,14 @@ export default {
       position: relative;
 
       img {
-        @apply rounded-full max-w-full h-auto align-middle border-none;
+        @apply rounded-full max-w-full h-auto align-middle shadow-lg;
       }
     }
-    &__text {
-      //    padding-right: 20%;
+  }
+  @include respond(phone) {
+    .slick-slider {
+      width: 40rem;
+      margin: 0 auto;
     }
   }
 }
