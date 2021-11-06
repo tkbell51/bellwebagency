@@ -24,11 +24,21 @@
           </div>
           <div class="w-full md:w-1/2">
             <img
-              class="m-auto shadow-xl"
-              :src="require(`~/assets/img/portfolio/${project.webImage}`)"
+              :key="index"
+              class="m-auto shadow-lg my-4"
+              :src="require(`~/assets/img/portfolio/${project.images[0]}`)"
               :alt="`${project.title}`"
             />
           </div>
+        </div>
+        <div class="gap-8 grid lg:grid-cols-2 my-8">
+          <img
+            v-for="(image, index) in project.images.slice(1)"
+            :key="index"
+            class="m-auto shadow-lg my-4"
+            :src="require(`~/assets/img/portfolio/${image}`)"
+            :alt="`${project.title}`"
+          />
         </div>
       </div>
     </section>

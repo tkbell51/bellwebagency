@@ -1,15 +1,19 @@
 <template>
   <NuxtLink
-    class="portfolio-card"
+    class="portfolio-card shadow-lg hover:shadow-xl"
     :to="`/portfolio/${slug}`"
     :title="`${title}`"
     :style="{
       background: `url(${backgroundURL})`,
       backgroundSize: 'cover',
       backgroundRepeat: 'no-repeat',
+      backgroundPosition: 'center',
     }"
   >
-    <div class="portfolio-card__title heading-secondary font-bold"><span>{{ title }}</span><span></span></div>
+    <div class="portfolio-card__title heading-secondary font-bold">
+      <span>{{ title }}</span
+      ><span></span>
+    </div>
   </NuxtLink>
 </template>
 
@@ -27,10 +31,9 @@ export default {
 <style lang="scss" scoped>
 .portfolio-card {
   @apply relative;
-  background-repeat: no-repeat;
-  height: 28rem;
-  position: relative;
+  height: 35rem;
   overflow: hidden;
+
   &__title {
     color: white;
     position: absolute;
@@ -45,7 +48,6 @@ export default {
     padding-left: 3rem;
     transform: translateY(100%);
     transition: $transition;
-    
   }
   &:hover &__title {
     transform: translateY(0%);

@@ -19,7 +19,7 @@
       isHref
       link="https://www.honeybook.com/widget/bell_web_agency_191036/cf_id/6102d705963bdd07eaf2f19f"
       link-c-t-a="Let's Get Started"
-      image="gravity-present.jpg"
+      image="portfolio/gravity-home.jpg"
       image-alt="Gravity Counseling Group Present"
     />
     <!-- <section class="section__software">
