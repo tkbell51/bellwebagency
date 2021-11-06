@@ -16,7 +16,8 @@
       ]"
       subtitle="Reach your clients where they are."
       description="Consider all the ways your clients use technology to engage with your brand; websites, social media, mobile devices, digital marketing, email marketing, podcasts, and beyond. The expansion of technology has blurred the lines between physical and digital – forcing businesses to rethink the way they engage their clients and emphasizing the importance of innovative virtual experiences."
-      link="contact"
+      isHref
+      link="https://www.honeybook.com/widget/bell_web_agency_191036/cf_id/6102d705963bdd07eaf2f19f"
       link-c-t-a="Let's Get Started"
       image="gravity-present.jpg"
       image-alt="Gravity Counseling Group Present"

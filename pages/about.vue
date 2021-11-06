@@ -63,7 +63,8 @@ export default {
   }
   &-img-wrapper {
     img {
-      @apply rounded shadow-xl;
+      @apply rounded-xl shadow-xl w-3/4 m-auto;
+      box-shadow: 10px 10px $secondary-color;
     }
   }
 }

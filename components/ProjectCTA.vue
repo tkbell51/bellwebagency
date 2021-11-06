@@ -5,8 +5,13 @@
         <h2 class="heading-secondary white">
           Have a project in mind<span class="orange">?</span>
         </h2>
-
-        <NuxtLink class="btn" to="/contact">Start Project</NuxtLink>
+        <a
+          class="btn"
+          target="_blank"
+          href="https://www.honeybook.com/widget/bell_web_agency_191036/cf_id/6102d705963bdd07eaf2f19f"
+          >Start Project</a
+        >
+        <!-- <NuxtLink class="btn" to="/contact">Start Project</NuxtLink> -->
       </div>
     </div>
   </section>

@@ -112,7 +112,11 @@
                 </a>
               </li>
             </ul>
-            <NuxtLink class="btn" to="/contact">Start Project</NuxtLink>
+            <a
+              class="btn"
+              href="https://www.honeybook.com/widget/bell_web_agency_191036/cf_id/6102d705963bdd07eaf2f19f"
+              >Start Project</a
+            >
           </div>
         </div>
       </div>

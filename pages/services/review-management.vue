@@ -9,7 +9,8 @@
       direction="ltr"
       subtitle="Turn positive reviews into more business"
       description="Have a strategy to get more 5 star revies from your real customers on sites like Google, Facebook, and Yelp!"
-      link="contact"
+      isHref
+      link="https://www.honeybook.com/widget/bell_web_agency_191036/cf_id/6102d705963bdd07eaf2f19f"
       link-c-t-a="Manage the Feedback"
       image="5-star-bubble.jpg"
       image-alt="message bubbles with 5 stars"

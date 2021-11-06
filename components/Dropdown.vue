@@ -1,7 +1,8 @@
 <template>
   <div class="dropdown" @click="toggleDropdown">
     <button class="nav__btn">
-      Services <Fas class="nav__icon" i="caret-down" />
+      Services
+      <Fas class="nav__icon" i="caret-down" />
     </button>
     <transition name="dropdown-fade">
       <ul
@@ -10,31 +11,29 @@
         v-on-clickaway="hideDropdown"
         class="dropdown__menu"
       >
-        <li class="dropdown__item" @click="closeMenu">
-          <nuxt-link class="dropdown__link" to="/services/web-design"
-            >Web Design &amp; Development</nuxt-link
-          >
+        <li
+          v-for="(item, index) in links"
+          :key="index"
+          class="dropdown__item"
+          @click="closeMenu"
+        >
+          <nuxt-link class="dropdown__link" :to="item.link">{{ item.title }}</nuxt-link>
         </li>
-        <li class="dropdown__item" @click="closeMenu">
-          <nuxt-link class="dropdown__link" to="/services/review-management"
-            >Review Repuration Management</nuxt-link
-          >
-        </li>
-        <li class="dropdown__item" @click="closeMenu">
-          <nuxt-link class="dropdown__link" to="/services/brand-logo-design"
-            >Brand &amp; Logo Design</nuxt-link
-          >
-        </li>
-       
       </ul>
     </transition>
   </div>
 </template>
 
 <script>
-import { mixin as clickaway } from 'vue-clickaway'
-import Fas from '@/components/Fas'
+import { mixin as clickaway } from "vue-clickaway";
+import Fas from "@/components/Fas";
 export default {
+  props: {
+    links: {
+      type: Object,
+      default: () => ({}),
+    },
+  },
   components: {
     Fas,
   },
@@ -42,26 +41,26 @@ export default {
   data() {
     return {
       isVisible: false,
-    }
+    };
   },
   methods: {
     toggleDropdown() {
-      this.isVisible = !this.isVisible
-      const icon = document.querySelector('.nav__icon')
-      icon.classList.toggle('open')
+      this.isVisible = !this.isVisible;
+      const icon = document.querySelector(".nav__mobile");
+      icon.classList.toggle("open");
     },
     hideDropdown() {
-      this.isVisible = false
-      const icon = document.querySelector('.nav__icon')
-      icon.classList.remove('open')
+      this.isVisible = false;
+      const icon = document.querySelector(".nav__mobile");
+      icon.classList.remove("open");
     },
     closeMenu() {
       if (this.$parent.showNav === true) {
-        this.$parent.closeMenu()
+        this.$parent.closeMenu();
       }
     },
   },
-}
+};
 </script>
 
 <style lang="scss" scope>

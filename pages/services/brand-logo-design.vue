@@ -16,7 +16,10 @@
       ]"
       subtitle="Make it easy for customers to choose you."
       description="In a world full of brands, clients are overwhelmed with options. Manage the perception of your business and differentiate yourself from your competition through a compelling brand identity."
-      link="contact"
+      image="brand-image.jpg"
+      imageAlt="brand logo design"
+      isHref
+      link="https://www.honeybook.com/widget/bell_web_agency_191036/cf_id/6102d705963bdd07eaf2f19f"
       linkCTA="Build Your Brand"
     >
     </ServiceContent>
@@ -35,7 +38,7 @@
       <div class="container">
         <h2 class="heading-secondary text-center">All Brand Packages Are Custom</h2>
         <p class="text-center font-bold mb-24">Capabilities Include:</p>
-        <AccordionBlock class="w-1/2 m-auto" :list="brandInclude" />
+        <AccordionBlock class="lg:w-1/2 m-auto" :list="brandInclude" />
       </div>
     </section>
     <PortfolioSection />
