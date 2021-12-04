@@ -9,6 +9,7 @@ logo: livish-black.png
 link: https://madebylivish.com/
 cardImage: madebylivish/madebylivish-full
 headerImage: madebylivish/livish-profile
+mockImage: madebylivish/full-mock
 fullImg: madebylivish/fullpage
 images:
   - madebylivish/madebylivish-about
