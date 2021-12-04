@@ -170,9 +170,9 @@ export default {
     routes: async () => {
       const { $content } = require("@nuxt/content");
 
-      const posts = await $content("portfolio").only(["path"]).fetch();
+      const projects = await $content("portfolio").only(["path"]).fetch();
 
-      return posts.map((p) => p.path);
+      return projects.map((p) => p.path);
     },
   },
   generate: {
@@ -189,6 +189,7 @@ export default {
       Disallow: /nogooglebot/,
       UserAgent: "*",
       Allow: "/",
+      Disallow: "/opportunity/",
       Sitemap: "https://bellwebagency.com/sitemap.xml",
     };
   },

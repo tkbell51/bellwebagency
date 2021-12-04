@@ -14,7 +14,7 @@
         </p>
 
         <a
-          href="https://calendly.com/bellwebagency/strategy-session"
+          href="https://bellwebagency.hbportal.co/schedule/608330e0ca6881002a936dee"
           class="btn"
           target="_blank"
           >Schedule Call Today</a

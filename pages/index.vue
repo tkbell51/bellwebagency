@@ -88,11 +88,9 @@
                 'Know how customers are finding you',
               ]"
             />
-            <a
-              href="https://bellwebagency.clickfunnels.com/google-trainingy35wc5s5"
-              class="btn"
-              target="_blank"
-              >Get Help With Google My Business</a
+
+            <NuxtLink class="btn" to="/gmb-listing-free-guide"
+              >Get Help With Google My Business</NuxtLink
             >
           </div>
           <div class="gmb__img">

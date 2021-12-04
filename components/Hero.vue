@@ -14,7 +14,10 @@
             branding, and marketing campaigns for success driven organizations wanting the
             world to know what they do best.
           </p>
-          <a href="https://calendly.com/bellwebagency/15min" class="btn" target="_blank"
+          <a
+            href="https://bellwebagency.hbportal.co/schedule/608330e0ca6881002a936dee"
+            class="btn"
+            target="_blank"
             >Start a Conversation</a
           >
           <!-- <svg-icon name="orange-curve"/> -->
@@ -33,6 +36,7 @@ export default {};
 <style lang="scss" scoped>
 .hero {
   background: $hero-gradient, center / cover no-repeat url("../assets/img/bwa-header.jpg");
+
   // clip-path: $section-polygon;
   position: relative;
   // text-align: center;
@@ -72,6 +76,9 @@ export default {};
 
   .bg-curve {
     margin-top: 5rem;
+  }
+  @include respond(tab-port) {
+    background-position: 85%;
   }
 }
 </style>

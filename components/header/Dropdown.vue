@@ -12,6 +12,7 @@
         class="dropdown__menu"
       >
         <li
+      default: () => ({}),
           v-for="(item, index) in links"
           :key="index"
           class="dropdown__item"

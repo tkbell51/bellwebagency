@@ -1,6 +1,6 @@
 <template>
   <main class="thanks-page">
-    <PageHeader title="Thank You" />
+    <PageHeader firstTitle="Thank You" />
     <section class="section__thank-you">
       <div class="container">
         <div class="flex justify-center items-center">
@@ -16,7 +16,7 @@
             </p>
             <a
               class="btn btn-primary w-full"
-              href="https://calendly.com/bellwebagency/strategy-session"
+              href="https://bellwebagency.hbportal.co/schedule/608330e0ca6881002a936dee"
               target="_blank"
               >Schedule Conversation</a
             >
@@ -46,6 +46,7 @@ export default {
 .section__thank-you {
   background: $grey;
   margin: 0;
+  padding: 0;
   .contact-card {
     @apply rounded-xl;
     align-self: flex-start;
