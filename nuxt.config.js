@@ -118,7 +118,13 @@ export default {
     "@nuxtjs/tailwindcss",
     "@nuxtjs/style-resources",
     "@nuxtjs/fontawesome",
+    "@nuxtjs/google-fonts",
   ],
+  googleFonts: {
+    families: {
+      "Josefin+Sans": true,
+    },
+  },
 
   styleResources: {
     scss: [
@@ -134,7 +140,17 @@ export default {
     "@nuxt/content",
     "@nuxtjs/svg-sprite",
     "@nuxtjs/sitemap",
+    "@nuxt/image",
   ],
+  image: {
+    cloudinary: {
+      baseURL: "https://res.cloudinary.com/bwa/image/upload/bellwebagency",
+    },
+  },
+  cloudinary: {
+    cloudName: "bwa",
+    useComponent: true,
+  },
   fontawesome: {
     icons: {
       solid: [

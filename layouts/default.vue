@@ -26,22 +26,21 @@ export default {
 
 <style lang="scss">
 html {
-  //This defines what 1rem is
-  font-size: 62.5%; //1rem = 10px; 10px/16px = 62.5%
+  font-size: 62.5%;
   @include respond(tab-land) {
-    font-size: 60%; //1rem = 9px, 9/16 = 56.25%
+    font-size: 60%;
   }
   @include respond(tab-port) {
-    font-size: 65%; //1rem = 8px, 8/16 = 50%
+    font-size: 65%;
   }
   @include respond(big-desktop) {
-    font-size: 75%; //1rem = 12px, 12/16 = 75%
+    font-size: 75%;
   }
 }
 body {
-  font-family: "Montserrat Regular";
   position: relative;
   line-height: 1.6;
+  background: $bg-color;
 }
 .page {
   display: grid;
@@ -90,11 +89,12 @@ body {
 }
 
 .heading-primary {
+  font-family: "Montserrat Bold";
   color: $white;
-  backface-visibility: hidden;
   display: block;
-  font-size: 5rem;
-  font-weight: 400;
+  font-size: clamp(5rem, 8vw, 9rem);
+  text-transform: uppercase;
+  line-height: 1;
   @include respond(tab-port) {
     letter-spacing: 0.2rem;
     font-size: 4rem;
@@ -102,57 +102,52 @@ body {
   }
 }
 .heading-secondary {
-  font-size: 3.5rem;
+  font-size: clamp(3.2rem, 6vw, 5rem);
   font-family: "Montserrat SemiBold";
-  color: $primary-color;
-  margin-bottom: 4rem;
-  @include respond(tab-port) {
-    font-size: 3rem;
-  }
-  @include respond(phone) {
-    font-size: 2.5rem;
-  }
-}
-.heading-tertiary {
-  font-size: $default-font-size;
-  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  line-height: 1.25;
+  color: $black;
+  margin-bottom: 3rem;
 }
 
+.heading-tertiary {
+  @apply uppercase;
+  font-family: "Montserrat Regular";
+  font-size: clamp(2rem, 3vw, 3rem);
+  line-height: 1.2;
+}
+
+.is-outline {
+  font-weight: 100;
+  letter-spacing: 1px;
+  margin-bottom: 0;
+  color: transparent;
+  font-size: 1em;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-stroke: 0.035em #d5893d;
+}
 .container {
   margin: 0 auto;
   @include respond(phone) {
     padding: 0 3rem;
   }
 }
-.primary-btn {
-  @apply text-white rounded inline-block text-base font-bold;
-  background: $secondary-color;
-  padding: 16px 28px;
-  box-shadow: $box-shadow;
-  transition: 0.1s;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  font-size: $default-font-size;
-  &:hover {
-    transform: $raise-btn;
-  }
-  &:focus {
-    transform: translateY(-4px);
-  }
-}
 
 .btn {
-  @apply text-white rounded  font-bold;
+  @apply text-white font-bold;
+  background: $secondary-color;
 
-  display: inline-flex;
-  align-items: center;
-  background: darken($secondary-color, 5%);
+  border-radius: 8px;
+  margin: 2rem 0;
+  display: inline-block;
+  text-align: center;
+
+  // background: darken($secondary-color, 5%);
   box-shadow: $box-shadow;
+  border: 1px solid $secondary-color;
 
-  height: 4rem;
-  padding: 0 2.5rem;
+  padding: 1rem 3rem;
 
   text-transform: uppercase;
   text-decoration: none;
@@ -175,21 +170,28 @@ body {
       border: 1px solid darken($secondary-color, 5%);
     }
   }
+
   @include respond(tab-port) {
     height: 35;
   }
 }
 
 section {
+  position: relative;
   padding: 8rem 0;
   @include respond(phone) {
     padding: 3rem 0;
   }
-}
-h1,
-h2,
-h3 {
-  font-family: "Montserrat SemiBold";
+  .section__title {
+    position: absolute;
+    top: -30rem;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba($primary-color, 0.1);
+    font-size: 20vw;
+    text-align: center;
+    display: inline-block;
+  }
 }
 
 h3 {
@@ -203,9 +205,7 @@ h3 {
   margin-top: 2rem;
   margin-bottom: 2rem;
 }
-.subtitle {
-  @apply text-2xl;
-}
+
 a {
   font-size: $default-font-size;
   text-decoration: none;
@@ -217,9 +217,6 @@ a {
   }
 }
 
-.font-bold {
-  font-family: "Montserrat Bold";
-}
 .white {
   color: $white;
 }
@@ -232,5 +229,92 @@ li {
 }
 p {
   color: $font-color;
+  @apply mb-4;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: $transition;
+  border-radius: 12px;
+  margin: 0 2rem;
+  background: $white;
+  @apply shadow-md relative hover:shadow-sm;
+
+  &__content {
+    border-radius: 10px;
+    position: relative;
+    outline: none;
+    height: 100%;
+    padding: 2rem 2rem;
+    @apply flex flex-col z-10;
+    @include respond(tab-mid) {
+      padding: 5rem;
+      width: 100%;
+    }
+    @include respond(tab-small) {
+      padding: 4rem;
+      width: 100%;
+    }
+
+    svg {
+      width: 6rem;
+      height: 6rem;
+      margin-bottom: 3rem;
+    }
+  }
+  @media only screen and(min-width: 56.25em) {
+    &::after {
+      content: " ";
+      width: 100%;
+      height: 100%;
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: #fff;
+      border-radius: 10px;
+      -webkit-box-shadow: 0 5px 35px rgb(166 209 237 / 20%);
+      box-shadow: 0 5px 35px rgb(166 209 237 / 20%);
+      z-index: 2;
+      transition: $transition;
+    }
+    &::before {
+      content: " ";
+      width: 95%;
+      height: 95%;
+      z-index: 0;
+      position: absolute;
+      top: auto;
+      bottom: 1px;
+      left: 1px;
+      border-radius: 12px;
+      background-image: linear-gradient(
+        100deg,
+        $secondary-color-dark,
+        $secondary-color,
+        $secondary-color-light
+      );
+      background-repeat: repeat-x;
+      outline: 1px solid transparent;
+      -webkit-transition: all 0.5s;
+      transition: all 0.5s;
+    }
+
+    &:hover {
+      background: $primary-color;
+      color: $white;
+      p {
+        color: $white;
+      }
+      &::before {
+        transform: rotate(2deg) translateX(-5px) translateY(16px);
+      }
+      &::after {
+        background: $primary-color;
+      }
+    }
+  }
 }
 </style>

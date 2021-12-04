@@ -1,18 +1,17 @@
 ---
 title: Livish Woodworks & Decor
-description: Shopify website for Livish Woodworks & Decor
+firstTitle: Livish
+secondTitle: Woodworks & Decor
+year: 2021
+color: 192,130,103
+description: I was excited to work with Liv on a website for her woodworking business. From custom desks, charcuterie boards, to games, she can build it all! This is a Shopify website that handles all the merchant needs.
 logo: livish-black.png
 link: https://madebylivish.com/
-cardImage: madebylivish-mockup.jpg
+cardImage: madebylivish/madebylivish-full
+headerImage: madebylivish/livish-profile
+fullImg: madebylivish/fullpage
 images:
-  - madebylivish-mockup.jpg
-  - madebylivish-full.jpg
-  - madebylivish-about.jpg
-  - madebylivish-store.jpg
-  - madebylivish-product.jpg
-categories:
-  - web design
-  - e-commerce
+  - madebylivish/madebylivish-about
+  - madebylivish/madebylivish-store
+  - madebylivish/madebylivish-product
 ---
-
-I was excited to work with Liv on her website for her woodworking business. This is a Shopify website that handles all the merchant needs.

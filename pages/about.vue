@@ -1,26 +1,12 @@
 <template>
   <main>
-    <PageHeader :title="'About Us'" />
-    <section class="section__mission">
-      <div class="container">
-        <div class="mission__flex flex gap-24 flex-col md:flex-row">
-          <div>
-            <p class="heading-secondary">
-              We're a small business like you may be, but just like you, we expect BIG
-              things!
-            </p>
-          </div>
-          <div>
-            <p>
-              At Bell Web Agency, our Mission is to provide the best digital tools to help
+    <PageHeader
+      secondTitle="About Us"
+      pageDescription="At Bell Web Agency, our Mission is to provide the best digital tools to help
               assist our clients meet their goals and needs. After discussing your needs,
-              we will present you with the best web design that promote growth in your
-              business.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
+              we will present you with the best tools that promote growth in your
+              business."
+    />
     <section class="section__about">
       <div class="container">
         <div class="about__flex flex gap-24 flex-col md:flex-row">
@@ -37,7 +23,22 @@
             </p>
           </div>
           <div class="about-img-wrapper">
-            <img src="~assets/img/headshot.jpg" alt="Tim Bell" />
+            <nuxt-img provider="cloudinary" src="headshot" alt="Tim Bell" />
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section__mission">
+      <div class="container">
+        <div class="mission__flex flex gap-24 flex-col md:flex-row">
+          <div>
+            <p class="heading-secondary">
+              We're a small business like you may be. But, just like you, we expect BIG
+              things!
+            </p>
+          </div>
+          <div>
+            <p></p>
           </div>
         </div>
       </div>

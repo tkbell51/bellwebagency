@@ -1,10 +1,10 @@
 <template>
   <div class="section-link">
-    <NuxtLink v-if="!isHref" class="link" :to="`/${link}`">
-      <span class="link-text">{{ name }}</span>
+    <NuxtLink v-if="!isHref" class="btn" :to="`/${link}`">
+      {{ name }}
     </NuxtLink>
-    <a v-if="isHref" class="link" :href="link" target="_blank">
-      <span class="link-text">{{ name }}</span>
+    <a v-if="isHref" class="btn" :href="link" target="_blank">
+      {{ name }}
     </a>
   </div>
 </template>
@@ -19,6 +19,9 @@ export default {
 .section-link {
   @apply text-center;
   margin-top: 4rem;
+  .btn {
+    background: $secondary-color;
+  }
   .link {
     &-text {
       @apply font-bold;

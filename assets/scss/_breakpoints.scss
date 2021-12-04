@@ -16,51 +16,38 @@ ORDER: base + typography > general layout + grid > page layout > components
 @mixin respond($breakpoint) {
   @if $breakpoint==phone {
     @media only screen and(max-width: 40.375em) {
-      @content
-    }
-
-    ; //646px
+      @content;
+    } //646px
   }
 
-  @if $breakpoint==small-tab {
+  @if $breakpoint==tab-small {
     @media only screen and(max-width: 49.6875em) {
-      @content
-    }
-
-    ; //794
+      @content;
+    } //794
   }
-
 
   @if $breakpoint==tab-port {
     @media only screen and(max-width: 56.25em) {
-      @content
-    }
-
-    ; //900px
+      @content;
+    } //900px
   }
 
   @if $breakpoint==tab-mid {
     @media only screen and(max-width: 64em) {
-      @content
-    }
-
-    ; //978px for .popup
+      @content;
+    } //978px for .popup
   }
 
   @if $breakpoint==tab-land {
     @media only screen and(max-width: 75em) {
-      @content
-    }
-
-    ; //1200px
+      @content;
+    } //1200px
   }
 
   @if $breakpoint==big-desktop {
     @media (min-width: 112.5em) {
-      @content
-    }
-
-    ; //1800px
+      @content;
+    } //1800px
   }
 }
 

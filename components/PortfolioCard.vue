@@ -1,28 +1,34 @@
 <template>
   <NuxtLink
     class="portfolio-card shadow-lg hover:shadow-xl"
-    :to="`/portfolio/${slug}`"
-    :title="`${title}`"
-    :style="{
-      background: `url(${backgroundURL})`,
-      backgroundSize: 'cover',
-      backgroundRepeat: 'no-repeat',
-      backgroundPosition: 'center',
-    }"
+    :to="`/portfolio/${comp.slug}`"
+    :title="`${comp.title}`"
   >
-    <div class="portfolio-card__title heading-secondary font-bold">
-      <span>{{ title }}</span
-      ><span></span>
+    <div class="portfolio-card__img" :style="cssVars">
+      <nuxt-img provider="cloudinary" :src="`portfolio/${comp.cardImage}`" />
+    </div>
+    <div class="portfolio-card__text z-20">
+      <p>{{ comp.categories }}</p>
+      <h3 class="portfolio-card__title">
+        {{ comp.title }}
+      </h3>
     </div>
   </NuxtLink>
 </template>
 
 <script>
 export default {
-  props: ["title", "categories", "image", "slug"],
+  props: {
+    comp: {
+      type: Object,
+      default: () => ({}),
+    },
+  },
   computed: {
-    backgroundURL() {
-      return require(`~/assets/img/portfolio/${this.image}`);
+    cssVars() {
+      return {
+        "--bg-color": this.comp.color,
+      };
     },
   },
 };
@@ -30,27 +36,63 @@ export default {
 
 <style lang="scss" scoped>
 .portfolio-card {
-  @apply relative;
-  height: 35rem;
+  border-radius: 12px;
+  display: flex;
+  position: relative;
+  outline: none;
+  margin: 0 1rem;
   overflow: hidden;
+  height: 30rem;
 
-  &__title {
-    color: white;
-    position: absolute;
-    bottom: 0;
-    background: $primary-color;
-    height: 50%;
-    width: 100%;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    align-items: center;
-    padding-left: 3rem;
-    transform: translateY(100%);
+  &__text {
+    @include absCenter;
+    z-index: 5;
+    opacity: 0;
     transition: $transition;
   }
-  &:hover &__title {
-    transform: translateY(0%);
+  &__title {
+    font-size: clamp(2rem, 4vw, 4rem);
+    line-height: 1;
+    color: $white;
+  }
+  &__img {
+    background: radial-gradient(rgba($black, 0), rgba($black, 0));
+    z-index: 1;
+    position: relative;
+    &::before {
+      position: absolute;
+      content: "";
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background: radial-gradient(rgba(var(--bg-color), 0.7), rgba(var(--bg-color), 1));
+
+      z-index: -1;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    img {
+      position: relative;
+      z-index: -2;
+      transition: $transition;
+    }
+  }
+
+  &:hover {
+    .portfolio-card__text {
+      opacity: 1;
+    }
+    .portfolio-card__img::before {
+      opacity: 1;
+    }
+    img {
+      filter: grayscale(100%);
+    }
+    .portfolio-card__overlay {
+      display: block;
+    }
   }
 }
 </style>

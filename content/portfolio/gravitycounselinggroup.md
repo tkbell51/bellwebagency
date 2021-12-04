@@ -1,16 +1,16 @@
 ---
 title: Gravity Counseling Group
-description: Custom website for Gravity Counseling Group
-images:
-  - gravity-mockup.jpg
-  - gravity-home.jpg
-  - gravity-blog.jpg
+firstTitle: Gravity
+secondTitle: Counseling Group
+year: 2020
+color: 11,76,154
+description: Web Design, Web development, and website maintenance were produced for Gravity Counseling Group in Greenwood, SC. If you think it's time to talk to someone about your mental healt, Kervin is who you need!
+headerImage: gravity/profile
 link: https://gravitycounselinggroup.com/
 logo: gravity-counsel-full.svg
-categories:
-  - Web Design
-  - SEO
-cardImage: gravity-mockup.jpg
+cardImage: gravity/header
+mockImage: gravity/full-mock
+fullImg: gravity/full
+images:
+  - gravity/blog
 ---
-
-This is a fully custom, repsonsive website for Gravity Counseling Group. The company provided the colors, and most of the content. We worked closely together to design the website.

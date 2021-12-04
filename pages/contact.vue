@@ -1,6 +1,6 @@
 <template>
-  <main>
-    <PageHeader :title="'Lets Get Started'" />
+  <main class="contact-page">
+    <PageHeader :firstTitle="'Lets Get Started'" />
     <section class="section__contact">
       <div class="container">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 py-24">
@@ -30,20 +30,32 @@ export default {
       title: "Contact",
     };
   },
+  mounted: function () {
+    document.querySelector(".page-header .bg-curve path").style.fill = "#dbdbdb";
+  },
 };
 </script>
 
-<style lang="scss" scoped>
-.section__contact {
-  background: $primary-color;
-  margin: 0;
+<style lang="scss">
+.contact-page {
+  background: $grey;
 
+  & + .footer {
+    & .top-curve path {
+      fill: $grey !important;
+    }
+  }
+}
+.section__contact {
+  margin-top: -12rem;
+  margin-bottom: -0.2rem;
+  padding: 10rem 0 5rem;
   .contact-card {
     @apply rounded-xl;
     align-self: flex-start;
     padding: 3rem;
     background: white;
-    border-bottom: 2rem solid $primary-very-light;
+    border-bottom: 1rem solid $primary-color;
     .heading-tertiary {
       text-align: center;
       margin: 1rem auto;
@@ -81,6 +93,16 @@ export default {
           width: 2rem;
         }
       }
+    }
+  }
+  .top-curve {
+    top: -8rem;
+    bottom: auto;
+    @include respond(tab-mid) {
+      top: -10rem;
+    }
+    @include respond(tab-port) {
+      top: -8rem;
     }
   }
 }

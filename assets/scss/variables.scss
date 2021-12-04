@@ -1,17 +1,36 @@
-$primary-color: #081728;
-$primary-light: #1a2633;
-$primary-very-light: #667280;
+$p-blue: #081728;
+$black: #1a1918;
 
-$secondary-color: #f77f12;
-$secondary-color-light: #ffbe82;
-$secondary-color-very-light: #ffe6cf;
-$secondary-color-dark: #cc9868;
+$primary-color: $black;
+$primary-light: lighten($primary-color, 10%);
+$primary-very-light: lighten($primary-color, 30%);
 
-$black: #000;
 $white: #fff;
-$grey: #f5f6f7;
+$black: #1a1918;
+$light-black: #424242;
+$grey: #dbdbdb;
 
-$font-color: #1e1a33;
+$body-text-dark-bg: $grey;
+
+$secondary-color: #d5893d;
+$secondary-color-light: lighten($secondary-color, 10%);
+$secondary-color-very-light: lighten($secondary-color, 30%);
+$secondary-color-dark: darken($secondary-color, 10%);
+
+$bg-color: #fcfcfc;
+
+$hero-gradient: radial-gradient(
+  circle farthest-side at 80% 100%,
+  rgba($light-black, 0.8),
+  rgba($black, 0.9)
+);
+$section-gradient: radial-gradient(
+  circle farthest-side at 80% 100%,
+  $light-black,
+  $black
+);
+
+$font-color: $black;
 $transition: all 0.4s;
 
 $box-shadow: 0 1px 2px rgba($primary-color, 80%);
@@ -21,3 +40,7 @@ $header-font-color: $white;
 $raise-btn: translateY(-5px);
 
 $default-font-size: 1.6rem;
+
+$new-color: #d5893d;
+
+$bg-arrow: polygon(0 0, 50% 15%, 100% 0, 100% 80%, 0 80%);

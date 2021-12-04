@@ -1,132 +1,70 @@
 <template>
   <footer class="footer">
+    <bg-curve color="white" class="top-curve" />
+
     <div class="footer__top">
       <div class="container">
         <div class="footer__top--content">
-          <div>
-            <div class="footer-logo">
-              <Logo />
-            </div>
-            <ul class="social__list">
-              <li class="social__item">
-                <a
-                  class="social__link"
-                  href="https://www.facebook.com/bellwebagency"
-                  target="_blank"
-                >
-                  <Fab class="social__nav--icon" i="facebook" />
-                  <span class="hidden">Bell Web Agency Facebook</span>
-                </a>
-              </li>
-              <li class="social__item">
-                <a
-                  class="social__link"
-                  href="https://www.instagram.com/bellwebagency/"
-                  target="_blank"
-                >
-                  <Fab class="social__nav--icon" i="instagram" />
-                  <span class="hidden">Bell Web Agency Instagram</span>
-                </a>
-              </li>
-              <li class="social__item">
-                <a
-                  class="social__link"
-                  href="https://twitter.com/bellwebagency"
-                  target="_blank"
-                >
-                  <Fab class="social__nav--icon" i="twitter" />
-                  <span class="hidden">Bell Web Agency Twitter</span>
-                </a>
-              </li>
-            </ul>
-          </div>
+          <nuxt-link to="/" class="footer-logo">
+            <Logo />
+          </nuxt-link>
 
           <div>
-            <p class="white mb-2">Quick Link</p>
-            <ul class="footer-menu">
-              <li class="footer-menu__item">
-                <NuxtLink class="footer-menu__link" to="/">Home</NuxtLink>
-              </li>
-              <li class="footer-menu__item">
-                <NuxtLink class="footer-menu__link" to="/about">About</NuxtLink>
-              </li>
-              <li class="footer-menu__item">
-                <NuxtLink class="footer-menu__link" to="/services">Services</NuxtLink>
-              </li>
-
-              <li class="footer-menu__item">
-                <NuxtLink class="footer-menu__link" to="/portfolio">Portfolio</NuxtLink>
-              </li>
-              <!-- <li class="footer-menu__item">
-            <NuxtLink class="footer-menu__link" to="/blog">Blog</NuxtLink>
-        </li> -->
-              <li class="footer-menu__item">
-                <a
-                  href="https://www.honeybook.com/widget/bell_web_agency_191036/cf_id/6102d705963bdd07eaf2f19f"
-                  class="footer-menu__link"
-                  target="_blank"
-                  >Start Project</a
-                >
-              </li>
-            </ul>
-          </div>
-          <div>
-            <p class="white mb-2">Services</p>
-            <ul class="footer-menu">
-              <li class="footer-menu__item">
-                <NuxtLink class="footer-menu__link" to="/services/web-design"
-                  >Web Design &amp; Development</NuxtLink
-                >
-              </li>
-              <li class="footer-menu__item">
-                <NuxtLink class="footer-menu__link" to="/services/review-management"
-                  >Review Repuration Management</NuxtLink
-                >
-              </li>
-              <li class="footer-menu__item">
-                <NuxtLink class="footer-menu__link" to="/services/brand-logo-design"
-                  >Brand &amp; Logo Design</NuxtLink
-                >
-              </li>
-            </ul>
-          </div>
-          <div>
-            <!-- <p class="white">Resources</p> -->
-            <h3 class="text-5xl my-3">Get in <span class="orange">Touch</span></h3>
+            <h3 class="heading-primary text-white">
+              Get in <br />
+              <span class="is-outline">Touch</span>
+            </h3>
             <ul class="footer__contact">
               <li class="footer__contact--item">
                 <a
                   class="footer-email flex justify-center"
                   href="mailto:info@bellwebagency"
                 >
-                  <Fas i="envelope" class="w-1/4 mr-3" /><span>info@bellwebagency</span>
+                  info@bellwebagency
                 </a>
               </li>
-              <li class="footer__contact--item">
-                <a
-                  class="footer-email flex justify-center"
-                  href="https://goo.gl/maps/h8AVVADGpWUcP1oi6"
-                  target="_blank"
-                >
-                  <Fas i="map-marker-alt" class="w-1/4 mr-3" /><span>Anderson, SC</span>
-                </a>
+              <li>
+                <ul class="social__list">
+                  <li class="social__item">
+                    <a
+                      class="social__link"
+                      href="https://www.facebook.com/bellwebagency"
+                      target="_blank"
+                    >
+                      <Fab class="social__nav--icon" i="facebook" />
+                      <span class="hidden">Bell Web Agency Facebook</span>
+                    </a>
+                  </li>
+                  <li class="social__item">
+                    <a
+                      class="social__link"
+                      href="https://www.instagram.com/bellwebagency/"
+                      target="_blank"
+                    >
+                      <Fab class="social__nav--icon" i="instagram" />
+                      <span class="hidden">Bell Web Agency Instagram</span>
+                    </a>
+                  </li>
+                  <li class="social__item">
+                    <a
+                      class="social__link"
+                      href="https://twitter.com/bellwebagency"
+                      target="_blank"
+                    >
+                      <Fab class="social__nav--icon" i="twitter" />
+                      <span class="hidden">Bell Web Agency Twitter</span>
+                    </a>
+                  </li>
+                </ul>
               </li>
             </ul>
-            <a
-              class="btn"
-              href="https://www.honeybook.com/widget/bell_web_agency_191036/cf_id/6102d705963bdd07eaf2f19f"
-              >Start Project</a
-            >
           </div>
         </div>
-      </div>
-    </div>
-    <div class="footer__bottom">
-      <div class="container">
-        <div class="footer__bottom--content">
-          <p class="white">&copy; {{ new Date().getFullYear() }} Bell Web Agency</p>
-          <div>
-            <NuxtLink to="/privacy-policy">Privacy Policy</NuxtLink>
+        <div class="footer__bottom mt-8">
+          <div class="footer__bottom--content uppercase">
+            <p>
+              &copy; {{ new Date().getFullYear() }} Bell Web Agency. All Rights Reserved
+            </p>
           </div>
         </div>
       </div>
@@ -141,40 +79,53 @@ export default {};
 <style lang="scss" scoped>
 .footer {
   color: $white;
-  // padding-top: 2rem;
-  &-logo svg {
-    height: 8rem;
+  position: relative;
+  background-image: $section-gradient;
+  .top-curve {
+    transform: scaleY(-1);
+    top: -1rem;
+    bottom: auto;
+
     @include respond(tab-port) {
-      margin: 0 auto;
+      top: -5px;
     }
   }
-  &-menu {
-    &__item {
-      transition: $transition;
-      &:hover {
-        color: $secondary-color;
+  &-logo {
+    .mobile-logo {
+      width: 11rem;
+      @include respond(tab-port) {
+        margin: 0 auto;
       }
     }
+    @include respond(tab-port) {
+      margin-bottom: 2rem;
+    }
   }
+
+  &-email {
+    font-size: 2.5rem;
+    letter-spacing: 1px;
+    color: $grey;
+  }
+
   &__top {
-    @apply py-9;
-    background: $primary-color;
+    padding-top: 25rem;
+    margin-bottom: 4rem;
+
+    @include respond(tab-port) {
+      padding-top: 15rem;
+    }
 
     &--content {
-      @apply flex justify-between;
+      @apply flex justify-between items-center;
       @include respond(tab-port) {
         display: block;
         text-align: center;
-        & > div {
-          margin: 2rem auto;
-        }
       }
-      p {
-        font-family: "Montserrat Bold";
-      }
+
       .social {
         &__list {
-          @apply flex justify-end items-center mt-5;
+          @apply flex items-center mt-5;
           @include respond(tab-port) {
             justify-content: center;
           }
@@ -186,13 +137,13 @@ export default {};
             margin: 0 1rem;
           }
           svg {
-            height: 2rem;
-            width: 2rem;
-            opacity: 0.7;
+            height: 4rem;
+            width: 4rem;
+            color: $grey;
+
             transition: $transition;
           }
           &:hover svg {
-            opacity: 1;
             color: $secondary-color;
           }
         }
@@ -200,13 +151,19 @@ export default {};
     }
   }
   &__bottom {
-    @apply py-4;
-    background-color: $primary-light;
+    padding: 4rem 0;
 
     &--content {
-      @apply flex justify-between items-center;
+      color: $grey;
+      opacity: 0.5;
+      p {
+        color: $grey;
+      }
       a {
         margin: 0 1rem;
+      }
+      @include respond(tab-port) {
+        text-align: center;
       }
     }
   }

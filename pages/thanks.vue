@@ -1,5 +1,5 @@
 <template>
-  <main>
+  <main class="thanks-page">
     <PageHeader title="Thank You" />
     <section class="section__thank-you">
       <div class="container">
@@ -11,6 +11,15 @@
               <span><Fas i="info" /></span>
               <p>We will respond withing 1 - 2 business days. Monday - Friday EST.</p>
             </div>
+            <p>
+              If your're ready to get started on a project, let's schedule a conversation
+            </p>
+            <a
+              class="btn btn-primary w-full"
+              href="https://calendly.com/bellwebagency/strategy-session"
+              target="_blank"
+              >Schedule Conversation</a
+            >
           </div>
         </div>
       </div>
@@ -19,19 +28,30 @@
 </template>
 
 <script>
-export default {};
+export default {
+  mounted: function () {
+    document.querySelector(".page-header .bg-curve path").style.fill = "#dbdbdb";
+  },
+};
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
+.thanks-page {
+  background: $grey;
+
+  & + .footer .top-curve path {
+    fill: $grey !important;
+  }
+}
 .section__thank-you {
-  background: $primary-color;
+  background: $grey;
   margin: 0;
   .contact-card {
     @apply rounded-xl;
     align-self: flex-start;
     padding: 3rem;
     background: white;
-    border-bottom: 2rem solid $primary-very-light;
+    border-bottom: 1rem solid $secondary-color;
     .heading-tertiary {
       text-align: center;
       margin: 1rem auto;

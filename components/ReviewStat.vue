@@ -1,6 +1,8 @@
 <template>
   <div class="review-stat">
-    <h3 class="orange">{{ number }}%</h3>
+    <h3 class="heading-secondary">
+      <span class="is-outline">{{ number }}%</span>
+    </h3>
 
     <p class="review-stat__text">
       <slot></slot>
@@ -16,15 +18,12 @@ export default {
 
 <style lang="scss" scoped>
 .review-stat {
-  @apply rounded shadow-xl;
-  background: linear-gradient(45deg, lighten($primary-color, 10%), $primary-color);
+  background: $section-gradient;
+  border-radius: 12px;
   padding: 4rem;
-  transition: $transition;
-  box-shadow: $box-shadow;
-  border: 0.1px solid rgba($primary-color, 0.1);
-  h3 {
+  .heading-secondary {
     font-size: 6rem;
-    margin: 4rem 0;
+    margin: 1rem 0;
   }
   &__text {
     color: $white;
