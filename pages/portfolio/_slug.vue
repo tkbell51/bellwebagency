@@ -37,7 +37,7 @@
         <div class="flex gap-4">
           <nuxt-img
             provider="cloudinary"
-            class="m-auto shadow-lg my-4 w-3/5"
+            class="m-auto shadow-lg my-4 w-full md:w-3/5"
             :src="`portfolio/${project.fullImg}`"
             :alt="`${project.title}`"
           />
@@ -161,20 +161,27 @@ export default {
         width: 65%;
         font-size: clamp(1.6rem, 2.5vw, 2rem);
         margin: 4rem 0;
-        @include respond(phone) {
+        @include respond(tab-port) {
           width: 80%;
         }
       }
 
       @include respond(tab-port) {
         width: 100%;
+        padding-bottom: 0;
       }
     }
+
     @include respond(tab-port) {
       margin: 10rem 0 11rem;
     }
   }
-
+  &__img {
+    @include respond(tab-port) {
+      width: 65%;
+      margin: 0;
+    }
+  }
   .bg-curve {
     margin-top: 5rem;
   }
