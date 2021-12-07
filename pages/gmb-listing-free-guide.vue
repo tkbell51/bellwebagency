@@ -33,7 +33,7 @@
               </li>
             </ul>
             <a
-              href="https://bellwebagency.hbportal.co/schedule/61a79f304792bc07112123e5"
+              href="https://www.honeybook.com/widget/bell_web_agency_191036/cf_id/619d106e95592206345acb35"
               class="btn"
               ><h2 class="text-4xl font-bold">Yes! Download My Google Training</h2>
               <p>Get Access to the FREE Video Guides and PDF Guide Immediately</p></a
@@ -63,7 +63,7 @@
           <ReviewStat number="143"> Increase in Maps Listings! </ReviewStat>
         </div>
         <a
-          href="https://bellwebagency.hbportal.co/schedule/61a79f304792bc07112123e5"
+          href="https://www.honeybook.com/widget/bell_web_agency_191036/cf_id/619d106e95592206345acb35"
           class="btn"
           ><h2 class="text-4xl font-bold">Yes! Download My Google Training</h2>
           <p>Get Access to the FREE Video Guides and PDF Guide Immediately</p></a
