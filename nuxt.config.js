@@ -20,7 +20,7 @@ export default {
         hid: "description",
         name: "description",
         content:
-          "At Bell Web Agency, our Mission is to provide the best digital tools to help assist our clients meet their goals and needs.",
+          "At Bell Web Agency, our web design and digital marketings strategies are created to help drive revenue, leads, and sales for your unique brand. Call Today! ",
       },
 
       { name: "format-detection", content: "telephone=no" },
@@ -48,7 +48,7 @@ export default {
         hid: "twitter:description",
         name: "twitter:description",
         content:
-          "At Bell Web Agency, our Mission is to provide the best digital tools to help assist our clients meet their goals and needs.",
+          "At Bell Web Agency, our web design and digital marketings strategies are created to help drive revenue, leads, and sales for your unique brand. Call Today! ",
       },
       {
         hid: "twitter:image",
