@@ -46,6 +46,7 @@ export default {};
     margin: 13rem 0 15rem;
 
     &--text {
+      padding-bottom: 3rem;
       // width: 85%;
       .heading-primary {
         font-size: clamp(5rem, 8vw, 9rem);
