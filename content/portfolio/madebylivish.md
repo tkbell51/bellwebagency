@@ -1,7 +1,6 @@
 ---
-title: Livish Woodworks & Decor
 firstTitle: Livish
-secondTitle: Woodworks & Decor
+secondTitle: Woodwork & Decor
 year: 2021
 color: 192,130,103
 description: I was excited to work with Liv on a website for her woodworking business. From custom desks, charcuterie boards, to games, she can build it all! This is a Shopify website that handles all the merchant needs.
