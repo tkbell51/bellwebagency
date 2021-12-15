@@ -5,32 +5,6 @@
 
     <Nuxt class="content" />
     <Footer />
-    <script type="text/javascript">
-      (function (e, t, o, n, p, r, i) {
-        e.visitorGlobalObjectAlias = n;
-        e[e.visitorGlobalObjectAlias] =
-          e[e.visitorGlobalObjectAlias] ||
-          function () {
-            (e[e.visitorGlobalObjectAlias].q =
-              e[e.visitorGlobalObjectAlias].q || []).push(arguments);
-          };
-        e[e.visitorGlobalObjectAlias].l = new Date().getTime();
-        r = t.createElement("script");
-        r.src = o;
-        r.async = true;
-        i = t.getElementsByTagName("script")[0];
-        i.parentNode.insertBefore(r, i);
-      })(
-        window,
-        document,
-        "https://diffuser-cdn.app-us1.com/diffuser/diffuser.js",
-        "vgo"
-      );
-      vgo("setAccount", "477257887");
-      vgo("setTrackByDefault", true);
-
-      vgo("process");
-    </script>
   </div>
 </template>
 
@@ -49,7 +23,28 @@ export default {
   },
 };
 </script>
+<script type="text/javascript">
+(function (e, t, o, n, p, r, i) {
+  e.visitorGlobalObjectAlias = n;
+  e[e.visitorGlobalObjectAlias] =
+    e[e.visitorGlobalObjectAlias] ||
+    function () {
+      (e[e.visitorGlobalObjectAlias].q = e[e.visitorGlobalObjectAlias].q || []).push(
+        arguments
+      );
+    };
+  e[e.visitorGlobalObjectAlias].l = new Date().getTime();
+  r = t.createElement("script");
+  r.src = o;
+  r.async = true;
+  i = t.getElementsByTagName("script")[0];
+  i.parentNode.insertBefore(r, i);
+})(window, document, "https://diffuser-cdn.app-us1.com/diffuser/diffuser.js", "vgo");
+vgo("setAccount", "477257887");
+vgo("setTrackByDefault", true);
 
+vgo("process");
+</script>
 <style lang="scss">
 html {
   font-size: 62.5%;
