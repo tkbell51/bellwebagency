@@ -1,6 +1,6 @@
 <template>
   <main class="gmb-page">
-    <PageHeader firstTitle="Google My Business" secondTitle="Free Guide" />
+    <PageHeader firstTitle="Google Business Profile" secondTitle="Free Guide" />
     <section class="pt-0">
       <div class="container">
         <h2 class="heading-secondary text-center">
@@ -32,12 +32,17 @@
                 </p>
               </li>
             </ul>
-            <a
+            <!-- <a
               href="https://www.honeybook.com/widget/bell_web_agency_191036/cf_id/619d106e95592206345acb35"
               class="btn"
               ><h2 class="text-4xl font-bold">Yes! Download My Google Training</h2>
               <p>Get Access to the FREE Video Guides and PDF Guide Immediately</p></a
-            >
+            > -->
+            <button class="btn" @click="showModal = true">
+              <h2 class="text-4xl font-bold">Yes! Download My Google Training</h2>
+              <p>Get Access to the FREE Video Guides and PDF Guide Immediately</p>
+            </button>
+
             <p>
               Because Google Gives Away This Exposure - We're Giving Away This Inside
               Scoop Training Free Too!
@@ -62,19 +67,27 @@
           </ReviewStat>
           <ReviewStat number="143"> Increase in Maps Listings! </ReviewStat>
         </div>
-        <a
-          href="https://www.honeybook.com/widget/bell_web_agency_191036/cf_id/619d106e95592206345acb35"
-          class="btn"
-          ><h2 class="text-4xl font-bold">Yes! Download My Google Training</h2>
-          <p>Get Access to the FREE Video Guides and PDF Guide Immediately</p></a
-        >
+        <button class="btn w-full" @click="showModal = true">
+          <h2 class="text-4xl font-bold">Yes! Download My Google Training</h2>
+          <p>Get Access to the FREE Video Guides and PDF Guide Immediately</p>
+        </button>
       </div>
     </section>
+    <transition name="fade">
+      <Modal v-show="showModal" @close-modal="showModal = false">
+        <GBPform />
+      </Modal>
+    </transition>
   </main>
 </template>
 
 <script>
 export default {
+  data() {
+    return {
+      showModal: false,
+    };
+  },
   head: {
     title: "8 Steps to Increase Expposure on Google",
     meta: [

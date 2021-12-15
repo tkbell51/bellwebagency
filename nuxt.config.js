@@ -160,6 +160,7 @@ export default {
         "faArrowRight",
         "faInfo",
         "faCheck",
+        "faTimes",
       ],
       brands: ["faDev", "faFacebook", "faTwitter", "faLinkedin", "faInstagram"],
     },
