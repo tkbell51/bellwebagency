@@ -16,7 +16,7 @@
             </p>
             <a
               class="btn btn-primary w-full"
-              href="https://bellwebagency.hbportal.co/schedule/608330e0ca6881002a936dee"
+              href="https://calendly.com/bellwebagency/initial-discussion"
               target="_blank"
               >Schedule Conversation</a
             >

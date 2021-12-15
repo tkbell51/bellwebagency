@@ -14,7 +14,7 @@
         </h2>
         <p>Let's start with a free strategy session.</p>
         <a
-          href="https://bellwebagency.hbportal.co/schedule/608330e0ca6881002a936dee"
+          href="https://calendly.com/bellwebagency/initial-discussion"
           class="btn self-start"
           target="_blank"
           >Schedule Call Today</a

@@ -52,7 +52,7 @@
             >
             <a class="block" href="tel:8643679008">864-367-9008</a>
             <a
-              href="https://bellwebagency.hbportal.co/schedule/608330e0ca6881002a936dee"
+              href="https://calendly.com/bellwebagency/initial-discussion"
               class="btn block"
               target="_blank"
               ><span class="text-5xl">Yes, Let's Talk About this</span><br />Click to

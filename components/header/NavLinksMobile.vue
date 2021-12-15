@@ -94,7 +94,7 @@ export default {
         { title: "Contact", link: "/contact", external: false },
         {
           title: "Schedule Conversation",
-          link: "https://bellwebagency.hbportal.co/schedule/608330e0ca6881002a936dee",
+          link: "https://calendly.com/bellwebagency/initial-discussion",
           external: true,
         },
       ],
