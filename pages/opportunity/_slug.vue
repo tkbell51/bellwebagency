@@ -50,7 +50,7 @@
             <a class="block" href="mailto.info@bellwebagency.com"
               >info@bellwebagency.com</a
             >
-            <a class="block" href="tel:8643679008">864-367-9008</a>
+            <a class="block" href="tel:8645310429">864-531-0429</a>
             <a
               href="https://calendly.com/bellwebagency/initial-discussion"
               class="btn block"

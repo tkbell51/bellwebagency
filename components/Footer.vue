@@ -23,6 +23,11 @@
                   info@bellwebagency
                 </a>
               </li>
+              <li class="footer__contact--item">
+                <a class="footer-email flex justify-center" href="tel:8645310429">
+                  864-531-0429
+                </a>
+              </li>
               <li>
                 <ul class="social__list">
                   <li class="social__item">
