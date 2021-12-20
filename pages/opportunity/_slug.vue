@@ -26,7 +26,7 @@
     <section>
       <div class="container">
         <h2 class="heading-secondary text-center">
-          In this video, I'll show you how {{ comp.name }}'s <br />
+          In this video, I'll show you how {{ comp.title }}'s <br />
           <span class="orange"> BIGGEST opportunity</span><br />
           is quick & easy to address
         </h2>
