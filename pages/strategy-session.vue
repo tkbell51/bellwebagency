@@ -45,7 +45,9 @@
                 >
               </li>
             </ul>
-            <a href="https://calendly.com/bellwebagency/strategy-session" class="btn"
+            <a
+              href="https://bellwebagency.hbportal.co/schedule/61a60d70615c04002d12bc2f"
+              class="btn"
               >Get Your Free Strategy Session<br />Your First Step to Getting More
               Customers Online</a
             >
