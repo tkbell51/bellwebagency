@@ -32,16 +32,16 @@
                 </p>
               </li>
             </ul>
-            <!-- <a
+            <a
               href="https://www.honeybook.com/widget/bell_web_agency_191036/cf_id/619d106e95592206345acb35"
               class="btn"
               ><h2 class="text-4xl font-bold">Yes! Download My Google Training</h2>
               <p>Get Access to the FREE Video Guides and PDF Guide Immediately</p></a
-            > -->
-            <button class="btn" @click="showModal = true">
+            >
+            <!-- <button class="btn" @click="showModal = true">
               <h2 class="text-4xl font-bold">Yes! Download My Google Training</h2>
               <p>Get Access to the FREE Video Guides and PDF Guide Immediately</p>
-            </button>
+            </button> -->
 
             <p>
               Because Google Gives Away This Exposure - We're Giving Away This Inside
@@ -67,10 +67,16 @@
           </ReviewStat>
           <ReviewStat number="143"> Increase in Maps Listings! </ReviewStat>
         </div>
-        <button class="btn w-full" @click="showModal = true">
+        <!-- <button class="btn w-full" @click="showModal = true">
           <h2 class="text-4xl font-bold">Yes! Download My Google Training</h2>
           <p>Get Access to the FREE Video Guides and PDF Guide Immediately</p>
-        </button>
+        </button> -->
+        <a
+          href="https://www.honeybook.com/widget/bell_web_agency_191036/cf_id/619d106e95592206345acb35"
+          class="btn"
+          ><h2 class="text-4xl font-bold">Yes! Download My Google Training</h2>
+          <p>Get Access to the FREE Video Guides and PDF Guide Immediately</p></a
+        >
       </div>
     </section>
     <transition name="fade">
@@ -105,6 +111,9 @@ export default {
   .page-header {
     background: $hero-gradient,
       top right/ cover no-repeat url("~/assets/img/gmb-header.jpg") !important;
+  }
+  .checklist__list p {
+    margin-bottom: 0;
   }
 }
 .btn {
