@@ -4,7 +4,7 @@
       firstTitle="Google My Business"
       secondTitle="Training Videos"
       pageDescription="Watch these videos below. If you have questions, need help or want to
-    know more – Call us at (864) 367-9008 or email info@bellwebagency.com"
+    know more – Call us at (864) 531-0429 or email info@bellwebagency.com"
     />
     <section class="section__gmb-videos">
       <div class="container">
