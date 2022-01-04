@@ -85,7 +85,7 @@
                             ]"
                         />
 
-                        <NuxtLink class="btn" to="/gmb-listing-free-guide">Get Help With Google My Business</NuxtLink>
+                        <!-- <NuxtLink class="btn" to="/gmb-listing-free-guide">Get Help With Google My Business</NuxtLink> -->
                         <a class="btn" href="https://go.bellwebagency.com/google-guide-5051" target="_blank">
                             Get Help With Google My Business
                         </a>
