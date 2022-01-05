@@ -55,6 +55,11 @@ export default {
                 name: 'twitter:image',
                 content: '/bwa-logo.jpg',
             },
+            {
+                hid: 'facebook-domain-verification',
+                name: 'facebook-domain-verification',
+                content: 'pncnbproypfjm1sem4r5vd93vgvq13',
+            },
 
             // Open Graph
             {
