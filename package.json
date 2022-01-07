@@ -17,6 +17,7 @@
         "@nuxtjs/svg-sprite": "^0.5.2",
         "core-js": "^3.18.2",
         "nuxt": "^2.13.3",
+        "nuxt-facebook-pixel-module": "^1.5.0",
         "swiper": "^6.8.1",
         "vue-clickaway": "^2.2.2",
         "vue-meta": "^2.4.0",

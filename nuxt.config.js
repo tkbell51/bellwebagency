@@ -141,7 +141,15 @@ export default {
         '@nuxtjs/svg-sprite',
         '@nuxtjs/sitemap',
         '@nuxt/image',
+        'nuxt-facebook-pixel-module',
     ],
+    facebook: {
+        track: 'PageView',
+        pixelId: '318372746880603',
+        autoPageView: true,
+        disabled: false,
+    },
+
     image: {
         cloudinary: {
             baseURL: 'https://res.cloudinary.com/bwa/image/upload/bellwebagency',
