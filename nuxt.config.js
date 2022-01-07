@@ -145,7 +145,7 @@ export default {
     ],
     facebook: {
         track: 'PageView',
-        pixelId: '318372746880603',
+        pixelId: '1273399919822081',
         autoPageView: true,
         disabled: false,
     },
