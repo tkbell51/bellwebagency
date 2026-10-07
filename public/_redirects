@@ -1,0 +1,11 @@
+# Retired URLs from the previous site (keep in sync with `redirects` in nuxt.config.ts)
+/portfolio                 /work           301!
+/portfolio/*               /work/:splat    301!
+/contact                   /start          301!
+/strategy-session          /start          301!
+/thanks                    /start          301!
+/solutions                 /               301!
+/solutions/*               /               301!
+/gmb-listing-free-guide    /               301!
+/gmb-videos                /               301!
+/blog                      /               301!

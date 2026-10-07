@@ -88,3 +88,9 @@ sw.*
 
 # Vim swap files
 *.swp
+
+# Nuxt 3
+.output
+.data
+.env.*
+!.env.example

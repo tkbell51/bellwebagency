@@ -1,0 +1,5 @@
+# Fingerprinted build assets and optimized images never change once deployed
+/_nuxt/*
+  Cache-Control: public, max-age=31536000, immutable
+/_ipx/*
+  Cache-Control: public, max-age=31536000, immutable

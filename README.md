@@ -1,70 +1,76 @@
-# bwa
+# Bell Web Agency
 
-## Build Setup
+The bellwebagency.com marketing site — a Nuxt 3 static site, deployed to Netlify.
+
+Requires Node 22.5+ (Nuxt Content uses the built-in `node:sqlite`).
 
 ```bash
-# install dependencies
-$ npm install
-
-# serve with hot reload at localhost:3000
-$ npm run dev
-
-# build for production and launch server
-$ npm run build
-$ npm run start
-
-# generate static project
-$ npm run generate
+npm install          # install dependencies
+npm run dev          # dev server at http://localhost:3000
+npm run generate     # static build → .output/public (what Netlify deploys)
+npm run preview      # preview the generated site
+npm run lint         # ESLint
 ```
 
-For detailed explanation on how things work, check out the [documentation](https://nuxtjs.org).
+## Where things live
 
-## Special Directories
+| What                                  | Where                                          |
+| ------------------------------------- | ---------------------------------------------- |
+| Site name, contact details, nav, CTAs | `config/site.ts`                               |
+| Pricing (Launch Website, custom work) | `data/pricing.ts`                              |
+| Process steps, services, FAQ          | `data/process.ts`, `services.ts`, `faq.ts`     |
+| Start-a-project form options          | `data/project-start.ts`                        |
+| Portfolio projects + testimonials     | `content/portfolio/*.md` → `/work/<file-name>` |
+| Private prospect video pages          | `content/opportunity/*.md` → `/opportunity/…`  |
+| Shared types                          | `types/index.ts`                               |
+| Design tokens (colors, type scale)    | `tailwind.config.js`, `assets/css/main.css`    |
+| Retired URL redirects                 | `nuxt.config.ts` and `public/_redirects`       |
 
-You can create the following extra directories, some of which have special behaviors. Only `pages` is required; you can delete them if you don't want to use their functionality.
+Change a price, a CTA label, or contact details in one place and every page picks it up.
 
-### `assets`
+## Adding a project
 
-The assets directory contains your uncompiled assets such as Stylus or Sass files, images, or fonts.
+Create `content/portfolio/<slug>.md`. The schema lives in `content.config.ts`:
 
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/assets).
+```yaml
+---
+title: Client Name
+description: One sentence about the project.
+category: Industry
+status: client # or `concept` — concept work is always labelled as such
+featured: true # show on the home page
+order: 3
+year: 2026
+createdAt: 2026-01-15
+url: https://client.com/
+services: [Website design, Website development]
+image: /images/work/<slug>/cover.jpg # landscape crop of the homepage
+desktopImage: /images/work/<slug>/full-page.jpg # full-length screenshot
+gallery:
+    - src: /images/work/<slug>/detail.jpg
+      alt: Describe the image
+testimonial: # optional — real quotes only
+    quote: …
+    author: …
+    role: …
+    image: /images/people/<name>.jpg
+---
+Short, factual description of the work.
+```
 
-### `components`
+Images live in `public/images` and are resized to WebP at build time by Nuxt Image.
 
-The components directory contains your Vue.js components. Components make up the different parts of your page and can be reused and imported into your pages, layouts and even other components.
+## Forms
 
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/components).
+`/start` submits to **Netlify Forms** (form name `start-project`). Submissions only work on Netlify; in
+`npm run dev` the form logs its payload to the console instead of sending it. `?plan=launch`,
+`?plan=custom`, and `?need=update` preselect answers.
 
-### `layouts`
+The Launch Website flow is designed to grow into **Choose → Pay → Onboard**. When checkout and the
+onboarding system exist, hook them in `components/forms/StartProjectForm.vue` (see `nextSteps` in
+`data/project-start.ts`), and point `support.requestUpdate` in `config/site.ts` at the support system.
 
-Layouts are a great help when you want to change the look and feel of your Nuxt app, whether you want to include a sidebar or have distinct layouts for mobile and desktop.
+## Tracking
 
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/layouts).
-
-
-### `pages`
-
-This directory contains your application views and routes. Nuxt will read all the `*.vue` files inside this directory and setup Vue Router automatically.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/get-started/routing).
-
-### `plugins`
-
-The plugins directory contains JavaScript plugins that you want to run before instantiating the root Vue.js Application. This is the place to add Vue plugins and to inject functions or constants. Every time you need to use `Vue.use()`, you should create a file in `plugins/` and add its path to plugins in `nuxt.config.js`.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/plugins).
-
-### `static`
-
-This directory contains your static files. Each file inside this directory is mapped to `/`.
-
-Example: `/static/robots.txt` is mapped as `/robots.txt`.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/static).
-
-### `store`
-
-This directory contains your Vuex store files. Creating a file in this directory automatically activates Vuex.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/store).
-# bellwebagency
+Facebook Pixel and ActiveCampaign load in production only, after the page is interactive
+(`plugins/facebook-pixel.client.ts`, `plugins/activecampaign.client.ts`).

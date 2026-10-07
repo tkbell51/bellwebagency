@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /opportunity/
+Disallow: /start/thanks
+
+Sitemap: https://bellwebagency.com/sitemap.xml
