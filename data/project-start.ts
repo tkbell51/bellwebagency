@@ -1,12 +1,10 @@
-import type { ChoiceOption } from '../types'
-import { formatPrice } from '../utils/format'
-import { customPlan, launchPlan } from './pricing'
+import type { ChoiceOption, ProductPath } from '../types'
 
 /** Handled by the Cloudflare Worker in worker/start-project.ts, which validates against the options below. */
 export const projectFormEndpoint = '/api/start-project'
 
 /**
- * Cloudflare Turnstile bot check on the Start a Project form. The Worker verifies each token with
+ * Cloudflare Turnstile bot check on the project-fit flow. The Worker verifies each token with
  * siteverify (secret: TURNSTILE_SECRET) and requires this action and a hostname from TURNSTILE_HOSTNAMES.
  */
 export const turnstile = {
@@ -14,37 +12,35 @@ export const turnstile = {
     action: 'start_project',
 } as const
 
-export const needOptions: ChoiceOption[] = [
-    { value: 'new-website', label: 'A new website' },
-    { value: 'redesign', label: 'A redesign of my current website' },
-    { value: 'landing-page', label: 'A landing page' },
-    { value: 'online-store', label: 'An online store' },
-    { value: 'update', label: 'An update to my Bell Web Agency website' },
-    { value: 'other', label: 'Something else' },
-]
-
-export const projectTypeOptions: ChoiceOption[] = [
-    {
-        value: launchPlan.id,
-        label: launchPlan.name,
-        description: `${formatPrice(launchPlan.setup.amount)} setup + ${formatPrice(launchPlan.monthly.amount)}/month · one-page website`,
-    },
-    {
-        value: customPlan.id,
-        label: customPlan.name,
-        description: 'More pages, ecommerce, integrations, or strategy',
-    },
-    {
-        value: 'unsure',
-        label: 'Not sure yet',
-        description: 'We’ll recommend the right fit',
-    },
-]
-
-/**
- * Budget is only asked for work without a fixed price. Adjust the ranges to match real custom pricing;
- * the lowest range should sit just under the smallest custom project worth taking on.
+/*
+ * Quick Project Fit — the short, pre-purchase questionnaire. It only decides whether the Launch Website
+ * fits. Detailed content (services, testimonials, brand) belongs in the post-purchase Website Brief.
  */
+
+export const lookingForOptions: ChoiceOption[] = [
+    { value: 'new-website', label: 'A new website' },
+    { value: 'redesign', label: 'A website redesign' },
+    { value: 'landing-page', label: 'A landing page' },
+    { value: 'custom', label: 'Something more custom' },
+]
+
+export const scopeOptions: ChoiceOption[] = [
+    { value: 'one-page', label: 'A one-page website' },
+    { value: 'multiple-pages', label: 'Multiple pages' },
+    { value: 'ecommerce', label: 'Ecommerce' },
+    { value: 'not-sure', label: 'Not sure' },
+]
+
+/** Answers that point to a custom project rather than the Launch Website */
+const customSignals = { lookingFor: ['custom'], scope: ['multiple-pages', 'ecommerce'] }
+
+export function recommendPath(answers: { lookingFor: string; scope: string }): ProductPath {
+    return customSignals.lookingFor.includes(answers.lookingFor) || customSignals.scope.includes(answers.scope)
+        ? 'custom'
+        : 'launch'
+}
+
+/** Optional budget, asked only on the custom path. */
 export const budgetOptions: ChoiceOption[] = [
     { value: 'under-2k', label: 'Under $2,000' },
     { value: '2k-5k', label: '$2,000–$5,000' },
@@ -53,31 +49,14 @@ export const budgetOptions: ChoiceOption[] = [
     { value: 'not-sure', label: 'Not sure yet' },
 ]
 
-/** Project types that show the budget question, and whether an answer is required. */
-export const budgetRules: Record<string, { required: boolean }> = {
-    [customPlan.id]: { required: true },
-    unsure: { required: false },
+export const pathLabels: Record<ProductPath, string> = {
+    launch: 'Launch Website',
+    custom: 'Custom project',
 }
 
-/**
- * What happens after submitting. The Launch Website will eventually become
- * Choose → Pay → Onboard; until checkout exists, Bell Web Agency confirms by email.
- */
-export const nextSteps: Record<string, { title: string; steps: string[] }> = {
-    launch: {
-        title: 'Your Launch Website is underway',
-        steps: [
-            'We review your answers and confirm the Launch Website is the right fit.',
-            'You’ll receive an email to confirm and get started.',
-            'Then you’ll begin guided onboarding — the questions that become your website brief.',
-        ],
-    },
-    default: {
-        title: 'Thanks — we’ve got your project',
-        steps: [
-            'We review what you’ve shared and look at your current website, if you have one.',
-            'We reply with questions or a recommended next step.',
-            'Once the scope is clear, we start with guided onboarding.',
-        ],
-    },
-}
+/** What happens after a custom inquiry is sent */
+export const customNextSteps = [
+    'We review your answers and your current website, if you have one.',
+    'We reply with questions or a recommended scope.',
+    'Once the scope is clear, we send a proposal for your project.',
+]

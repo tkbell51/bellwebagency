@@ -1,9 +1,11 @@
 import { siteConfig } from '../config/site'
-import { budgetOptions, budgetRules, needOptions, projectTypeOptions, turnstile } from '../data/project-start'
+import { budgetOptions, lookingForOptions, pathLabels, scopeOptions, turnstile } from '../data/project-start'
+import type { ProductPath } from '../types'
 
 /**
  * POST /api/start-project
- * Saves a Start a Project submission to D1, then emails the studio inbox.
+ * Saves a Quick Project Fit submission to D1, then emails the studio inbox. `path` records what the visitor
+ * chose: `launch` (they were sent on to Stripe Checkout) or `custom` (a custom-project inquiry).
  * Accepts JSON (the site's form) or a regular form post, which redirects to /start/thanks.
  * Every submission must carry a valid Cloudflare Turnstile token (see verifyTurnstile).
  */
@@ -13,9 +15,12 @@ interface Submission {
     email: string
     business: string
     website: string
-    need: string
+    businessDescription: string
+    lookingFor: string
     goals: string
-    projectType: string
+    scope: string
+    notes: string
+    path: string
     budget: string
 }
 
@@ -24,15 +29,21 @@ const maxLength: Record<keyof Submission, number> = {
     email: 254,
     business: 160,
     website: 300,
-    need: 40,
-    goals: 4000,
-    projectType: 40,
+    businessDescription: 1000,
+    lookingFor: 40,
+    goals: 2000,
+    scope: 40,
+    notes: 2000,
+    path: 20,
     budget: 40,
 }
 
-const needLabels = new Map(needOptions.map((option) => [option.value, option.label]))
-const projectTypeLabels = new Map(projectTypeOptions.map((option) => [option.value, option.label]))
+const required = ['name', 'email', 'business', 'businessDescription', 'lookingFor', 'goals', 'scope', 'path'] as const
+
+const lookingForLabels = new Map(lookingForOptions.map((option) => [option.value, option.label]))
+const scopeLabels = new Map(scopeOptions.map((option) => [option.value, option.label]))
 const budgetLabels = new Map(budgetOptions.map((option) => [option.value, option.label]))
+const isPath = (value: string): value is ProductPath => Object.hasOwn(pathLabels, value)
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
 export async function handleStartProject(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
@@ -66,8 +77,9 @@ export async function handleStartProject(request: Request, env: Env, ctx: Execut
 
     try {
         await env.DB.prepare(
-            `INSERT INTO project_requests (id, name, email, business, website, need, goals, project_type, budget, country)
-             VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10)`,
+            `INSERT INTO project_requests
+               (id, name, email, business, website, business_description, need, goals, scope, notes, project_type, budget, status, country)
+             VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12, ?13, ?14)`,
         )
             .bind(
                 id,
@@ -75,10 +87,14 @@ export async function handleStartProject(request: Request, env: Env, ctx: Execut
                 submission.email,
                 submission.business,
                 submission.website || null,
-                submission.need,
+                submission.businessDescription,
+                submission.lookingFor,
                 submission.goals,
-                submission.projectType,
+                submission.scope,
+                submission.notes || null,
+                submission.path,
                 submission.budget || null,
+                submission.path === 'launch' ? 'checkout_started' : 'inquiry',
                 country,
             )
             .run()
@@ -150,52 +166,64 @@ function validate(fields: Record<string, string>) {
         email: fields.email ?? '',
         business: fields.business ?? '',
         website: fields.website ?? '',
-        need: fields.need ?? '',
+        businessDescription: fields.businessDescription ?? '',
+        lookingFor: fields.lookingFor ?? '',
         goals: fields.goals ?? '',
-        projectType: fields.projectType ?? '',
+        scope: fields.scope ?? '',
+        notes: fields.notes ?? '',
+        path: fields.path ?? '',
         budget: fields.budget ?? '',
     }
     const errors: Partial<Record<keyof Submission, string>> = {}
 
-    for (const key of ['name', 'email', 'business', 'need', 'goals', 'projectType'] as const) {
+    for (const key of required) {
         if (!submission[key]) errors[key] = 'Required'
     }
     for (const [key, limit] of Object.entries(maxLength) as [keyof Submission, number][]) {
         if (submission[key].length > limit) errors[key] = `Must be ${limit} characters or fewer`
     }
     if (submission.email && !emailPattern.test(submission.email)) errors.email = 'Enter a valid email address'
-    if (submission.need && !needLabels.has(submission.need)) errors.need = 'Choose one of the options'
-    if (submission.projectType && !projectTypeLabels.has(submission.projectType)) {
-        errors.projectType = 'Choose one of the options'
-    }
+    if (submission.lookingFor && !lookingForLabels.has(submission.lookingFor))
+        errors.lookingFor = 'Choose one of the options'
+    if (submission.scope && !scopeLabels.has(submission.scope)) errors.scope = 'Choose one of the options'
+    if (submission.path && !isPath(submission.path)) errors.path = 'Choose one of the options'
 
-    // Budget is only asked for some project types (see budgetRules); ignore it everywhere else
-    const budgetRule = budgetRules[submission.projectType]
-    if (!budgetRule) submission.budget = ''
-    else if (budgetRule.required && !submission.budget) errors.budget = 'Required'
+    // Budget is optional and only asked on the custom path; ignore it on the Launch Website path
+    if (submission.path !== 'custom') submission.budget = ''
     else if (submission.budget && !budgetLabels.has(submission.budget)) errors.budget = 'Choose one of the options'
 
     return Object.keys(errors).length ? { submission: null, errors } : { submission, errors: null }
 }
 
 async function notify(env: Env, id: string, submission: Submission) {
-    const projectType = projectTypeLabels.get(submission.projectType) ?? submission.projectType
+    const isLaunch = submission.path === 'launch'
     // Strip line breaks so visitor input can't alter email headers
-    const subject = `New project: ${submission.business} — ${projectType}`.replace(/[\r\n]+/g, ' ')
+    const subject = (
+        isLaunch
+            ? `Launch Website checkout started: ${submission.business}`
+            : `Custom project inquiry: ${submission.business}`
+    ).replace(/[\r\n]+/g, ' ')
 
     const text = [
-        `New Start a Project submission (${id})`,
+        isLaunch
+            ? 'They chose the Launch Website and were sent to Stripe Checkout. Payment is not confirmed yet — check Stripe.'
+            : 'They asked about a custom project. No payment was taken.',
+        `Request ID: ${id} (Stripe client_reference_id)`,
         '',
-        `Name:          ${submission.name}`,
-        `Email:         ${submission.email}`,
-        `Business:      ${submission.business}`,
-        `Website:       ${submission.website || '—'}`,
-        `Needs:         ${needLabels.get(submission.need) ?? submission.need}`,
-        `Project type:  ${projectType}`,
-        ...(submission.budget ? [`Budget:        ${budgetLabels.get(submission.budget) ?? submission.budget}`] : []),
+        `Name:            ${submission.name}`,
+        `Email:           ${submission.email}`,
+        `Business:        ${submission.business}`,
+        `Website:         ${submission.website || '—'}`,
+        `Looking for:     ${lookingForLabels.get(submission.lookingFor) ?? submission.lookingFor}`,
+        `Scope:           ${scopeLabels.get(submission.scope) ?? submission.scope}`,
+        ...(submission.budget ? [`Budget:          ${budgetLabels.get(submission.budget) ?? submission.budget}`] : []),
+        '',
+        'What the business does:',
+        submission.businessDescription,
         '',
         'What they hope the website accomplishes:',
         submission.goals,
+        ...(submission.notes ? ['', 'Anything else:', submission.notes] : []),
         '',
         'Reply to this email to respond directly.',
     ].join('\n')

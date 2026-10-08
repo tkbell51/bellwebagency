@@ -5,7 +5,10 @@ const year = new Date().getFullYear()
 
 const columns = [
     { title: 'Studio', links: siteConfig.nav.filter((item) => item.to !== '/') },
-    { title: 'Clients', links: [siteConfig.cta.project, siteConfig.support.requestUpdate] },
+    {
+        title: 'Clients',
+        links: [siteConfig.cta.project, siteConfig.support.requestUpdate, siteConfig.support.manageBilling],
+    },
 ]
 </script>
 

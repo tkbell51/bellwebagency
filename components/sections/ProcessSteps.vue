@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { processSteps } from '~/data/process'
 
-/** `compact` is a five-column overview; `detailed` is the full Process page list. */
-withDefaults(defineProps<{ variant?: 'compact' | 'detailed' }>(), { variant: 'compact' })
+/** `compact`: five-column overview · `detailed`: the Process page · `list`: a short vertical list (/start). */
+withDefaults(defineProps<{ variant?: 'compact' | 'detailed' | 'list' }>(), { variant: 'compact' })
 </script>
 
 <template>
@@ -18,6 +18,23 @@ withDefaults(defineProps<{ variant?: 'compact' | 'detailed' }>(), { variant: 'co
             <p class="font-display text-sm font-semibold tabular-nums text-copper-deep">{{ step.number }}</p>
             <h3 class="mt-3 text-[1.1875rem] leading-snug tracking-tight">{{ step.title }}</h3>
             <p class="mt-3 text-[0.9375rem] leading-relaxed text-muted">{{ step.description }}</p>
+        </li>
+    </ol>
+
+    <ol v-else-if="variant === 'list'" class="space-y-5">
+        <li v-for="step in processSteps" :key="step.number" class="flex gap-4">
+            <span
+                class="inline-flex size-8 shrink-0 items-center justify-center rounded-full border border-ink/15 font-display text-sm font-semibold tabular-nums"
+                aria-hidden="true"
+            >
+                {{ Number(step.number) }}
+            </span>
+            <div class="pt-1">
+                <h4 class="font-medium leading-snug">
+                    <span class="sr-only">Step {{ Number(step.number) }}: </span>{{ step.title }}
+                </h4>
+                <p class="mt-1 text-[0.9375rem] text-muted">{{ step.description }}</p>
+            </div>
         </li>
     </ol>
 

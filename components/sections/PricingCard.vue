@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { launchPlan as plan } from '~/data/pricing'
+import { siteConfig } from '~/config/site'
+import { launchDueToday, launchPlan as plan } from '~/data/pricing'
 </script>
 
 <template>
@@ -24,7 +25,7 @@ import { launchPlan as plan } from '~/data/pricing'
                     {{ formatPrice(plan.monthly.amount)
                     }}<span class="text-xl font-medium tracking-tight text-muted">/mo</span>
                 </p>
-                <p class="mt-2 text-sm text-muted">{{ plan.monthly.covers }}</p>
+                <p class="mt-2 text-sm text-muted">{{ plan.monthly.name }} — {{ plan.monthly.covers.toLowerCase() }}</p>
             </div>
         </div>
 
@@ -36,7 +37,21 @@ import { launchPlan as plan } from '~/data/pricing'
             </li>
         </ul>
 
-        <CTAButton :to="plan.cta.to" :label="plan.cta.label" size="lg" class="mt-10 w-full sm:w-auto" />
+        <p class="mt-8 rounded-xl bg-white p-4 text-[0.9375rem]">
+            <strong class="font-semibold">You’ll review your actual website before it goes live.</strong>
+            <span class="text-muted">
+                {{ formatPrice(launchDueToday) }} due at checkout<template v-if="plan.monthly.startsAt === 'checkout'">
+                    (setup + first month)</template
+                >, then {{ formatPrice(plan.monthly.amount) }}/month.</span
+            >
+        </p>
+
+        <CTAButton
+            :to="siteConfig.cta.primary.to"
+            :label="siteConfig.cta.primary.label"
+            size="lg"
+            class="mt-8 w-full sm:w-auto"
+        />
         <p class="mt-6 text-sm leading-relaxed text-muted">
             {{ plan.finePrint }}
             <NuxtLink to="/terms" class="underline underline-offset-4 hover:text-ink">See terms</NuxtLink>.

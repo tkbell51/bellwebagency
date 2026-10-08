@@ -30,11 +30,14 @@ import { customPlan } from '~/data/pricing'
                             {{ item }}
                         </li>
                     </ul>
-                    <p class="mt-6 text-sm text-muted-dark">{{ customPlan.priceNote }}</p>
+                    <p v-if="customPlan.startingAt !== null" class="mt-6 font-medium">
+                        Starting at {{ formatPrice(customPlan.startingAt) }}
+                    </p>
+                    <p class="mt-1 text-sm text-muted-dark">{{ customPlan.priceNote }}</p>
                     <div class="mt-auto pt-10">
                         <CTAButton
-                            :to="customPlan.cta.to"
-                            :label="customPlan.cta.label"
+                            to="/start?plan=custom"
+                            label="Start a Custom Project"
                             tone="dark"
                             variant="secondary"
                         />

@@ -111,7 +111,7 @@ export default defineNuxtConfig({
         name: siteConfig.name,
     },
     sitemap: {
-        exclude: ['/opportunity/**', '/start/thanks', ...Object.keys(redirects)],
+        exclude: ['/opportunity/**', '/start/thanks', '/welcome', ...Object.keys(redirects)],
     },
 
     routeRules: Object.fromEntries(

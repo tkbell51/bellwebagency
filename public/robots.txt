@@ -2,5 +2,6 @@ User-agent: *
 Allow: /
 Disallow: /opportunity/
 Disallow: /start/thanks
+Disallow: /welcome
 
 Sitemap: https://bellwebagency.com/sitemap.xml

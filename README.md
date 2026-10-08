@@ -61,6 +61,34 @@ Short, factual description of the work.
 
 Images live in `public/images` and are resized to WebP at build time by Nuxt Image.
 
+## Customer journey
+
+```text
+Start Your Website → Quick Project Fit → Choose Website ─┬─ Launch Website → Stripe Checkout → /welcome
+                                                         └─ Custom project → inquiry (no payment)
+/welcome → Website Brief → Approval → Design & Build → Private Preview → Revisions → Launch → Ongoing care
+```
+
+- **`/start`** — `ProjectFitForm` (two short steps) → `StartRecommendation` (recommended path, `PricingSummary`,
+  preview promise, `ProcessSteps`, Turnstile, `CheckoutCTA`). The recommendation rule is `recommendPath()` in
+  `data/project-start.ts`. Nothing is sent until the visitor chooses a path.
+- **Launch Website** — the answers are saved first, then the visitor goes to the Stripe Payment Link
+  (`data/pricing.ts`) with `prefilled_email` and `client_reference_id` (the saved request ID).
+- **Custom project** — the answers (plus an optional budget) are saved and emailed; no payment.
+- **`/welcome`** — where Stripe sends customers after paying. Set the Payment Link's _After payment_ redirect to
+  `https://bellwebagency.com/welcome?session_id={CHECKOUT_SESSION_ID}`. The Website Brief interview isn't built
+  yet: set `onboarding.briefUrl` in `data/onboarding.ts` when it is.
+- **Pricing** — everything (amounts, product names, Payment Link, billing portal, when the monthly plan starts,
+  the custom "starting at" price) lives in `data/pricing.ts`. `monthly.startsAt` must match how the Payment Link
+  bills: `'checkout'` (current: first month charged at checkout) or `'launch'` (add a free trial to the Payment
+  Link, then update the Terms).
+- **Funnel events** — `useFunnel().track()` queues events on `window.__bellFunnel` and dispatches `bell:funnel`
+  DOM events (no analytics vendor yet). Event names are the `FunnelEvent` type in `types/index.ts`.
+- **Future** — `WebsiteBrief`, `ProjectLifecycleStatus` (`types/index.ts`) and `projectLifecycle`
+  (`data/process.ts`) define the post-purchase workflow. Confirming payments server-side will need a Stripe
+  webhook in the Worker with `STRIPE_WEBHOOK_SECRET` (and `STRIPE_SECRET_KEY` for API calls) stored as Worker
+  secrets — never in the repo.
+
 ## Forms
 
 `/start` posts to `/api/start-project`, handled by the Cloudflare Worker in `worker/start-project.ts`. It
@@ -74,11 +102,6 @@ client). If the email fails, the submission is still saved and marked `email_sta
 secret is the Worker secret `TURNSTILE_SECRET`. For local `npm run cf:dev`, create a git-ignored `.dev.vars` with
 `TURNSTILE_HOSTNAMES=localhost,127.0.0.1` and a `TURNSTILE_SECRET`; with Cloudflare's public test secrets, local
 submissions are rejected (they carry no action), so test the success path on the live site.
-
-`?plan=launch`, `?plan=custom`, and `?need=update` preselect answers. The Launch Website flow is designed to
-grow into **Choose → Pay → Onboard**: hook checkout into the Worker and `StartProjectForm.vue` (see
-`nextSteps` in `data/project-start.ts`), and point `support.requestUpdate` in `config/site.ts` at the
-support system.
 
 View recent submissions:
 

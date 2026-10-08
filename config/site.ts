@@ -1,3 +1,4 @@
+import { launchPlan } from '../data/pricing'
 import type { LinkItem, SiteConfig } from '../types'
 
 /**
@@ -37,9 +38,13 @@ export const siteConfig: SiteConfig = {
         project: { label: 'Start a Project', to: '/start' },
     },
 
-    /** Swap `to` for the Bell Web Agency support system once it exists. */
+    /** Swap `requestUpdate.to` for the Bell Web Agency support system once it exists. */
     support: {
-        requestUpdate: { label: 'Request an Update', to: '/start?need=update' },
+        requestUpdate: {
+            label: 'Request an Update',
+            to: 'mailto:info@bellwebagency.com?subject=Website%20update%20request',
+        },
+        manageBilling: { label: 'Manage Billing', to: launchPlan.checkout.billingPortalUrl },
     },
 
     nav: [

@@ -22,8 +22,21 @@ usePageSeo({
             />
         </section>
 
+        <section class="container pb-24 sm:pb-32" aria-labelledby="journey-title">
+            <h2 id="journey-title" class="text-display-md" data-reveal>
+                From first click to <span class="accent">launch.</span>
+            </h2>
+            <p class="mt-4 max-w-prose text-muted" data-reveal>
+                A short fit check and clear pricing before you pay. Real design work starts after checkout, and you
+                review your actual website before it goes live.
+            </p>
+            <div class="mt-12" data-reveal>
+                <CustomerJourney />
+            </div>
+        </section>
+
         <section class="container pb-24 sm:pb-32" aria-labelledby="steps-title">
-            <h2 id="steps-title" class="sr-only">The five steps</h2>
+            <h2 id="steps-title" class="eyebrow mb-8">After checkout, step by step</h2>
             <ProcessSteps variant="detailed" />
         </section>
 

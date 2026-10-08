@@ -13,6 +13,12 @@ const props = withDefaults(
 )
 
 const isExternal = computed(() => /^(https?:|mailto:|tel:)/.test(props.to))
+
+const { track } = useFunnel()
+const route = useRoute()
+const trackClick = () => {
+    if (props.to.startsWith('/start')) track('start_website_clicked', { from: route.path })
+}
 const opensNewTab = computed(() => props.to.startsWith('http'))
 
 const classes = computed(() => {
@@ -47,6 +53,7 @@ const classes = computed(() => {
         :rel="opensNewTab ? 'noopener' : undefined"
         :class="classes"
         class="group"
+        @click="trackClick"
     >
         <span
             ><slot>{{ label }}</slot></span

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { siteConfig } from '~/config/site'
+import { launchPlan } from '~/data/pricing'
 
 const included = [
     { title: 'Hosting & SSL', text: 'Your website stays online and secure.' },
@@ -15,7 +16,9 @@ const updateFlow = ['Send a request', 'We make the change', 'It’s live']
     <section id="care" class="section" aria-labelledby="care-title">
         <div class="container grid gap-16 lg:grid-cols-12 lg:gap-10">
             <div class="lg:col-span-5" data-reveal>
-                <p class="eyebrow mb-5">Ongoing care</p>
+                <p class="eyebrow mb-5">
+                    {{ launchPlan.monthly.name }} · {{ formatPrice(launchPlan.monthly.amount) }}/month
+                </p>
                 <h2 id="care-title" class="text-display-lg">
                     We don’t disappear after <span class="accent">launch.</span>
                 </h2>

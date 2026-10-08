@@ -21,10 +21,11 @@ const example = {
                 <p class="eyebrow mb-5">Guided onboarding</p>
                 <h2 id="assist-title" class="text-display-lg">Don’t know what to <span class="accent">write?</span></h2>
                 <p class="mt-6 text-lede text-muted">
-                    You don’t need a finished website brief before you start. Tell us about your business in plain
-                    English, and our guided process turns your answers into a clear brief — so you don’t spend three
-                    weeks staring at a blank document.
+                    You don’t need a finished website brief before you start. After checkout, a guided interview asks
+                    about your business one question at a time, and your answers become a clear Website Brief — so you
+                    don’t spend three weeks staring at a blank document.
                 </p>
+                <p class="mt-4 text-muted">You approve the brief before any design work begins.</p>
             </div>
 
             <div class="lg:col-span-6 lg:col-start-7" data-reveal>
