@@ -119,6 +119,9 @@ export default defineNuxtConfig({
     ),
 
     nitro: {
+        // Always a static build. Without this, Nitro detects Cloudflare's CI (WORKERS_CI) and switches to
+        // its cloudflare-module preset, which redirects `wrangler deploy` away from worker/index.ts.
+        preset: 'static',
         prerender: {
             crawlLinks: true,
             routes: ['/', ...opportunityRoutes, ...legacyRoutes],
