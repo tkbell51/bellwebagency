@@ -20,6 +20,8 @@ The Start a Project form asks for your name, email address, business or organiza
 
 Along with your answers, we record the date and time of your submission and the country it came from, which our hosting provider determines from your connection. We don’t store your IP address.
 
+To keep spam out, Cloudflare Turnstile checks that a person — not a bot — is sending the form, using information from your browser and connection. It doesn’t set cookies.
+
 ### When you email us
 
 We receive whatever you include in your email, such as your name, email address, and message.
@@ -43,7 +45,7 @@ We only email you about your request or project. We don’t add you to a marketi
 
 We use a small number of service providers to run the site and our business. They process information on our behalf:
 
-- **Cloudflare** hosts the website, stores form submissions, delivers our form notification emails, and provides our analytics.
+- **Cloudflare** hosts the website, stores form submissions, checks submissions for bots (Turnstile), delivers our form notification emails, and provides our analytics.
 - **Google Workspace** hosts our email.
 
 Some private pages we create for specific businesses include a video hosted by **Loom** and images hosted by **Cloudinary**. When those pages load, those services may collect technical information, and Loom may set cookies, under their own privacy policies.

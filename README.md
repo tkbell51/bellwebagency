@@ -68,6 +68,13 @@ validates the submission against the options in `data/project-start.ts`, saves i
 table in D1, then emails it to info@ through Cloudflare Email Service (replying to the email replies to the
 client). If the email fails, the submission is still saved and marked `email_status = 'failed'`.
 
+**Bot protection:** every submission must include a Cloudflare Turnstile token (widget sitekey and action in
+`data/project-start.ts`). The Worker verifies it with siteverify before anything is saved or emailed, requiring
+`success`, the `start_project` action, and a hostname listed in `TURNSTILE_HOSTNAMES` (`wrangler.jsonc`). The
+secret is the Worker secret `TURNSTILE_SECRET`. For local `npm run cf:dev`, create a git-ignored `.dev.vars` with
+`TURNSTILE_HOSTNAMES=localhost,127.0.0.1` and a `TURNSTILE_SECRET`; with Cloudflare's public test secrets, local
+submissions are rejected (they carry no action), so test the success path on the live site.
+
 `?plan=launch`, `?plan=custom`, and `?need=update` preselect answers. The Launch Website flow is designed to
 grow into **Choose → Pay → Onboard**: hook checkout into the Worker and `StartProjectForm.vue` (see
 `nextSteps` in `data/project-start.ts`), and point `support.requestUpdate` in `config/site.ts` at the

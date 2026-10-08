@@ -1,10 +1,11 @@
 import { siteConfig } from '../config/site'
-import { budgetOptions, budgetRules, needOptions, projectTypeOptions } from '../data/project-start'
+import { budgetOptions, budgetRules, needOptions, projectTypeOptions, turnstile } from '../data/project-start'
 
 /**
  * POST /api/start-project
  * Saves a Start a Project submission to D1, then emails the studio inbox.
- * Accepts JSON (the site's form) or a regular form post (no JavaScript), which redirects to /start/thanks.
+ * Accepts JSON (the site's form) or a regular form post, which redirects to /start/thanks.
+ * Every submission must carry a valid Cloudflare Turnstile token (see verifyTurnstile).
  */
 
 interface Submission {
@@ -49,6 +50,11 @@ export async function handleStartProject(request: Request, env: Env, ctx: Execut
     const fields = await readFields(request, isJson)
     if (!fields) return reply(isJson, 400, { ok: false, error: 'Unreadable submission' })
 
+    // Bot check gates everything below; the existing handler logic is unchanged.
+    if (!(await verifyTurnstile(env, fields['cf-turnstile-response'], request))) {
+        return reply(isJson, 403, { ok: false, error: 'forbidden' })
+    }
+
     // Honeypot: bots fill the hidden field. Pretend it worked and drop it.
     if (fields['bot-field']) return success(isJson, url)
 
@@ -85,6 +91,46 @@ export async function handleStartProject(request: Request, env: Env, ctx: Execut
     ctx.waitUntil(notify(env, id, submission))
 
     return success(isJson, url, id)
+}
+
+/** Canonical Turnstile siteverify: requires success, the form's action, and an allowed frontend hostname. */
+async function verifyTurnstile(env: Env, token: string | undefined, request: Request): Promise<boolean> {
+    const expectedHostnames = new Set(
+        (env.TURNSTILE_HOSTNAMES ?? '')
+            .split(',')
+            .map((hostname) => hostname.trim())
+            .filter(Boolean),
+    )
+
+    if (
+        typeof token !== 'string' ||
+        token.length === 0 ||
+        token.length > 2048 ||
+        expectedHostnames.size === 0 ||
+        !env.TURNSTILE_SECRET
+    ) {
+        return false
+    }
+
+    let result: { success?: boolean; action?: string; hostname?: string }
+    try {
+        const response = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            signal: AbortSignal.timeout(10_000),
+            body: new URLSearchParams({
+                secret: env.TURNSTILE_SECRET,
+                response: token,
+                remoteip: request.headers.get('CF-Connecting-IP') ?? '',
+            }),
+        })
+        if (!response.ok) throw new Error(`siteverify ${response.status}`)
+        result = await response.json()
+    } catch {
+        return false
+    }
+
+    return result.success === true && result.action === turnstile.action && expectedHostnames.has(result.hostname ?? '')
 }
 
 async function readFields(request: Request, isJson: boolean): Promise<Record<string, string> | null> {

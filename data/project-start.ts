@@ -5,6 +5,15 @@ import { customPlan, launchPlan } from './pricing'
 /** Handled by the Cloudflare Worker in worker/start-project.ts, which validates against the options below. */
 export const projectFormEndpoint = '/api/start-project'
 
+/**
+ * Cloudflare Turnstile bot check on the Start a Project form. The Worker verifies each token with
+ * siteverify (secret: TURNSTILE_SECRET) and requires this action and a hostname from TURNSTILE_HOSTNAMES.
+ */
+export const turnstile = {
+    siteKey: '0x4AAAAAAFRZqkkohsAMyio0',
+    action: 'start_project',
+} as const
+
 export const needOptions: ChoiceOption[] = [
     { value: 'new-website', label: 'A new website' },
     { value: 'redesign', label: 'A redesign of my current website' },

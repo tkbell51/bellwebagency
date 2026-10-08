@@ -37,5 +37,7 @@
     "vars": {
         "NOTIFY_TO": "info@bellwebagency.com",
         "NOTIFY_FROM": "website@bellwebagency.com",
+        // Frontend hostnames whose Turnstile tokens are accepted in production (never localhost)
+        "TURNSTILE_HOSTNAMES": "bellwebagency.com",
     },
 }

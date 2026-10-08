@@ -8,6 +8,7 @@ import {
     nextSteps,
     projectFormEndpoint,
     projectTypeOptions,
+    turnstile as turnstileConfig,
 } from '~/data/project-start'
 
 /**
@@ -44,7 +45,73 @@ onMounted(() => {
 })
 
 const current = ref(0)
+
+/*
+ * Cloudflare Turnstile. Rendered explicitly on the final step so the widget ID can be reset after each
+ * request: tokens are single-use, and the page stays open after a failed attempt.
+ */
+interface TurnstileApi {
+    render: (container: HTMLElement, options: Record<string, unknown>) => string
+    reset: (widgetId?: string) => void
+    remove: (widgetId?: string) => void
+}
+
+useHead({
+    script: [
+        {
+            key: 'turnstile',
+            src: 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit',
+            async: true,
+            defer: true,
+        },
+    ],
+})
+
+const turnstileEl = ref<HTMLElement>()
+const turnstileToken = ref('')
+const turnstileMessage = ref('')
+let turnstileWidgetId: string | undefined
+
+const turnstileApi = () => (window as unknown as { turnstile?: TurnstileApi }).turnstile
+
+async function renderTurnstile() {
+    if (turnstileWidgetId !== undefined) return
+    for (let attempt = 0; attempt < 100 && !turnstileApi(); attempt++) {
+        await new Promise((resolve) => setTimeout(resolve, 100))
+    }
+    const api = turnstileApi()
+    if (!api || !turnstileEl.value || turnstileWidgetId !== undefined) return
+    turnstileWidgetId = api.render(turnstileEl.value, {
+        sitekey: turnstileConfig.siteKey,
+        action: turnstileConfig.action,
+        appearance: 'interaction-only',
+        size: 'flexible',
+        theme: 'light',
+        callback: (token: string) => {
+            turnstileToken.value = token
+            turnstileMessage.value = ''
+        },
+        'expired-callback': () => (turnstileToken.value = ''),
+        'error-callback': () => {
+            turnstileToken.value = ''
+        },
+    })
+}
+
+function resetTurnstile() {
+    turnstileToken.value = ''
+    if (turnstileWidgetId !== undefined) turnstileApi()?.reset(turnstileWidgetId)
+}
+
+onBeforeUnmount(() => {
+    if (turnstileWidgetId !== undefined) turnstileApi()?.remove(turnstileWidgetId)
+})
 const status = ref<'idle' | 'submitting' | 'success' | 'error'>('idle')
+
+// Render the bot check once the visitor reaches the final step
+watch(current, (step) => {
+    if (step === steps.length - 1) nextTick(renderTurnstile)
+})
 const formEl = ref<HTMLFormElement>()
 const stepHeadings: HTMLElement[] = []
 const setHeading = (el: unknown, index: number) => {
@@ -80,6 +147,10 @@ async function goTo(index: number) {
 
 async function submit() {
     if (!stepIsValid(current.value) || !formEl.value) return
+    if (!turnstileToken.value) {
+        turnstileMessage.value = `Please wait a moment while we confirm you’re not a bot, then send again. If this keeps happening, email ${siteConfig.contact.email}.`
+        return
+    }
     status.value = 'submitting'
 
     const data = new FormData(formEl.value)
@@ -102,6 +173,9 @@ async function submit() {
     } catch (error) {
         console.error(error)
         status.value = 'error'
+    } finally {
+        // Tokens are single-use: get a fresh one before any retry
+        resetTurnstile()
     }
 }
 
@@ -338,6 +412,8 @@ const choiceClass =
                         </label>
                     </div>
                 </div>
+                <div ref="turnstileEl" />
+                <p v-if="turnstileMessage" class="text-sm text-copper-deep" role="status">{{ turnstileMessage }}</p>
                 <p v-if="isLaunch" class="rounded-xl bg-paper p-4 text-sm text-muted">
                     No payment is taken here. We’ll confirm the details with you by email before anything is charged.
                 </p>
