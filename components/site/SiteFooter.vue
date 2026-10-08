@@ -73,7 +73,10 @@ const columns = [
                 class="mt-16 flex flex-col gap-3 border-t border-ink-line pt-8 text-sm text-muted-dark sm:flex-row sm:justify-between"
             >
                 <p>&copy; {{ year }} {{ siteConfig.name }}. All rights reserved.</p>
-                <p>Designed &amp; built by Bell Web Agency.</p>
+                <p class="flex flex-wrap gap-x-6 gap-y-2">
+                    <NuxtLink to="/privacy" class="hover:text-paper">Privacy Policy</NuxtLink>
+                    <span>Designed &amp; built by Bell Web Agency.</span>
+                </p>
             </div>
         </div>
     </footer>

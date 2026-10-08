@@ -32,6 +32,14 @@ export default defineContentConfig({
                     .optional(),
             }),
         }),
+        /** Legal pages (privacy policy, terms), served at /<file-name>. */
+        legal: defineCollection({
+            type: 'page',
+            source: { include: 'legal/*.md', prefix: '/' },
+            schema: z.object({
+                updated: z.date(),
+            }),
+        }),
         /** Private prospect pages linked from outreach emails; not indexed. */
         opportunity: defineCollection({
             type: 'page',

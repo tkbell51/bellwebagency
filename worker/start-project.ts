@@ -1,5 +1,5 @@
 import { siteConfig } from '../config/site'
-import { needOptions, projectTypeOptions } from '../data/project-start'
+import { budgetOptions, budgetRules, needOptions, projectTypeOptions } from '../data/project-start'
 
 /**
  * POST /api/start-project
@@ -15,6 +15,7 @@ interface Submission {
     need: string
     goals: string
     projectType: string
+    budget: string
 }
 
 const maxLength: Record<keyof Submission, number> = {
@@ -25,10 +26,12 @@ const maxLength: Record<keyof Submission, number> = {
     need: 40,
     goals: 4000,
     projectType: 40,
+    budget: 40,
 }
 
 const needLabels = new Map(needOptions.map((option) => [option.value, option.label]))
 const projectTypeLabels = new Map(projectTypeOptions.map((option) => [option.value, option.label]))
+const budgetLabels = new Map(budgetOptions.map((option) => [option.value, option.label]))
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
 export async function handleStartProject(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
@@ -57,8 +60,8 @@ export async function handleStartProject(request: Request, env: Env, ctx: Execut
 
     try {
         await env.DB.prepare(
-            `INSERT INTO project_requests (id, name, email, business, website, need, goals, project_type, country)
-             VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9)`,
+            `INSERT INTO project_requests (id, name, email, business, website, need, goals, project_type, budget, country)
+             VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10)`,
         )
             .bind(
                 id,
@@ -69,6 +72,7 @@ export async function handleStartProject(request: Request, env: Env, ctx: Execut
                 submission.need,
                 submission.goals,
                 submission.projectType,
+                submission.budget || null,
                 country,
             )
             .run()
@@ -103,6 +107,7 @@ function validate(fields: Record<string, string>) {
         need: fields.need ?? '',
         goals: fields.goals ?? '',
         projectType: fields.projectType ?? '',
+        budget: fields.budget ?? '',
     }
     const errors: Partial<Record<keyof Submission, string>> = {}
 
@@ -117,6 +122,12 @@ function validate(fields: Record<string, string>) {
     if (submission.projectType && !projectTypeLabels.has(submission.projectType)) {
         errors.projectType = 'Choose one of the options'
     }
+
+    // Budget is only asked for some project types (see budgetRules); ignore it everywhere else
+    const budgetRule = budgetRules[submission.projectType]
+    if (!budgetRule) submission.budget = ''
+    else if (budgetRule.required && !submission.budget) errors.budget = 'Required'
+    else if (submission.budget && !budgetLabels.has(submission.budget)) errors.budget = 'Choose one of the options'
 
     return Object.keys(errors).length ? { submission: null, errors } : { submission, errors: null }
 }
@@ -135,6 +146,7 @@ async function notify(env: Env, id: string, submission: Submission) {
         `Website:       ${submission.website || '—'}`,
         `Needs:         ${needLabels.get(submission.need) ?? submission.need}`,
         `Project type:  ${projectType}`,
+        ...(submission.budget ? [`Budget:        ${budgetLabels.get(submission.budget) ?? submission.budget}`] : []),
         '',
         'What they hope the website accomplishes:',
         submission.goals,

@@ -1,7 +1,14 @@
 <script setup lang="ts">
 import { siteConfig } from '~/config/site'
 import { launchPlan } from '~/data/pricing'
-import { needOptions, nextSteps, projectFormEndpoint, projectTypeOptions } from '~/data/project-start'
+import {
+    budgetOptions,
+    budgetRules,
+    needOptions,
+    nextSteps,
+    projectFormEndpoint,
+    projectTypeOptions,
+} from '~/data/project-start'
 
 /**
  * Guided project start. Submissions go to the Cloudflare Worker (worker/start-project.ts),
@@ -24,6 +31,7 @@ const form = reactive({
     need: '',
     goals: '',
     projectType: '',
+    budget: '',
 })
 
 // Links like /start?plan=launch or /start?need=update preselect an answer.
@@ -46,6 +54,12 @@ const resultHeading = ref<HTMLElement>()
 
 const result = computed(() => nextSteps[form.projectType] ?? nextSteps.default)
 const isLaunch = computed(() => form.projectType === launchPlan.id)
+const budgetRule = computed(() => budgetRules[form.projectType])
+
+// Budget only applies to some project types; drop a stale answer when the type changes
+watch(budgetRule, (rule) => {
+    if (!rule) form.budget = ''
+})
 
 /** Validate the visible step using the browser's built-in constraint validation. */
 function stepIsValid(index: number) {
@@ -301,6 +315,29 @@ const choiceClass =
                         </label>
                     </div>
                 </div>
+                <div v-if="budgetRule" role="radiogroup" aria-labelledby="budget-label" aria-describedby="budget-hint">
+                    <p id="budget-label" class="text-sm font-medium">
+                        Roughly what budget do you have in mind?
+                        <span v-if="budgetRule.required" class="text-copper-deep" aria-hidden="true">*</span>
+                        <span v-else class="font-normal text-muted">(optional)</span>
+                    </p>
+                    <p id="budget-hint" class="mt-1 text-sm text-muted">
+                        This helps us recommend the right scope. It’s not a quote.
+                    </p>
+                    <div class="mt-3 grid gap-3 sm:grid-cols-2">
+                        <label v-for="option in budgetOptions" :key="option.value" :class="choiceClass">
+                            <input
+                                v-model="form.budget"
+                                type="radio"
+                                name="budget"
+                                :value="option.value"
+                                :required="budgetRule.required"
+                                class="mt-1 size-4 accent-ink"
+                            />
+                            <span class="text-[0.9375rem]">{{ option.label }}</span>
+                        </label>
+                    </div>
+                </div>
                 <p v-if="isLaunch" class="rounded-xl bg-paper p-4 text-sm text-muted">
                     No payment is taken here. We’ll confirm the details with you by email before anything is charged.
                 </p>
@@ -314,6 +351,11 @@ const choiceClass =
                 Something went wrong sending your details. Please try again, or email us at
                 <a :href="`mailto:${siteConfig.contact.email}`" class="underline">{{ siteConfig.contact.email }}</a
                 >.
+            </p>
+
+            <p v-if="current === steps.length - 1" class="mt-8 text-sm text-muted">
+                We’ll only use your details to respond to your request. See our
+                <NuxtLink to="/privacy" class="text-ink underline underline-offset-4">privacy policy</NuxtLink>.
             </p>
 
             <div class="mt-10 flex items-center justify-between gap-4 border-t border-line pt-8">

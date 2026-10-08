@@ -99,6 +99,33 @@
     .prose-bell a {
         @apply underline decoration-copper-deep underline-offset-4 hover:text-copper-deep;
     }
+
+    /* Long-form documents (privacy policy, terms): smaller body text and section headings */
+    .prose-legal p,
+    .prose-legal li {
+        @apply text-[1.0625rem] leading-relaxed text-ink/80;
+    }
+
+    .prose-legal h2 {
+        @apply mt-14 font-display text-display-sm font-semibold;
+    }
+
+    .prose-legal h3 {
+        @apply mt-8 text-[1.1875rem] font-semibold tracking-tight;
+    }
+
+    /* Nuxt Content wraps headings in anchor links; keep them looking like plain headings */
+    .prose-legal :is(h2, h3) a {
+        @apply text-inherit no-underline;
+    }
+
+    .prose-legal ul {
+        @apply list-disc space-y-2 pl-5 marker:text-copper-deep;
+    }
+
+    .prose-legal strong {
+        @apply font-semibold text-ink;
+    }
 }
 
 /*
