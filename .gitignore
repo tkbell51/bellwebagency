@@ -94,3 +94,8 @@ sw.*
 .data
 .env.*
 !.env.example
+
+# Cloudflare
+.wrangler
+.dev.vars*
+.nuxt-build

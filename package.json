@@ -5,9 +5,13 @@
     "type": "module",
     "scripts": {
         "dev": "nuxt dev",
-        "build": "nuxt build",
-        "generate": "nuxt generate",
-        "preview": "nuxt preview",
+        "build": "NUXT_BUILD_DIR=.nuxt-build nuxt build",
+        "generate": "NUXT_BUILD_DIR=.nuxt-build nuxt generate",
+        "cf:dev": "npm run generate && wrangler dev",
+        "cf:types": "wrangler types worker/worker-configuration.d.ts",
+        "db:migrate:local": "wrangler d1 migrations apply bellwebagency --local",
+        "db:migrate": "wrangler d1 migrations apply bellwebagency --remote",
+        "deploy": "npm run generate && wrangler deploy",
         "lint": "eslint .",
         "postinstall": "nuxt prepare"
     },
@@ -30,6 +34,7 @@
         "@nuxtjs/tailwindcss": "^6.14.0",
         "eslint": "^9.39.0",
         "eslint-config-prettier": "^10.1.0",
-        "prettier": "^3.6.0"
+        "prettier": "^3.6.0",
+        "wrangler": "^4.148.0"
     }
 }

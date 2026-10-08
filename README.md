@@ -1,15 +1,15 @@
 # Bell Web Agency
 
-The bellwebagency.com marketing site — a Nuxt 3 static site, deployed to Netlify.
+The bellwebagency.com marketing site — a prerendered Nuxt 3 site served by a Cloudflare Worker, which also handles the Start a Project form.
 
 Requires Node 22.5+ (Nuxt Content uses the built-in `node:sqlite`).
 
 ```bash
-npm install          # install dependencies
-npm run dev          # dev server at http://localhost:3000
-npm run generate     # static build → .output/public (what Netlify deploys)
-npm run preview      # preview the generated site
-npm run lint         # ESLint
+npm install            # install dependencies
+npm run dev            # Nuxt dev server at http://localhost:3000 (the form logs instead of submitting)
+npm run cf:dev         # full local preview: static build + Worker + local D1 at http://localhost:8787
+npm run deploy         # build and deploy to Cloudflare
+npm run lint           # ESLint
 ```
 
 ## Where things live
@@ -25,6 +25,7 @@ npm run lint         # ESLint
 | Shared types                          | `types/index.ts`                               |
 | Design tokens (colors, type scale)    | `tailwind.config.js`, `assets/css/main.css`    |
 | Retired URL redirects                 | `nuxt.config.ts` and `public/_redirects`       |
+| Form API (Cloudflare Worker)          | `worker/`, `wrangler.jsonc`, `migrations/`     |
 
 Change a price, a CTA label, or contact details in one place and every page picks it up.
 
@@ -62,13 +63,38 @@ Images live in `public/images` and are resized to WebP at build time by Nuxt Ima
 
 ## Forms
 
-`/start` submits to **Netlify Forms** (form name `start-project`). Submissions only work on Netlify; in
-`npm run dev` the form logs its payload to the console instead of sending it. `?plan=launch`,
-`?plan=custom`, and `?need=update` preselect answers.
+`/start` posts to `/api/start-project`, handled by the Cloudflare Worker in `worker/start-project.ts`. It
+validates the submission against the options in `data/project-start.ts`, saves it to the `project_requests`
+table in D1, then emails it to info@ through Cloudflare Email Service (replying to the email replies to the
+client). If the email fails, the submission is still saved and marked `email_status = 'failed'`.
 
-The Launch Website flow is designed to grow into **Choose → Pay → Onboard**. When checkout and the
-onboarding system exist, hook them in `components/forms/StartProjectForm.vue` (see `nextSteps` in
-`data/project-start.ts`), and point `support.requestUpdate` in `config/site.ts` at the support system.
+`?plan=launch`, `?plan=custom`, and `?need=update` preselect answers. The Launch Website flow is designed to
+grow into **Choose → Pay → Onboard**: hook checkout into the Worker and `StartProjectForm.vue` (see
+`nextSteps` in `data/project-start.ts`), and point `support.requestUpdate` in `config/site.ts` at the
+support system.
+
+View recent submissions:
+
+```bash
+npx wrangler d1 execute bellwebagency --remote \
+  --command "SELECT created_at, name, email, business, project_type, email_status FROM project_requests ORDER BY created_at DESC LIMIT 20"
+```
+
+## Cloudflare setup (one time)
+
+1. `npx wrangler login`
+2. `npx wrangler d1 create bellwebagency` — paste the returned `database_id` into `wrangler.jsonc`.
+3. `npm run db:migrate` — creates the `project_requests` table.
+4. **Email Service:** in the Cloudflare dashboard, onboard `bellwebagency.com` as a sending domain. It adds
+   records on a `cf-bounce` subdomain and leaves Google Workspace mail alone. If it proposes a DMARC record
+   of `p=reject`, keep the existing `p=none` until Google DKIM shows "Authenticating email".
+   Never enable **Email Routing** — it replaces the Google MX records.
+5. `npm run deploy`, then submit a test on the `*.workers.dev` URL.
+6. **Go live:** Worker → Settings → Domains & Routes → add `bellwebagency.com` and `www.bellwebagency.com`.
+   This replaces the DNS records that currently point at Netlify; remove the Netlify site afterwards.
+
+Local testing: `npm run db:migrate:local`, then `npm run cf:dev`. Locally, Wrangler simulates the email
+instead of sending it.
 
 ## Tracking
 

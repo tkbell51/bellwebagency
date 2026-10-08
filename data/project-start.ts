@@ -2,8 +2,8 @@ import type { ChoiceOption } from '../types'
 import { formatPrice } from '../utils/format'
 import { customPlan, launchPlan } from './pricing'
 
-/** Netlify form name. Keep in sync with any Netlify notification settings. */
-export const projectFormName = 'start-project'
+/** Handled by the Cloudflare Worker in worker/start-project.ts, which validates against the options below. */
+export const projectFormEndpoint = '/api/start-project'
 
 export const needOptions: ChoiceOption[] = [
     { value: 'new-website', label: 'A new website' },

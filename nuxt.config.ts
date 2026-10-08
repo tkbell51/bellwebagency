@@ -6,7 +6,7 @@ const opportunityRoutes = readdirSync('content/opportunity')
     .filter((file) => file.endsWith('.md'))
     .map((file) => `/opportunity/${file.replace(/\.md$/, '')}`)
 
-// Old /portfolio/<project> URLs, prerendered as redirects to /work/<project> for hosts without _redirects support.
+// Old /portfolio/<project> URLs, also prerendered as redirect pages as a fallback to public/_redirects.
 const legacyPortfolioRoutes = readdirSync('content/portfolio')
     .filter((file) => file.endsWith('.md'))
     .map((file) => `/portfolio/${file.replace(/\.md$/, '')}`)
@@ -16,7 +16,7 @@ const staticPageRoutes: string[] = []
 
 /**
  * Retired URLs from the previous site → their closest new page.
- * Mirrored in public/_redirects so Netlify serves real 301s.
+ * Mirrored in public/_redirects so Cloudflare serves real 301s.
  */
 const redirects: Record<string, string> = {
     '/portfolio': '/work',
@@ -41,6 +41,10 @@ const legacyRoutes = [
 export default defineNuxtConfig({
     compatibilityDate: '2025-07-15',
 
+    // Production builds (`npm run generate` / `deploy` / `cf:dev`) use their own build folder so they
+    // never overwrite .nuxt while `nuxt dev` is running.
+    buildDir: process.env.NUXT_BUILD_DIR || '.nuxt',
+
     app: {
         head: {
             htmlAttrs: { lang: 'en' },
@@ -64,6 +68,11 @@ export default defineNuxtConfig({
     },
 
     css: ['~/assets/css/main.css'],
+
+    // The Cloudflare Worker in worker/ has its own runtime types and tsconfig
+    typescript: {
+        tsConfig: { exclude: ['../worker'] },
+    },
 
     // Components are registered by file name (e.g. components/site/SiteHeader.vue → <SiteHeader>)
     components: [{ path: '~/components', pathPrefix: false }],

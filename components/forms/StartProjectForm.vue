@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { siteConfig } from '~/config/site'
 import { launchPlan } from '~/data/pricing'
-import { needOptions, nextSteps, projectFormName, projectTypeOptions } from '~/data/project-start'
+import { needOptions, nextSteps, projectFormEndpoint, projectTypeOptions } from '~/data/project-start'
 
 /**
- * Guided project start, submitted to Netlify Forms.
- * Every field stays in the server-rendered HTML (steps use v-show) so Netlify can detect the form at deploy time.
+ * Guided project start. Submissions go to the Cloudflare Worker (worker/start-project.ts),
+ * which saves them to D1 and emails the studio. Without JavaScript the form still posts normally.
  * Future: a `launch` submission can hand off to checkout and onboarding instead of the email confirmation.
  */
 const route = useRoute()
@@ -71,15 +71,16 @@ async function submit() {
     const data = new FormData(formEl.value)
     try {
         if (import.meta.dev) {
-            // Netlify Forms only exist on Netlify; locally, log the payload instead of posting it.
+            // `nuxt dev` doesn't run the Worker; use `npm run cf:dev` to test real submissions locally.
             console.info('[start-project] dev submission (not sent):', Object.fromEntries(data))
         } else {
-            const response = await fetch('/', {
+            const response = await fetch(projectFormEndpoint, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body: new URLSearchParams(data as unknown as Record<string, string>).toString(),
+                headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+                body: JSON.stringify(Object.fromEntries(data)),
             })
-            if (!response.ok) throw new Error(`Form submission failed (${response.status})`)
+            const result = (await response.json().catch(() => null)) as { ok?: boolean } | null
+            if (!response.ok || !result?.ok) throw new Error(`Form submission failed (${response.status})`)
         }
         status.value = 'success'
         await nextTick()
@@ -145,16 +146,13 @@ const choiceClass =
         <form
             v-show="status !== 'success'"
             ref="formEl"
-            :name="projectFormName"
+            name="start-project"
             method="POST"
-            action="/start/thanks"
-            data-netlify="true"
-            netlify-honeypot="bot-field"
+            :action="projectFormEndpoint"
             novalidate
             class="rounded-[20px] border border-line bg-white p-6 sm:p-10"
             @submit.prevent="submit"
         >
-            <input type="hidden" name="form-name" :value="projectFormName" />
             <p class="hidden">
                 <label>Leave this empty: <input name="bot-field" tabindex="-1" autocomplete="off" /></label>
             </p>

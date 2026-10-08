@@ -1,0 +1,15 @@
+{
+    // Types for the Cloudflare Worker (run `npm run cf:types` after changing wrangler.jsonc)
+    "compilerOptions": {
+        "target": "es2022",
+        "module": "es2022",
+        "moduleResolution": "bundler",
+        "lib": ["es2022"],
+        "types": [],
+        "strict": true,
+        "noEmit": true,
+        "skipLibCheck": true,
+        "isolatedModules": true
+    },
+    "include": ["./**/*.ts", "../config/**/*.ts", "../data/**/*.ts", "../types/**/*.ts", "../utils/**/*.ts"]
+}
