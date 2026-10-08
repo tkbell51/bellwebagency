@@ -96,7 +96,8 @@ npx wrangler d1 execute bellwebagency --remote \
 Local testing: `npm run db:migrate:local`, then `npm run cf:dev`. Locally, Wrangler simulates the email
 instead of sending it.
 
-## Tracking
+## Analytics
 
-Facebook Pixel and ActiveCampaign load in production only, after the page is interactive
-(`plugins/facebook-pixel.client.ts`, `plugins/activecampaign.client.ts`).
+There are no third-party trackers. Traffic stats come from Cloudflare Web Analytics (cookieless), enabled in
+the Cloudflare dashboard rather than in code. The `facebook-domain-verification` meta tag in `nuxt.config.ts`
+only proves domain ownership to Meta; it doesn't track visitors.

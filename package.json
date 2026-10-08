@@ -5,8 +5,8 @@
     "type": "module",
     "scripts": {
         "dev": "nuxt dev",
-        "build": "NUXT_BUILD_DIR=.nuxt-build nuxt build",
-        "generate": "NUXT_BUILD_DIR=.nuxt-build nuxt generate",
+        "build": "NUXT_BUILD_DIR=.nuxt-build NITRO_PRESET=static nuxt build",
+        "generate": "NUXT_BUILD_DIR=.nuxt-build NITRO_PRESET=static nuxt generate",
         "cf:dev": "npm run generate && wrangler dev",
         "cf:types": "wrangler types worker/worker-configuration.d.ts",
         "db:migrate:local": "wrangler d1 migrations apply bellwebagency --local",
