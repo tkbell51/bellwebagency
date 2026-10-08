@@ -25,12 +25,6 @@
             "database_id": "f75db7f5-6e9b-444c-ae25-ddf9f71e5ed2",
             "migrations_dir": "migrations",
         },
-        // {
-        // 	"binding": "bellwebagency",
-        // 	"database_name": "bellwebagency",
-        // 	"database_id": "f75db7f5-6e9b-444c-ae25-ddf9f71e5ed2",
-        // 	"remote": true
-        // },
     ],
     // Cloudflare Email Service. The sender must be on an onboarded sending domain;
     // the recipient is locked to the studio inbox.
