@@ -37,6 +37,9 @@ import { launchPlan as plan } from '~/data/pricing'
         </ul>
 
         <CTAButton :to="plan.cta.to" :label="plan.cta.label" size="lg" class="mt-10 w-full sm:w-auto" />
-        <p class="mt-6 text-sm leading-relaxed text-muted">{{ plan.finePrint }}</p>
+        <p class="mt-6 text-sm leading-relaxed text-muted">
+            {{ plan.finePrint }}
+            <NuxtLink to="/terms" class="underline underline-offset-4 hover:text-ink">See terms</NuxtLink>.
+        </p>
     </article>
 </template>
