@@ -18,7 +18,7 @@ export const launchPlan: LaunchPlan = {
     monthly: {
         amount: 49,
         currency: 'USD',
-        name: 'Bell Care',
+        name: 'Website Care Plan',
         label: 'per month',
         covers: 'Ongoing hosting, maintenance, technical support, and minor website updates',
         // The current Payment Link charges the first month at checkout. To bill from launch instead,
